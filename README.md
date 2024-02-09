@@ -1,8 +1,8 @@
-# Astro Personal Site
+# steken.dev personal site
+
+Astro-powered personal website. 
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
