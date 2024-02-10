@@ -124,3 +124,112 @@
         z-index: 2;
     }
 </style>
+
+<script>
+    import { inView, animate } from "motion";
+
+    // setup state and options constants
+    let currentlyOpen = false;
+    const menuOverlay = document.getElementById("nav-menu-overlay");
+    const behindOverlay = document.getElementById("behind-overlay");
+    const hiddenState = {
+        opacity: 0,
+        transform: "translateX(-60px)",
+        backdropFilter: "blur(0px) brightness(1)",
+    };
+    const displayStateDark = {
+        opacity: 1,
+        transform: "none",
+        backdropFilter: "blur(16px) brightness(0.56)",
+    };
+    const displayStateLight = {
+        opacity: 1,
+        transform: "none",
+        backdropFilter: "blur(16px) brightness(0.98)",
+    };
+    const durationOptions = {
+        delay: 0,
+        duration: 0.3,
+        easing: [0.17, 0.55, 0.55, 1],
+    };
+
+    // close nav menu on background click using hidden div
+    behindOverlay!.classList.add("hidden");
+    behindOverlay?.addEventListener("click", (event) => {
+        event.stopPropagation()
+        if (currentlyOpen) {
+            closeMenuOverlay();
+        }
+    });
+
+    function closeMenuOverlay() {
+        animate(
+            // @ts-ignore
+            menuOverlay,
+            hiddenState,
+            durationOptions,
+        ).finished.then(() => {
+            menuOverlay!.classList.add("hidden");
+            currentlyOpen = false;
+            behindOverlay!.classList.add("hidden");
+        });
+    }
+
+    function openMenuOverlay(theme: string = 'light') {
+        animate(
+            // @ts-ignore
+            menuOverlay,
+            theme === 'light' ? displayStateLight : displayStateDark,
+            durationOptions,
+        ).finished.then(() => {
+            currentlyOpen = true;
+            behindOverlay!.classList.remove("hidden");
+        });
+    }
+
+    const handleToggleNavClick = () => {
+        const isDarkMode = document.documentElement.classList.contains("dark");
+        if (currentlyOpen) {
+            closeMenuOverlay();
+            return;
+        }
+        menuOverlay!.classList.remove("hidden");
+        if (isDarkMode) {
+            openMenuOverlay('dark');
+            return;
+        }
+        openMenuOverlay();
+    };
+
+    document
+        .getElementById("nav-menu")
+        ?.addEventListener("click", handleToggleNavClick);
+    document
+        .getElementById("nav-menu-fixed")
+        ?.addEventListener("click", handleToggleNavClick);
+
+    inView("#nav-menu", ({ target }) => {
+        // top nav icon has scrolled into view, hide the bottom nav icon
+        animate(
+            // @ts-ignore
+            target.querySelector("svg"),
+            { opacity: 1, transform: "none" },
+            durationOptions,
+        );
+        animate(
+            // @ts-ignore
+            document.querySelector("#nav-menu-fixed"),
+            { opacity: 0, transform: "translateY(-30px)" },
+            durationOptions,
+        );
+        return (leaveInfo) => {
+            // top nav icon has scrolled out of view, show the bottom nav icon
+            animate(
+                // @ts-ignore
+                document.querySelector("#nav-menu-fixed"),
+                { opacity: 1, transform: "none" },
+                durationOptions,
+            );
+        };
+    });
+</script>
