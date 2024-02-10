@@ -44,3 +44,83 @@
             y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg
     >
 </button>
+
+<style>
+    #nav-menu {
+        display: flex;
+        border: none;
+        background: none;
+        justify-content: center;
+        align-items: center;
+        height: 2rem;
+        margin: 5px 1.5rem 0px 73px;
+        cursor: pointer;
+
+        svg {
+            z-index: 4;
+            width: 1.5rem;
+            height: 1.5rem;
+            opacity: 0;
+        }
+    }
+    #nav-menu-fixed {
+        display: flex;
+        border: none;
+        background: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        height: 2rem;
+        margin: 5px 0.5rem 50px 8px;
+        position: fixed;
+        background: #0016ff;
+        padding: 20px 8px;
+        z-index: 4;
+        bottom: 10px;
+        left: 1rem;
+        cursor: pointer;
+
+        svg {
+            z-index: 4;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        @media (min-width: 630px) {
+            bottom: auto;
+            left: 16px;
+            top: 80px;
+        }
+    }
+    .overlay {
+        width: 40vw;
+        @media (max-width: 930px) {
+            width: 70vw;
+        }
+        top: 0px;
+        left: 0px;
+        padding: 4rem 1.4rem;
+        height: 120vh;
+        z-index: 3;
+        position: fixed;
+        opacity: 0;
+        border: solid 1px #c7cbd6;
+        transform: translateX(-60px);
+        background: linear-gradient(
+                18.48deg,
+                rgb(151 183 255 / 55%) 2.76%,
+                rgb(175 175 255 / 0%) 17.23%
+            ),
+            linear-gradient(
+                200.6deg,
+                rgb(191 198 255 / 29%) 4.13%,
+                rgb(185 198 255 / 5%) 26.54%
+            );
+    }
+    .behind-overlay {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+    }
+</style>
