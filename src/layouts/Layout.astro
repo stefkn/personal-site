@@ -1,13 +1,48 @@
-
 ---
-import ThemeToggle from '../components/ThemeToggle.astro';
-import { ViewTransitions } from 'astro:transitions';
+import ThemeToggle from "../components/ThemeToggle.astro";
+import NavMenu from "../components/NavMenu.astro";
+import { ViewTransitions } from "astro:transitions";
+import siteConfig from "../site-config";
 
-interface Props {
-	title: string;
+// define types
+export type Props = {
+	title?: string;
+	description?: string;
+	image?: { src: string; alt?: string };
+	pageType?: "website" | "article";
+};
+
+// get props data
+const {
+	description = siteConfig.description,
+	title = siteConfig.title,
+	pageType = siteConfig.pageType,
+	image = siteConfig.image,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.request.url, Astro.site);
+
+let resolvedImage = undefined;
+try {
+	resolvedImage = image?.src
+		? {
+			src: new URL(image.src, Astro.site).toString(),
+			alt: image.alt,
+		} : undefined;
+} catch {
+	resolvedImage = undefined;
 }
 
-const { title } = Astro.props;
+function formatCanonicalURL(url: string | URL) {
+	const path = url.toString();
+	const hasQueryParams = path.includes("?");
+	// If there are query params, make sure tshe URL has no trailing slash
+	if (hasQueryParams) {
+		path.replace(/\/?$/, "");
+	}
+	// otherwise, canonical URL always has a trailing slash
+	return path.replace(/\/?$/, hasQueryParams ? "" : "/");
+}
 ---
 
 <!doctype html>
