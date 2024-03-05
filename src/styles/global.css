@@ -77,10 +77,29 @@ body::-webkit-scrollbar {
     width: 4px;
 }
 
+main {
+    margin: auto;
+    padding: 1rem;
+    max-width: calc(100% - 6rem);
+    font-size: 20px;
+    line-height: 1.6;
+
+    @media (max-width: 930px) {
+        max-width: calc(100% - 4rem);
+    }
+    @media (max-width: 630px) {
+        max-width: 100%;
+    }
+}
+
+main.wrapper.article {
+    max-width: calc(100% - 22rem);
+}
+
 main.wrapper {
     display: grid;
     grid-template-columns:
-        1fr min(65ch, 100%) 1fr;
+        1fr min(56ch, 100%) 1fr;
 }
 
 main.wrapper>* {
