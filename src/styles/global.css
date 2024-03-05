@@ -109,6 +109,8 @@ main.wrapper>* {
 main.wrapper>.full-bleed {
     width: 100%;
     grid-column: 1 / -1;
+    margin-top: 2.2rem;
+    height: auto;
 }
 
 code {
@@ -124,7 +126,7 @@ code {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 u {
@@ -150,6 +152,13 @@ u {
         position: fixed;
         z-index: 4;
     }
+}
+
+
+/* TODO: consolidate animation styles */
+.animated {
+    opacity: 0;
+    transform: translateX(-100px);
 }
 
 /* TYPOGRAPHY */
