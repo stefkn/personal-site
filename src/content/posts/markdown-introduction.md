@@ -1,41 +1,12 @@
 ---
-title: 'My First Blog Post'
-pubDate: 2022-07-01
-description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
-image: '../../assets/image_sample.jpg'
-imageAlt: 'test image'
+title: 'Markdown: an introduction'
+pubDate: 2023-07-01
+description: 'A brief tour of the features of markdown'
+author: 'Stefan Nowak'
+image: '../../assets/Colorful.jpg'
+imageAlt: 'Photo by <a href="https://unsplash.com/@fakurian?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Milad Fakurian</a> on <a href="https://unsplash.com/photos/yellow-and-white-balloons-on-orange-surface-PGdW_bHDbpI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
 tags: ["astro", "blogging", "learning in public"]
 ---
-
-# Markdown: Syntax
-
-## Table of contents
-
-* [Overview](#overview)
-  * [Philosophy](#philosophy)
-  * [Inline HTML](#html)
-  * [Automatic Escaping for Special Characters](#autoescape)
-* [Block Elements](#block)
-  * [Paragraphs and Line Breaks](#p)
-  * [Headers](#header)
-  * [Blockquotes](#blockquote)
-  * [Lists](#list)
-  * [Code Blocks](#precode)
-  * [Horizontal Rules](#hr)
-* [Span Elements](#span)
-  * [Links](#link)
-  * [Emphasis](#em)
-  * [Code](#code)
-  * [Images](#img)
-* [Miscellaneous](#misc)
-  * [Backslash Escapes](#backslash)
-  * [Automatic Links](#autolink)
-
-**Note:** This document is itself written using Markdown; you
-can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
-
-----
 
 ## Overview
 
@@ -79,6 +50,8 @@ closing hashes don't even need to match the number of hashes
 used to open the header. (The number of opening hashes
 determines the header level.)
 
+![A starry night sky.](../../assets/image_sample.jpg)
+
 ### Blockquotes
 
 Markdown uses email-style `>` characters for blockquoting. If you're
@@ -115,8 +88,6 @@ adding additional levels of `>`:
 Blockquotes can contain other Markdown elements, including headers, lists,
 and code blocks:
 
-> ## This is a header
->
 > 1. This is the first list item.
 > 2. This is the second list item.
 >
@@ -382,8 +353,6 @@ normal paragraph. For example:
 
 Use the `printf()` function.
 
-![A starry night sky.](../../assets/image_sample.jpg)
-
 libero vehicula ctor condimentum. Quisque felis arcu, placerat a
 porta et, intdum pharetra purus. Nam in iaculis lorem. Aenean
 accumsanodio ut efficitur iaculis, nibh ex dictum velit, ut
@@ -393,3 +362,8 @@ amet sodales imperdiet, erat sem laoreet odio, ut pretium nulla
 enim ut mauris. Vivamus in fringilla neque, et laoreet mauris.
 Donec sed auctor neque. Morbi vitae viverra purus. Quisque
 mollis augue laoreet, fringilla nisi nec, rutrum lacus.
+
+### Thanks to
+
+https://kld.dev/toc-animation/ 
+https://kld.dev/building-table-of-contents/
