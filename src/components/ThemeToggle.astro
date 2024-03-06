@@ -16,6 +16,7 @@
 		align-items: center;
 		height: 2rem;
 		margin: 0px 1.5rem 0px 0px;
+		cursor: pointer;
 
 		svg {
 			width: 1.3rem;
@@ -31,12 +32,12 @@
 				typeof localStorage !== "undefined" &&
 				localStorage.getItem("theme")
 			) {
-				return localStorage.getItem("theme") || "light";
+				return localStorage.getItem("theme") || "dark";
 			}
 			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 				return "dark";
 			}
-			return "light";
+			return "dark";
 		})();
 
 		if (theme === "light") {
