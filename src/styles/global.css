@@ -87,6 +87,7 @@ main {
     @media (max-width: 930px) {
         max-width: calc(100% - 4rem);
     }
+
     @media (max-width: 630px) {
         max-width: 100%;
     }
@@ -94,6 +95,14 @@ main {
 
 main.wrapper.article {
     max-width: calc(100% - 22rem);
+
+    @media (max-width: 930px) {
+        max-width: 100%;
+    }
+}
+
+main.wrapper.article.wider {
+    max-width: calc(100% - 2rem);
 }
 
 main.wrapper {
