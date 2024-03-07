@@ -56,6 +56,29 @@
         fill: #eec5ff;
     }
 
+    #pattern-circle {
+        fill: #757bff;
+    }
+
+    #footer-bg {
+        background: linear-gradient(#d2acff, #c3c8ff, #fff9f5);
+        width: 100%;
+        height: 21rem;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        overflow: hidden;
+
+        mask-image: radial-gradient(
+            ellipse 100% 300% at 25% -30%,
+            black 20%,
+            transparent 71%
+        );
+
+        svg {
+            left: 30%;
+            position: relative;
+            top: 30%;
         }
     }
 </style>
