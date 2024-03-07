@@ -40,14 +40,22 @@
 
 <style>
     footer {
-        background-color: black;
-        color: white;
-        padding: 42px;
-        height: 200px;
+        width: 100%;
+        min-height: 24rem;
+        padding: 0px 50px;
+        position: relative;
         margin-top: 6rem;
 
-        a {
-            width: 48px;
+    html.dark > body > footer {
+        background-color: #13151a;
+    }
+    html.dark > body > footer > #footer-bg {
+        background: linear-gradient(#8a26ff, #0015ff, #13151a);
+    }
+    html.dark > body > footer > #footer-bg > svg > pattern > #pattern-circle {
+        fill: #eec5ff;
+    }
+
         }
     }
 </style>
