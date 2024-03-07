@@ -46,6 +46,44 @@
         position: relative;
         margin-top: 6rem;
 
+        div.footer-content {
+            position: relative;
+            z-index: 2;
+            letter-spacing: -0.2px;
+            font-size: 18px;
+
+            p {
+                font-family: "Inter";
+                margin-top: 0.6rem;
+            }
+
+            a {
+                text-decoration: underline;
+                color: #ff1eff;
+            }
+
+            h2#footer-title {
+                letter-spacing: -2.2px;
+                font-size: clamp(3.6rem, 5vw, 3.8rem);
+            }
+
+            #home-link {
+                display: block;
+                width: 4rem;
+            }
+
+            .quote {
+                font-size: 14px;
+                max-width: 14rem;
+                font-family: Times New Roman;
+                font-style: italic;
+                text-align: right;
+                position: absolute;
+                right: 0px;
+                opacity: 0.5;
+            }
+        }
+
         #site-icon {
             height: 4rem;
             filter: drop-shadow(7px 6px 21px #0019ff9e);
@@ -57,6 +95,8 @@
             transition-duration: 0.1s;
             transition-timing-function: ease-in-out;
         }
+    }
+
     html.dark > body > footer {
         background-color: #13151a;
     }
