@@ -1,8 +1,8 @@
----
 
----
-
-<div id="nav-menu-overlay" class="overlay hidden"></div>
+<div id="nav-menu-overlay" class="overlay hidden">
+    <a href="/posts">Posts</a>
+    <a href="/cv">CV</a>
+</div>
 <div id="behind-overlay" class="behind-overlay"></div>
 <button id="nav-menu" aria-label="Open navigation menu">
     <svg
@@ -46,6 +46,24 @@
 </button>
 
 <style>
+    #nav-menu-overlay {
+        padding-top: 8rem;
+    }
+    #nav-menu-overlay>a {
+        font-size: clamp(4rem, 5vw, 6rem);
+        font-weight: 500;
+        line-height: 1;
+        text-align: left;
+        margin: 3.2rem 0rem;
+        font-family: "Inter";
+        letter-spacing: -1.22px;
+        -webkit-font-smoothing: antialiased;
+        display: block;
+        color: #0016ff;
+    }
+    #nav-menu-overlay>a:hover {
+        color: #4050ff;
+    }
     #nav-menu {
         display: flex;
         border: none;
