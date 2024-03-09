@@ -1,0 +1,22 @@
+<Layout title={pageTitle}>
+    <main class="wrapper">
+        <section>
+			<h1 id="intro-title" class="animated">Posts</h1>
+		</section>
+		<section>
+			<h2 class="animated">more internet</h2>
+		</section>
+        <p>This is where I will post about my journey learning Astro.</p>
+        <ul>
+            {
+                allPosts.map((post) => (
+                    <li>
+                        <a href={`/posts/${post.slug}/`}>
+                            {post.data.title}
+                        </a> 
+                    </li>
+                ))
+            }
+        </ul>
+    </main>
+</Layout>
