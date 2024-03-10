@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+const pageTitle = "Links";
+---
+
+<Layout title={pageTitle}>
+	<main class="wrapper">
+		<section>
+			<h1 id="intro-title" class="animated">Links</h1>
+		</section>
+		<section>
+			<h2 class="animated">summary</h2>
+			<p>
+				Here are cool links found around the web. Often through
+				hackernews. Think of it as a pinboard of cool web stuff.
+			</p>
+		</section>
+	</main>
+</Layout>
+
+<script>
+	import { inView, animate } from "motion";
+
+	function setupAnimations() {
+		inView("section", ({ target }) => {
+			animate(
+				// @ts-ignore
+				target.querySelector(".animated"),
+				{ opacity: 1, transform: "none" },
+				{ delay: 0.2, duration: 0.8, easing: [0.17, 0.55, 0.55, 1] },
+			);
+		});
+	}
+
+	// hook animations up to View Transitions via after-swap lifecycle hook
+	document.addEventListener("astro:page-load", () => {
+		setupAnimations();
+	});
+
+	setupAnimations();
+</script>
+
+<style>
+	main {
+		margin-top: 9rem;
+	}
+</style>
