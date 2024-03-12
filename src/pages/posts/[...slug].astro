@@ -16,3 +16,15 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
 ---
+
+<Layout title={entry.data.title}>
+  <div class="article-hero-image">
+    <Image
+      src={entry.data.image}
+      onload="this.style.opacity=1"
+      alt={entry.data.imageAlt}
+      id="hero-img"
+    />
+  </div>
+</Layout>
+
