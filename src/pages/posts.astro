@@ -33,6 +33,9 @@ const pageTitle = "My Astro Learning Blog";
 
 	function setupAnimations() {
 		inView("section", ({ target }) => {
+			if (!target.querySelector(".animated")) {
+				return
+			}
 			animate(
 				// @ts-ignore
 				target.querySelector(".animated"),
