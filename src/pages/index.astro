@@ -84,11 +84,14 @@ import Card from '../components/Card.astro';
 		font-size: 2.6rem;
 		color: #001fcc;
 	}
+	html.dark > body > .title-bg > #bg-content {
+		mix-blend-mode: plus-lighter;
 	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
+	html.dark > body > main.wrapper > section > #intro-title {
+		color: #ffffff;
+	}
+	html.dark > body > main.wrapper > section > #intro-subtitle {
+		color: #ffffff;
+	}
 	}
 </style>
