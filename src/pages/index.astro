@@ -93,5 +93,46 @@ import Card from '../components/Card.astro';
 	html.dark > body > main.wrapper > section > #intro-subtitle {
 		color: #ffffff;
 	}
+	.background {
+		position: fixed;
+		z-index: -1;
+		right: 14vw;
+		top: 3rem;
+		@media (max-width: 700px) {
+			top: 28px;
+			right: 0px;
+		}
+		@media (min-width: 1200px) {
+			right: 25vw;
+		}
+		pre {
+			font-family: monospace;
+			font-size: 0.5rem;
+			font-weight: 900;
+			margin-left: 22px;
+			line-height: 10.2px;
+			opacity: 0;
+			-webkit-text-stroke: medium;
+		}
+		#screentext {
+			font-family: monospace;
+			font-size: 0.5rem;
+			font-weight: 900;
+			position: absolute;
+			top: 56px;
+			left: 289px;
+			transform: skew(0deg, -15deg);
+			opacity: 0;
+		}
+		#flashing {
+			font-family: monospace;
+			font-size: 0.5rem;
+			font-weight: 900;
+			position: absolute;
+			top: 47px;
+			left: 344px;
+			transform: skew(0deg, -15deg);
+		}
+	}
 	}
 </style>
