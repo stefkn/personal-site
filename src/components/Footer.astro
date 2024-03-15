@@ -33,9 +33,15 @@
             <img id="site-icon" src="/favicon.png" />
         </a>
         <h2 id="footer-title">steken.dev</h2>
-        <p>built with <a href="https://astro.build/">Astro</a>.</p>
-        <p>source on <a href="https://github.com/stefkn/astro-blog">GitHub</a>.</p>
-        <p class="quote">“Once men turned their thinking over to machines in the hope that this would set them free. But that only permitted other men with machines to enslave them.”</p>
+        <p>built with <a href="https://astro.build/">Astro 4.2.4</a>.</p>
+        <p>
+            source on <a href="https://github.com/stefkn/astro-blog">GitHub</a>.
+        </p>
+        <p class="quote">
+            “Once men turned their thinking over to machines in the hope that
+            this would set them free. But that only permitted other men with
+            machines to enslave them.”
+        </p>
     </div>
 </footer>
 
@@ -46,6 +52,10 @@
         padding: 0px 50px;
         position: relative;
         margin-top: 6rem;
+
+        @media (max-width: 630px) {
+            padding: 0px 20px;
+        }
 
         div.footer-content {
             position: relative;
