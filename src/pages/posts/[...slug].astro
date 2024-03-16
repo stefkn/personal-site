@@ -152,5 +152,22 @@ const { Content, headings } = await entry.render();
     }
   }
   
+  html.dark > body > div.article-hero-image > #hero-img {
+    mask-image: linear-gradient(#000 41%, transparent);
+  }
+  html.dark > body > div.article-hero-image::before {
+    background: linear-gradient(180deg, black -60%, transparent);
+  }
+  html.dark > body > div.title-container > #title-bg {
+    filter: brightness(0.9) contrast(1.9);
+    mask-image: radial-gradient(
+      ellipse 160% 130% at 15% 110%,
+      black 30%,
+      transparent 60%
+    );
+    @media (max-width: 630px) {
+      mask-image: radial-gradient(ellipse 75% 1150% at 75% 0%,black 40%,transparent 116%);
+    }
+  }
 </style>
 
