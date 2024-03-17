@@ -151,7 +151,24 @@ const { Content, headings } = await entry.render();
       }
     }
   }
-  
+
+  main {
+    border-radius: 5px;
+    margin-top: -4em;
+    padding-bottom: 12rem;
+    padding-top: 48px;
+
+    .frontmatter {
+      background-color: #00000063;
+      border-radius: 10px;
+      padding: 2rem 2rem 2rem 2rem;
+      margin: 2rem 0rem;
+      p {
+        font-family: monospace;
+        margin-top: 0rem;
+      }
+    }
+  }
   html.dark > body > div.article-hero-image > #hero-img {
     mask-image: linear-gradient(#000 41%, transparent);
   }
