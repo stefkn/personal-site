@@ -171,3 +171,20 @@ const { Content, headings } = await entry.render();
   }
 </style>
 
+<script>
+  import { scroll, animate } from "motion";
+
+  // hack to add the css-grid full-bleed style to images in the rendered markdown content
+  document.addEventListener("astro:page-load", () => {
+    var mainWrapper = document.querySelector("main.wrapper");
+    if (mainWrapper) {
+      var paragraphs = mainWrapper.querySelectorAll("p");
+      paragraphs.forEach(function (paragraph) {
+        if (paragraph.getElementsByTagName("img").length === 1) {
+          paragraph.style.width = "100%";
+          paragraph.style.gridColumn = "1 / 4";
+        }
+      });
+    }
+  });
+</script>
