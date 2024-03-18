@@ -292,5 +292,31 @@ const { Content, headings } = await entry.render();
         }
       });
     }
+
+    if (document.querySelector("#title-h1")) {
+      // @ts-ignore
+      scroll(
+        animate("#title-h1", {
+          transform: ["none", `translateY(60vh)`],
+        }),
+        { target: document.querySelector("#title-h1") },
+      );
+      // @ts-ignore
+      scroll(
+        animate(".title-container", {
+          transform: ["none", `translateY(20vh)`],
+        }),
+        { target: document.querySelector(".title-container") },
+      );
+      animate(
+        "#title-bg",
+        {
+          backgroundSize: ["1600px", "2800px"],
+          backgroundPositionX: ["0px", "16000px"],
+        },
+        { duration: 190, repeat: Infinity, direction: "alternate" },
+      );
+    }
+
   });
 </script>
