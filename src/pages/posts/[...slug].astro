@@ -208,6 +208,47 @@ const { Content, headings } = await entry.render();
       -1px -1px 0 #000dff78,
       1px -1px 0 #000dff73;
   }
+  #title-bg {
+    position: relative;
+    display: block;
+    mix-blend-mode: screen;
+    transform: skew(353deg, 4.5deg) scaleY(1.2);
+    background-image: radial-gradient(
+        at 67% 151%,
+        hsl(268.33deg 34% 9.4% / 32%) 0px,
+        transparent 8%
+      ),
+      radial-gradient(
+        at 73% 51%,
+        hsl(328.57deg 89% 80% / 69%) -39px,
+        transparent 21%
+      ),
+      radial-gradient(
+        at 55% 79%,
+        hsl(192.01deg 100% 50% / 47%) 11px,
+        transparent 38%
+      ),
+      radial-gradient(at 48% 58%, hsla(329, 67%, 66%, 1) 26px, transparent 51%),
+      radial-gradient(at 60% 65%, hsl(224deg 100% 50%) 73px, transparent 44%),
+      radial-gradient(
+        at 43% 91%,
+        hsl(245deg 100% 50% / 52%) 16px,
+        transparent 57%
+      ),
+      radial-gradient(at 66% 95%, hsla(271, 69%, 76%, 1) 19px, transparent 35%);
+    height: 25rem;
+    border-radius: 21px;
+    mask-image: radial-gradient(
+      ellipse 100% 150% at 45% 110%,
+      black 30%,
+      transparent 51%
+    );
+    filter: hue-rotate(4deg) contrast(2.9) brightness(0.98);
+    width: 140%;
+    @media (max-width: 630px) {
+      max-width: 120%;
+    }
+  }
   #hero-img {
     height: auto !important;
     position: absolute;
