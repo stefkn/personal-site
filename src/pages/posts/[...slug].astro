@@ -199,6 +199,24 @@ const { Content, headings } = await entry.render();
       padding: 0rem 1rem;
     }
   }
+  html.dark > body > div.title-container > h1 {
+    color: #ffffff;
+    mix-blend-mode: screen;
+    text-shadow:
+      1px 1px 0 #000dff87,
+      -1px 1px 0 #000dff8a,
+      -1px -1px 0 #000dff78,
+      1px -1px 0 #000dff73;
+  }
+  #hero-img {
+    height: auto !important;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
+    mask-image: linear-gradient(#000 -10%, transparent);
+  }
   html.dark > body > div.article-hero-image > #hero-img {
     mask-image: linear-gradient(#000 41%, transparent);
   }
