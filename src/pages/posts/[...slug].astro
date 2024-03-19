@@ -318,5 +318,23 @@ const { Content, headings } = await entry.render();
       );
     }
 
+    const hidebtn = document.querySelector("#toggle-hide-side");
+    hidebtn?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const articleContent = document.getElementById("main-wrapper");
+      const articleSidebar = document.getElementById("article-aside");
+
+      let isHidden = articleSidebar?.classList.contains("hidden");
+
+      if (isHidden) {
+        articleSidebar!.classList.remove("hidden");
+        articleContent!.classList.remove("wider");
+        hidebtn.innerHTML = "hide";
+      } else {
+        articleSidebar!.classList.add("hidden");
+        articleContent!.classList.add("wider");
+        hidebtn.innerHTML = "show";
+      }
+    });
   });
 </script>
