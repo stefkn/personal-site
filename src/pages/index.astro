@@ -322,4 +322,29 @@ import athensImage from "../assets/athens.jpeg";
 	let playerMoveInterval = null;
 	let currentDirectionKey = '';
 
+	function setCharAt(str: string, index: number, chr: string) {
+		if (index > str.length - 1) return str;
+		grid = str.substring(0, index) + chr + str.substring(index + 1);
+		return grid;
+	}
+
+	function updateSnakePosition(pos: number) {
+		posArr.push(position);
+		position = position + pos;
+
+		if (!(foodPosition === position)) {
+			posArr.push(position);
+		}
+		grid = lineText.repeat(9);
+	}
+
+	function getNewFoodPos() {
+		let newFoodPos = Math.floor(Math.random() * 17 * 9);
+		const currSnake = posArr.reverse().slice(0, snakeLen + 1);
+		while ((newFoodPos + 1) % 19 === 0 || currSnake.includes(newFoodPos)) {
+			newFoodPos = Math.floor(Math.random() * 17 * 9);
+		}
+		return newFoodPos;
+	}
+
 </script>
