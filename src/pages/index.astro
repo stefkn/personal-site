@@ -303,3 +303,23 @@ import athensImage from "../assets/athens.jpeg";
 		margin: 8rem 0px 2rem 0px;
 	}
 </style>
+<script>
+	const gameElem = document.getElementById("game");
+	const screenText = document.getElementById("screentext");
+	const screenText2 = document.getElementById("screentext2");
+	const flashingBit = document.getElementById("flashing");
+	const snake = "0";
+	const food = ".";
+	const lineText = "██████████████████ ";
+
+	let gameStarted = false;
+	let grid = lineText.repeat(9);
+	let position = 0;
+	let posArr: Array<number> = [];
+	let foodPosition = -1;
+	let snakeLen = 12;
+	let snakeSpeed = 600;
+	let playerMoveInterval = null;
+	let currentDirectionKey = '';
+
+</script>
