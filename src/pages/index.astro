@@ -347,4 +347,37 @@ import athensImage from "../assets/athens.jpeg";
 		return newFoodPos;
 	}
 
+	function handleDirectionKey(key: string) {
+		currentDirectionKey = key 
+
+		if (key == "w") {
+			if (0 <= position && position <= 17) {
+				updateSnakePosition(152);
+				return;
+			}
+			updateSnakePosition(-19);
+		}
+		if (key == "s") {
+			if (position >= 152) {
+				updateSnakePosition(-152);
+				return;
+			}
+			updateSnakePosition(19);
+		}
+		if (key == "a") {
+			if (position % 19 === 0) {
+				updateSnakePosition(17);
+				return;
+			}
+			updateSnakePosition(-1);
+		}
+		if (key == "d") {
+			if ((position + 2) % 19 === 0) {
+				updateSnakePosition(-17);
+				return;
+			}
+			updateSnakePosition(1);
+		}
+	}
+
 </script>
