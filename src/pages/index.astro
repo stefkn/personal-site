@@ -380,4 +380,70 @@ import athensImage from "../assets/athens.jpeg";
 		}
 	}
 
+	function keyDownHandler(e: KeyboardEvent, user = true) {
+		if (e.key !== "g" && !gameStarted) {
+			return;
+		}
+
+		if (!gameStarted) {
+			gameStarted = true;
+			foodPosition = getNewFoodPos();
+			screenText!.style.display = "none";
+			screenText2!.style.display = "none";
+			flashingBit!.style.display = "none";
+			gameElem!.style.display = "block";
+			grid = lineText.repeat(9);
+			posArr = [];
+			position = 0;
+			foodPosition = 0;
+			snakeLen = 12;
+			snakeSpeed = 600;
+		}
+
+		if (currentDirectionKey === e.key && user) {
+			return;
+		}
+
+		if (playerMoveInterval!) {
+			clearInterval(playerMoveInterval);
+		}
+
+		playerMoveInterval = setInterval(
+			keyDownHandler,
+			snakeSpeed,
+			new KeyboardEvent("keydown", { key: e.key }),
+			false
+		);
+
+		handleDirectionKey(e.key);
+
+		const currSnake = posArr.reverse().slice(0, snakeLen + 1);
+		console.log(currSnake);
+		currSnake.forEach((pos) => {
+			gameElem!.innerHTML = setCharAt(grid, pos, snake);
+		});
+		gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
+
+		if (foodPosition === position) {
+			posArr.push(position);
+			gameElem!.innerHTML = setCharAt(grid, foodPosition, snake);
+			snakeLen++;
+			snakeSpeed = snakeSpeed / 1.1;
+			foodPosition = getNewFoodPos();
+			gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
+		}
+
+		if (
+			gameStarted &&
+			position !== 0 &&
+			currSnake.slice(1).includes(position)
+		) {
+			gameElem!.style.display = "none";
+			screenText!.innerHTML = "YOU LOSE :(";
+			screenText!.style.display = "block";
+			screenText2!.style.display = "block";
+			flashingBit!.style.display = "block";
+			gameStarted = false;
+		}
+	}
 </script>
