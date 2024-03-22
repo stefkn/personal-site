@@ -418,7 +418,7 @@ import athensImage from "../assets/athens.jpeg";
 		handleDirectionKey(e.key);
 
 		const currSnake = posArr.reverse().slice(0, snakeLen + 1);
-		console.log(currSnake);
+
 		currSnake.forEach((pos) => {
 			gameElem!.innerHTML = setCharAt(grid, pos, snake);
 		});
