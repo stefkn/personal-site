@@ -446,4 +446,12 @@ import athensImage from "../assets/athens.jpeg";
 			gameStarted = false;
 		}
 	}
+
+	document.addEventListener("astro:page-load", () => {
+		if (window.location.pathname === "/") {
+			window.addEventListener("keydown", (e) => keyDownHandler(e));
+		}
+	});
+
+	window.addEventListener("keydown", (e) => keyDownHandler(e));
 </script>
