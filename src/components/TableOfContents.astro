@@ -74,3 +74,39 @@ function buildToc(headings: any) {
   }
 </style>
 
+  function drawPath() {
+    const path = document.querySelector("path.toc-marker");
+    const links = Array.from(document.querySelectorAll("nav.toc a"));
+    if (!links.length) return;
+
+    let pathData:[] = [];
+    let left = 10;
+    links.forEach((link, i) => {
+      // @ts-ignore
+      const x = link.offsetLeft;
+      // @ts-ignore
+      const y = link.offsetTop;
+      // @ts-ignore
+      const height = link.offsetHeight;
+      if (i === 0) {
+        linkStarts.set(link, 0);
+        // @ts-ignore
+        pathData.push("M", x, y, "L", x, y + height);
+      } else {
+        // @ts-ignore
+        if (left !== x) pathData.push("L", left, y);
+        // @ts-ignore
+        pathData.push("L", x, y);
+        // @ts-ignore
+        path.setAttribute("d", pathData.join(" "));
+        // @ts-ignore
+        linkStarts.set(link, path.getTotalLength());
+        // @ts-ignore
+        pathData.push("L", x, y + height);
+      }
+      left = x;
+      path!.setAttribute("d", pathData.join(" "));
+      // @ts-ignore
+      linkEnds.set(link, path!.getTotalLength());
+    });
+  }
