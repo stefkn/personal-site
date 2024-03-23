@@ -73,6 +73,9 @@ function buildToc(headings: any) {
     pointer-events: none;
   }
 </style>
+
+<script>
+document.addEventListener("astro:page-load", () => {
   const linkStarts = new WeakMap();
   const linkEnds = new WeakMap();
   var lastSeenHeadingLink:Element|null = null;
@@ -114,3 +117,5 @@ function buildToc(headings: any) {
       linkEnds.set(link, path!.getTotalLength());
     });
   }
+});
+</script>
