@@ -73,6 +73,10 @@ function buildToc(headings: any) {
     pointer-events: none;
   }
 </style>
+  const linkStarts = new WeakMap();
+  const linkEnds = new WeakMap();
+  var lastSeenHeadingLink:Element|null = null;
+  var seenHeading = false;
 
   function drawPath() {
     const path = document.querySelector("path.toc-marker");
