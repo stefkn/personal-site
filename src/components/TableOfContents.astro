@@ -89,12 +89,11 @@ document.addEventListener("astro:page-load", () => {
     let pathData:[] = [];
     let left = 10;
     links.forEach((link, i) => {
-      // @ts-ignore
-      const x = link.offsetLeft;
-      // @ts-ignore
-      const y = link.offsetTop;
-      // @ts-ignore
-      const height = link.offsetHeight;
+
+      const x = (link as HTMLElement).offsetLeft;
+      const y = (link as HTMLElement).offsetTop;
+      const height = (link as HTMLElement).offsetHeight;
+    
       if (i === 0) {
         linkStarts.set(link, 0);
         // @ts-ignore
