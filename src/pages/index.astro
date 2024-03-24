@@ -313,14 +313,14 @@ import athensImage from "../assets/athens.jpeg";
 	const lineText = "██████████████████ ";
 
 	let gameStarted = false;
-	let grid = lineText.repeat(9);
+	let grid = lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
 	let position = 0;
 	let posArr: Array<number> = [];
 	let foodPosition = -1;
 	let snakeLen = 12;
 	let snakeSpeed = 600;
 	let playerMoveInterval = null;
-	let currentDirectionKey = '';
+	let currentDirectionKey = "";
 
 	function setCharAt(str: string, index: number, chr: string) {
 		if (index > str.length - 1) return str;
@@ -348,7 +348,7 @@ import athensImage from "../assets/athens.jpeg";
 	}
 
 	function handleDirectionKey(key: string) {
-		currentDirectionKey = key 
+		currentDirectionKey = key;
 
 		if (key == "w") {
 			if (0 <= position && position <= 17) {
@@ -392,7 +392,7 @@ import athensImage from "../assets/athens.jpeg";
 			screenText2!.style.display = "none";
 			flashingBit!.style.display = "none";
 			gameElem!.style.display = "block";
-			grid = lineText.repeat(9);
+			grid = lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
 			posArr = [];
 			position = 0;
 			foodPosition = 0;
@@ -412,7 +412,7 @@ import athensImage from "../assets/athens.jpeg";
 			keyDownHandler,
 			snakeSpeed,
 			new KeyboardEvent("keydown", { key: e.key }),
-			false
+			false,
 		);
 
 		handleDirectionKey(e.key);
