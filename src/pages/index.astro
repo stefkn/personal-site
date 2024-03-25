@@ -217,7 +217,7 @@ import athensImage from "../assets/athens.jpeg";
 		}
 	}
 	html.dark > body > .title-bg > #bg-content {
-		mix-blend-mode: plus-lighter;
+		filter: hue-rotate(236deg) contrast(3.5) brightness(0.6) blur(64px);
 	}
 	html.dark > body > main.wrapper > section > #intro-title {
 		color: #ffffff;
@@ -231,11 +231,13 @@ import athensImage from "../assets/athens.jpeg";
 		right: 14vw;
 		top: 3rem;
 		@media (max-width: 700px) {
-			top: 28px;
+			top: 10rem;
 			right: 0px;
 		}
 		@media (min-width: 1200px) {
 			right: 25vw;
+			scale: 1.42;
+			top: 12rem;
 		}
 		pre {
 			font-family: monospace;
