@@ -193,35 +193,27 @@ import athensImage from "../assets/athens.jpeg";
 					transparent 38%
 				),
 				radial-gradient(
-					at 48% 58%,
-					hsla(329, 67%, 66%, 1) 26px,
-					transparent 51%
-				),
-				radial-gradient(
-					at 60% 65%,
-					hsl(224deg 100% 50%) 73px,
-					transparent 44%
-				),
-				radial-gradient(
-					at 43% 91%,
-					hsl(245deg 100% 50% / 52%) 16px,
-					transparent 57%
-				),
-				radial-gradient(
-					at 66% 95%,
-					hsla(271, 69%, 76%, 1) 19px,
-					transparent 35%
-				);
-			border-radius: 21px;
-			mask-image: radial-gradient(
-				ellipse 120% 140% at 15% 96%,
-				black 20%,
-				transparent 60%
+		#bg-content-shape1 {
+			position: absolute;
+			width: 66rem;
+			height: 25rem;
+			left: 0px;
+			border-radius: 120px;
+			z-index: -1;
+			background-size: 100% 100%;
+			background-position: 0px 0px;
+			opacity: 0.5;
+			background-image: conic-gradient(
+				from 0deg at 31% 57%,
+				#6effd3ff 0%,
+				#0807ffff 100%
 			);
-			filter: hue-rotate(-6deg) contrast(2.9);
-			@media (max-width: 650px) {
-				height: 15rem;
-			}
+			mask-image: radial-gradient(
+				ellipse 60% 100% at 35% 96%,
+				black 20%,
+				transparent 90%
+			);
+			transform: skew(24deg, 321deg) scaleY(2.1);
 		}
 	}
 	html.dark > body > .title-bg > #bg-content {
