@@ -142,12 +142,19 @@ import athensImage from "../assets/athens.jpeg";
 	}
 	.title-bg {
 		position: relative;
-		height: 70vh;
+		height: 110vh;
 		width: 100%;
 		overflow: hidden;
 		left: 0px;
 		top: 0px;
 		pointer-events: none;
+
+		mask-image: radial-gradient(
+			ellipse 270% 110% at 55% 108%,
+			black 50%,
+			transparent 110%
+		);
+		z-index: -1;
 
 		@media (max-width: 850px) {
 			left: 0px;
