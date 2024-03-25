@@ -46,17 +46,18 @@ import athensImage from "../assets/athens.jpeg";
                     *Bb.
 </pre>
 		<span id="screentext">hello world</span>
-		<span id="screentext2">-PRESS 'G' FOR SNAKE-</span>
+		<span id="screentext2">-> PRESS 'G' <-</span>
 		<span id="flashing">_</span>
 		<span id="game"></span>
 	</div>
 	<div class="title-bg">
 		<div id="bg-content"></div>
+		<div id="bg-content-shape1"></div>
 	</div>
 	<main class="wrapper">
 		<section>
-			<h1 id="intro-title" class="animated">hello.</h1>
-			<h3 id="intro-subtitle" class="animated">welcome to my website.</h3>
+			<h1 id="intro-title">hello.</h1>
+			<h3 id="intro-subtitle">welcome to my website.</h3>
 		</section>
 		<section>
 			<h3 class="animated"><u>about</u></h3>
@@ -120,18 +121,24 @@ import athensImage from "../assets/athens.jpeg";
 
 <style>
 	#intro-title {
-		margin-top: -18rem;
+		margin-top: -80%;
 		font-family: Times New Roman;
 		letter-spacing: -4px;
-		font-size: clamp(5.6rem, 5vw, 6.8rem);
+		font-size: clamp(4.6rem, 5vw, 6.8rem);
 		color: #001fcc;
+		display: block;
+		transform: translateX(-60px);
+		opacity: 0;
 	}
 	#intro-subtitle {
 		font-family: Times New Roman;
 		letter-spacing: -1.66px;
 		font-weight: 100;
-		font-size: 2.6rem;
+		font-size: 2.3rem;
 		color: #001fcc;
+		display: block;
+		transform: translateX(-60px);
+		opacity: 0;
 	}
 	.title-bg {
 		position: relative;
