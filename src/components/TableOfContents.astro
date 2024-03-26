@@ -161,8 +161,7 @@ function buildToc(headings: any) {
         if (!document.querySelector("path.toc-marker")) {
           return;
         }
-        const path = document.querySelector("path.toc-marker");
-        // @ts-ignore
+        const path = document.querySelector("path.toc-marker") as SVGPathElement;;
         const pathLength = path!.getTotalLength();
         let activeLinks = document.querySelectorAll("a.active");
         let linkStart = pathLength;
@@ -182,7 +181,6 @@ function buildToc(headings: any) {
           linkEnd = Math.max(linkEnd, linkEnds.get(link));
         });
         // If there are no active links, hide the path
-        // @ts-ignore
         path!.style.display = activeLinks.length ? "inline" : "none";
 
         // FINALLY, do the thing!
