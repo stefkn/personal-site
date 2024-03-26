@@ -124,8 +124,39 @@ function buildToc(headings: any) {
         linkEnds.set(link, path!.getTotalLength());
       });
     }
+      function updatePath() {
+        if (!document.querySelector("path.toc-marker")) {
+          return;
+        }
+        const path = document.querySelector("path.toc-marker");
         // @ts-ignore
-        linkStarts.set(link, path.getTotalLength());
+        const pathLength = path!.getTotalLength();
+        let activeLinks = document.querySelectorAll("a.active");
+        let linkStart = pathLength;
+        let linkEnd = 0;
+
+        if (activeLinks.length === 0 && lastSeenHeadingLink !== null) {
+          lastSeenHeadingLink?.classList.add("active");
+          lastSeenHeadingLink = null;
+        }
+
+        activeLinks = document.querySelectorAll("a.active");
+
+        activeLinks.forEach((link) => {
+          // Set linkStart to the top of the earliest active link
+          linkStart = Math.min(linkStart, linkStarts.get(link));
+          // Set linkEnd to the bottom of the furthest active link
+          linkEnd = Math.max(linkEnd, linkEnds.get(link));
+        });
+        // If there are no active links, hide the path
         // @ts-ignore
+        path!.style.display = activeLinks.length ? "inline" : "none";
+
+        // FINALLY, do the thing!
+        path!.setAttribute(
+          "stroke-dasharray",
+          `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`,
+        );
+      }
   });
 </script>
