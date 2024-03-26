@@ -137,6 +137,18 @@ function buildToc(headings: any) {
 
           link.classList[addRemove]("active");
 
+          if (
+            !seenHeading &&
+            addRemove === "add" &&
+            lastSeenHeadingLink !== link
+          ) {
+            if (lastSeenHeadingLink !== null) {
+              lastSeenHeadingLink.classList.remove("active");
+            }
+
+            lastSeenHeadingLink = link;
+            seenHeading = true;
+          }
         });
 
         seenHeading = false;
