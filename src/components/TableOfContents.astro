@@ -179,5 +179,29 @@ function buildToc(headings: any) {
           `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`,
         );
       }
+
+      // Observe all the sections of the article
+      document
+        .querySelectorAll(
+          "#main-wrapper>h2,#main-wrapper>h3,#main-wrapper>h4,#main-wrapper>h5",
+        )
+        .forEach((section) => {
+          observer.observe(section);
+        });
+
+      function addResizeObserver() {
+        if (!document.querySelector("nav.toc")) return;
+        const observer = new ResizeObserver(() => {
+          drawPath();
+          updatePath();
+        });
+        observer.observe(document.querySelector("nav.toc")!);
+      }
+
+      addResizeObserver();
+    }
+
+    drawPath();
+    addIntersectionObserver();
   });
 </script>
