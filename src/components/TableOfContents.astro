@@ -124,6 +124,27 @@ function buildToc(headings: any) {
         linkEnds.set(link, path!.getTotalLength());
       });
     }
+
+    function addIntersectionObserver() {
+      const observer = new IntersectionObserver((observerInteractions) => {
+        observerInteractions.forEach((interaction) => {
+          const heading = interaction.target;
+          if (!heading) return;
+          const id = heading.getAttribute("id");
+          const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
+          if (!link) return;
+          const addRemove = interaction.intersectionRatio > 0 ? "add" : "remove";
+
+          link.classList[addRemove]("active");
+
+        });
+
+        seenHeading = false;
+        if (document.querySelector("path.toc-marker")) {
+          updatePath();
+        }
+      });
+
       function updatePath() {
         if (!document.querySelector("path.toc-marker")) {
           return;
