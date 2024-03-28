@@ -36,7 +36,7 @@ const pageTitle = "My Astro Learning Blog";
 	function setupAnimations() {
 		inView("section", ({ target }) => {
 			if (!target.querySelector(".animated")) {
-				return
+				return;
 			}
 			animate(
 				// @ts-ignore
@@ -49,14 +49,18 @@ const pageTitle = "My Astro Learning Blog";
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
 	document.addEventListener("astro:page-load", () => {
-        setupAnimations();
+		setupAnimations();
 	});
 
 	setupAnimations();
 </script>
 
 <style>
-    main {
-        margin-top: 9rem;
-    }
+	main {
+		margin-top: 9rem;
+	}
+	.post-index-card-image {
+		height: auto;
+		max-height: 12rem;
+	}
 </style>
