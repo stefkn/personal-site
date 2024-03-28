@@ -1,15 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 const pageTitle = "My Astro Learning Blog";
+
 ---
 
 <Layout title={pageTitle}>
-    <main class="wrapper">
-        <section>
-			<h1 id="intro-title" class="animated">Posts</h1>
-		</section>
+	<main class="wrapper articles">
+		{
+			allPosts.map((post) => (
+				<div class="article-post">
 		<section>
 			<h2 class="animated">more internet</h2>
 		</section>
