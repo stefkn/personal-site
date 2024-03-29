@@ -154,9 +154,9 @@ const { Content, headings } = await entry.render();
 
   main {
     border-radius: 5px;
-    margin-top: -4em;
     padding-bottom: 12rem;
     padding-top: 48px;
+    margin-top: 0em;
 
     .frontmatter {
       background-color: #00000063;
@@ -259,7 +259,7 @@ const { Content, headings } = await entry.render();
     mask-image: linear-gradient(#000 -10%, transparent);
   }
   html.dark > body > div.article-hero-image > #hero-img {
-    mask-image: linear-gradient(#000 41%, transparent);
+    mask-image: linear-gradient(#000 0%, transparent 80%);
   }
   html.dark > body > div.article-hero-image::before {
     background: linear-gradient(180deg, black -60%, transparent);
