@@ -331,6 +331,40 @@ import athensImage from "../assets/athens.jpeg";
 		margin: 8rem 0px 2rem 0px;
 	}
 </style>
+
+<script>
+	import { inView, scroll, animate } from "motion";
+
+	function setupAnimations() {
+		inView("#bg-content", ({ target }) => {
+			animate(
+				// @ts-ignore
+				target,
+				{
+					backgroundSize: ["600px", "1800px"],
+					// rotate: ["60deg", "0deg", "60deg"],
+					backgroundPositionX: ["0px", "1000px"],
+					// width: ["66rem", "120rem"],
+					// skewX: ["330deg", "332deg"],
+					// skewY: ["330deg", "336deg"],
+					// scale: ["1.4", "1.8"],
+				},
+				{ duration: 10, repeat: Infinity, direction: "alternate" },
+			);
+		});
+
+	}
+
+	// hook animations up to View Transitions via after-swap lifecycle hook
+	document.addEventListener("astro:page-load", () => {
+		if (window.location.pathname === "/") {
+			setupAnimations();
+		}
+	});
+
+	setupAnimations();
+</script>
+
 <script>
 	const gameElem = document.getElementById("game");
 	const screenText = document.getElementById("screentext");
