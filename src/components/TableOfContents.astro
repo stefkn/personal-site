@@ -183,7 +183,7 @@ function buildToc(headings: any) {
 
       document
         .querySelectorAll(
-          "#main-wrapper>h2,#main-wrapper>h3,#main-wrapper>h4,#main-wrapper>h5",
+          "#main-wrapper>h2,#main-wrapper>h3,#main-wrapper>h4,#main-wrapper>h5,#main-wrapper>section>h2",
         )
         .forEach((section) => {
           observer.observe(section);
