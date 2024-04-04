@@ -158,7 +158,36 @@ function buildToc(headings: any) {
         observer.observe(document.querySelector("nav.toc")!);
       }
 
+      const observer = new IntersectionObserver((observerInteractions) => {
+        observerInteractions.forEach((interaction) => {
+          if (!document.querySelector("path.toc-marker")) return;
+          const heading = interaction.target;
+          if (!heading) return;
+          const id = heading.getAttribute("id");
+          const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
+          if (!link) return;
+          const addRemove = interaction.intersectionRatio > 0 ? "add" : "remove";
+          const onlyOneActive = document.querySelectorAll("a.active").length === 1;
+
+          if (addRemove === "remove" && onlyOneActive) {
+            document.querySelectorAll("a.active")[0].classList.remove("active");
+            return
+          }
+          
+          link.classList[addRemove]("active");
+          updatePath();
+        });
+      });
+
       addResizeObserver();
+
+      document
+        .querySelectorAll(
+          "#main-wrapper>h2,#main-wrapper>h3,#main-wrapper>h4,#main-wrapper>h5",
+        )
+        .forEach((section) => {
+          observer.observe(section);
+        });
     }
 
     drawPath();
