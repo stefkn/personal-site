@@ -134,37 +134,20 @@ function buildToc(headings: any) {
         let linkStart = pathLength;
         let linkEnd = 0;
 
-        if (activeLinks.length === 0 && lastSeenHeadingLink !== null) {
-          lastSeenHeadingLink?.classList.add("active");
-          lastSeenHeadingLink = null;
-        }
-
         activeLinks = document.querySelectorAll("a.active");
 
         activeLinks.forEach((link) => {
-          // Set linkStart to the top of the earliest active link
           linkStart = Math.min(linkStart, linkStarts.get(link));
-          // Set linkEnd to the bottom of the furthest active link
           linkEnd = Math.max(linkEnd, linkEnds.get(link));
         });
-        // If there are no active links, hide the path
+
         path!.style.display = activeLinks.length ? "inline" : "none";
 
-        // FINALLY, do the thing!
         path!.setAttribute(
           "stroke-dasharray",
           `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`,
         );
       }
-
-      // Observe all the sections of the article
-      document
-        .querySelectorAll(
-          "#main-wrapper>h2,#main-wrapper>h3,#main-wrapper>h4,#main-wrapper>h5",
-        )
-        .forEach((section) => {
-          observer.observe(section);
-        });
 
       function addResizeObserver() {
         if (!document.querySelector("nav.toc")) return;
