@@ -80,8 +80,6 @@ function buildToc(headings: any) {
   document.addEventListener("astro:page-load", () => {
     const linkStarts = new WeakMap();
     const linkEnds = new WeakMap();
-    var lastSeenHeadingLink: Element | null = null;
-    var seenHeading = false;
 
     function drawPath() {
       const path = document.querySelector("path.toc-marker") as SVGPathElement;
@@ -126,37 +124,6 @@ function buildToc(headings: any) {
     }
 
     function addIntersectionObserver() {
-      const observer = new IntersectionObserver((observerInteractions) => {
-        observerInteractions.forEach((interaction) => {
-          const heading = interaction.target;
-          if (!heading) return;
-          const id = heading.getAttribute("id");
-          const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
-          if (!link) return;
-          const addRemove = interaction.intersectionRatio > 0 ? "add" : "remove";
-
-          link.classList[addRemove]("active");
-
-          if (
-            !seenHeading &&
-            addRemove === "add" &&
-            lastSeenHeadingLink !== link
-          ) {
-            if (lastSeenHeadingLink !== null) {
-              lastSeenHeadingLink.classList.remove("active");
-            }
-
-            lastSeenHeadingLink = link;
-            seenHeading = true;
-          }
-        });
-
-        seenHeading = false;
-        if (document.querySelector("path.toc-marker")) {
-          updatePath();
-        }
-      });
-
       function updatePath() {
         if (!document.querySelector("path.toc-marker")) {
           return;
