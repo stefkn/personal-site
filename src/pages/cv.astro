@@ -115,7 +115,28 @@ const pageTitle = "Résumé/CV";
 </script>
 
 <style>
-    main {
-        margin-top: 9rem;
-    }
+	main {
+		margin-top: 16rem;
+	}
+	.background {
+		opacity: 0.85;
+		position: absolute;
+		height: 200%;
+		width: 100%;
+		overflow: hidden;
+		left: 0px;
+		top: 0px;
+		pointer-events: none;
+
+		mask-image: radial-gradient(
+			ellipse 270% 110% at 55% 108%,
+			black 50%,
+			transparent 110%
+		);
+		z-index: -1;
+
+		@media (max-width: 850px) {
+			left: 0px;
+		}
+	}
 </style>
