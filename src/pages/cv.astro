@@ -82,11 +82,24 @@ const pageTitle = "Résumé/CV";
 				);
 			}
 		});
+
+		scroll(
+			animate("#bg-cv-content-shape1", {
+				transform: [
+					"none skew(24deg, 321deg) scaleY(2.1)",
+					`translateY(62vw) scaleY(2.4) translateX(12vw) rotate(230deg)`,
+				],
+				filter: [
+					"hue-rotate(0deg) contrast(1) brightness(1) blur(0px)",
+					"hue-rotate(46deg) contrast(1) brightness(1.6) blur(8px)",
+				],
+			}),
+		);
 	}
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
 	document.addEventListener("astro:page-load", () => {
-        setupAnimations();
+		setupAnimations();
 	});
 
 	setupAnimations();
