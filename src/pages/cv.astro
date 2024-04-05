@@ -138,5 +138,49 @@ const pageTitle = "Résumé/CV";
 		@media (max-width: 850px) {
 			left: 0px;
 		}
+
+		#bg-content {
+			position: absolute;
+			width: 66rem;
+			height: 25rem;
+			left: 0px;
+			border-radius: 120px;
+			z-index: -2;
+
+			transform: skew(24deg, 321deg) scaleY(2.1);
+			filter: hue-rotate(236deg) contrast(1) brightness(1.6) blur(64px);
+			background-size: 100% 100%;
+			background-position:
+				0px 0px,
+				0px 0px,
+				0px 0px,
+				0px 0px,
+				0px 0px;
+			background-image: radial-gradient(
+					49% 81% at 45% 47%,
+					#ffe20345 0%,
+					#073aff00 100%
+				),
+				radial-gradient(
+					113% 91% at 17% -2%,
+					#ff5a00ff 1%,
+					#ff000000 99%
+				),
+				radial-gradient(142% 91% at 83% 7%, #ffdb00ff 1%, #ff000000 99%),
+				radial-gradient(
+					142% 91% at -6% 74%,
+					#ff0049ff 1%,
+					#ff000000 99%
+				),
+				radial-gradient(
+					142% 91% at 111% 84%,
+					#ff7000ff 0%,
+					#ff0000ff 100%
+				);
+
+			@media (max-width: 650px) {
+				height: 12rem;
+			}
+		}
 	}
 </style>
