@@ -95,6 +95,15 @@ const pageTitle = "Résumé/CV";
 				],
 			}),
 		);
+		scroll(
+			animate("#bg-cv-content-shape2", {
+				transform: [
+					"none skew(24deg, 321deg) scaleY(2.1) rotate(230deg)",
+					`translateY(42vw) translateX(-12vw) scaleY(2.9) rotate(230deg)`,
+				],
+				filter: ["hue-rotate(200deg)"],
+			}),
+		);
 	}
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
