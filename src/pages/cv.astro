@@ -187,5 +187,44 @@ const pageTitle = "Résumé/CV";
 				height: 12rem;
 			}
 		}
+		#bg-cv-content-shape1,
+		#bg-cv-content-shape2 {
+			position: absolute;
+			width: 66rem;
+			height: 25rem;
+			left: 0px;
+			border-radius: 120px;
+			z-index: -1;
+			background-size: 100% 100%;
+			background-position: 0px 0px;
+			opacity: 0.5;
+			background-image: conic-gradient(
+				from 0deg at 31% 57%,
+				#6effd3ff 0%,
+				#0807ffff 100%
+			);
+			mask-image: radial-gradient(
+				ellipse 60% 100% at 35% 96%,
+				black 20%,
+				transparent 90%
+			);
+			transform: skew(24deg, 321deg) scaleY(2.1);
+		}
+		#bg-cv-content-shape2 {
+			top: 70rem;
+			left: 16rem;
+			rotate: 230deg;
+			background-image: conic-gradient(
+				from 0deg at 31% 57%,
+				#6effd3ff 0%,
+				#0807ffff 100%
+			);
+			mask-image: radial-gradient(
+				ellipse 60% 100% at 35% 96%,
+				black 20%,
+				transparent 90%
+			);
+			transform: skew(24deg, 321deg) scaleY(2.1);
+		}
 	}
 </style>
