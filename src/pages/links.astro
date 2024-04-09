@@ -23,7 +23,7 @@ const pageTitle = "Links";
 
 	function setupAnimations() {
 		inView("section", ({ target }) => {
-			if (document.querySelector(".animated")) {
+			if (target.querySelector(".animated")) {
 				animate(
 					// @ts-ignore
 					target.querySelector(".animated"),
