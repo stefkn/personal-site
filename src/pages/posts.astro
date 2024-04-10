@@ -77,26 +77,27 @@ const pageTitle = "Blog posts";
 	}
 	.post-index-card-image {
 		height: auto;
-		max-height: 12rem;
 	}
 	.articles {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(380px, 2fr));
 		grid-auto-rows: auto;
-		grid-gap: 1rem;
-	
+		justify-content: start;
+		justify-items: stretch;
+		gap: 4rem;
+
 		.article-post {
-			padding: 1rem;
-			border: 1px solid #ccc;
-			border-radius: 5px;
+			overflow: hidden;
 			grid-column: auto;
-			
+
 			p {
-				margin-top: 1rem;
+				margin-top: 0.6rem;
+				line-height: 1.2;
 			}
 			a {
 				color: inherit;
 				font-weight: bolder;
+				line-height: 1;
 			}
 			img {
 				border-radius: 12px;
