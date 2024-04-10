@@ -107,7 +107,20 @@ const pageTitle = "Blog posts";
 				color: #666;
 			}
 			.post-details {
-				margin-top: 1rem;
+				position: relative;
+				margin-top: 10rem;
+				/* max-width: 18em; */
+				z-index: 3;
+			}
+			.article-image {
+				position: absolute;
+				max-width: 380px;
+				mask-image: radial-gradient(
+					ellipse 133% 71% at 115% 22%,
+					black 60%,
+					transparent 105%
+				);
+				z-index: 2;
 			}
 		}
 	}
