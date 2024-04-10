@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 const pageTitle = "Blog posts";
-
 ---
 
 <Layout title={pageTitle}>
@@ -12,21 +11,28 @@ const pageTitle = "Blog posts";
 		<div id="bg-content"></div>
 		<div id="bg-content-shape1"></div>
 	</div>
+	<section>
+		<h1 id="intro-title" class="animated">posts</h1>
+	</section>
 	<main class="wrapper articles">
 		{
 			allPosts.map((post) => (
 				<div class="article-post">
-					<a href={`/posts/${post.slug}/`}>
-						<Image
-							src={post.data.image}
-							alt={post.data.imageAlt}
-							class="post-index-card-image"
-						/>
-						{post.data.title}
-					</a>
+					<div class="article-image">
+						<a href={`/posts/${post.slug}/`}>
+							<Image
+								src={post.data.image}
+								alt={post.data.imageAlt}
+								class="post-index-card-image"
+							/>
+						</a>
+					</div>
 					<div class="post-details">
+						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
 						<p>{post.data.description}</p>
-						<p class="post-date">{post.data.pubDate.toDateString()}</p>	
+						<p class="post-date">
+							{post.data.pubDate.toDateString()}
+						</p>
 					</div>
 				</div>
 			))
