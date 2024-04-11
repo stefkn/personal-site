@@ -33,7 +33,7 @@ const { Content, headings } = await entry.render();
   </div>
 
   <div id="article-content">
-    <button id="toggle-hide-side" aria-label="show/hide side metadata and table of contents">hide</button>
+    <button id="toggle-hide-side" aria-label="show/hide side metadata and table of contents" class="hidden">hide</button>
     <aside id="article-aside" class="frontmatter">
       <p>by {entry.data.author}</p>
       <p class="date">{entry.data.pubDate.toDateString()}</p>
@@ -42,6 +42,7 @@ const { Content, headings } = await entry.render();
         {entry.data.tags.map((item) => <div class="tag">{item}</div>)}
       </div>
       <TableOfContents headings={headings} />
+      <button id="toggle-hide-aside" aria-label="show/hide side metadata and table of contents">hide</button>
     </aside>
     <main id="main-wrapper" class="wrapper article">
       <Content />
@@ -58,9 +59,8 @@ const { Content, headings } = await entry.render();
     -o-transition: all 2s ease;
   }
 
-  #toggle-hide-side {
-    position: fixed;
-    right: 0.8rem;
+  #toggle-hide-aside,#toggle-hide-side {
+    position: relative;
     background: #0016ff;
     border: none;
     color: white;
@@ -69,13 +69,20 @@ const { Content, headings } = await entry.render();
     padding: 0px;
     font-size: 14px;
     margin: 5px 0.5rem 50px 8px;
-    bottom: -1rem;
     z-index: 3;
     cursor: pointer;
 
     @media (max-width: 930px) {
       display: none;
     }
+  }
+
+  #toggle-hide-side {
+    position: fixed;
+    right: 0.8rem;
+    bottom: -1rem;
+    z-index: 3;
+    cursor: pointer;
   }
 
   #article-content {
