@@ -325,8 +325,10 @@ const { Content, headings } = await entry.render();
       );
     }
 
-    const hidebtn = document.querySelector("#toggle-hide-side");
-    hidebtn?.addEventListener("click", (event) => {
+    const asideButton = document.getElementById("toggle-hide-aside");
+    const sideButton = document.getElementById("toggle-hide-side");
+
+    function handleHideSideContent(event: { stopPropagation: () => void; }) {
       event.stopPropagation();
       const articleContent = document.getElementById("main-wrapper");
       const articleSidebar = document.getElementById("article-aside");
@@ -336,12 +338,19 @@ const { Content, headings } = await entry.render();
       if (isHidden) {
         articleSidebar!.classList.remove("hidden");
         articleContent!.classList.remove("wider");
-        hidebtn.innerHTML = "hide";
+        sideButton!.classList.add("hidden");
+        asideButton!.innerHTML = "hide";
+        sideButton!.innerHTML = "hide";
       } else {
         articleSidebar!.classList.add("hidden");
         articleContent!.classList.add("wider");
-        hidebtn.innerHTML = "show";
+        sideButton!.classList.remove("hidden");
+        asideButton!.innerHTML = "show";
+        sideButton!.innerHTML = "show";
       }
-    });
+    }
+
+    asideButton?.addEventListener("click", handleHideSideContent);
+    sideButton?.addEventListener("click", handleHideSideContent);
   });
 </script>
