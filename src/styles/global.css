@@ -46,6 +46,14 @@ body::-webkit-scrollbar {
     width: 4px;
 }
 
+#page-title {
+    position: relative;
+    width: 4em;
+    left: 1.5rem;
+    top: 6rem;
+    margin: 5rem 0rem 0rem 0rem;
+}
+
 main {
     margin: auto;
     padding: 1rem;
