@@ -43,11 +43,9 @@
 		if (theme === "light") {
 			document.documentElement.classList.remove("dark");
 			document.getElementById('moon-icon')?.classList.remove("hidden");
-			document.getElementById('navmenu-svg')!.style.stroke = 'black';
 		} else {
 			document.documentElement.classList.add("dark");
 			document.getElementById('sun-icon')?.classList.remove("hidden");
-			document.getElementById('navmenu-svg')!.style.stroke = 'white';
 		}
 
 		window.localStorage.setItem("theme", theme);
@@ -62,11 +60,9 @@
 			if (isDark) {
 				document.getElementById('moon-icon')?.classList.add("hidden");
 				document.getElementById('sun-icon')?.classList.remove("hidden");
-				document.getElementById('navmenu-svg')!.style.stroke = 'white';
 			} else {
 				document.getElementById('moon-icon')?.classList.remove("hidden");
 				document.getElementById('sun-icon')?.classList.add("hidden");
-				document.getElementById('navmenu-svg')!.style.stroke = 'black';
 			}
 		};
 
