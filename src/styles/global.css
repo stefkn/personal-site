@@ -135,6 +135,18 @@ main.wrapper>.full-bleed {
     }
 }
 
+.nav-links {
+    position: relative;
+    left: 4rem;
+    top: -0.2rem;
+    font-size: 27px;
+
+    a {
+        margin: 0rem 0.33rem;
+        color: black;
+    }
+}
+
 /* ================= DARK MODE ================= */
 
 .dark {
@@ -175,6 +187,12 @@ main.wrapper>.full-bleed {
                 rgba(255, 255, 255, 0.25) 4.13%,
                 rgba(255, 255, 255, 0) 20.54%);
         border: solid 1px #343434;
+    }
+
+    .nav-links {
+        a {
+            color: #c7cbff;
+        }
     }
 }
 
