@@ -41,6 +41,25 @@
     );
     border-radius: 12px;
 }
+.work-intro-image {
+    -webkit-transition: all 3s ease;
+    -moz-transition: all 3s ease;
+    -ms-transition: all 3s ease;
+    -o-transition: all 3s ease;
+    opacity: 0;
+    filter: grayscale(1);
+    mask-image: radial-gradient(
+        ellipse 202% 110% at 73% 43%,
+        black 10%,
+        transparent 48%
+    );
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
 
 html {
     font-family: system-ui, sans-serif;
