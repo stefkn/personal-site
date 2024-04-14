@@ -4,10 +4,10 @@ const pageTitle = "Links";
 ---
 
 <Layout title={pageTitle}>
+	<section>
+		<h1 id="page-title" class="animated">links</h1>
+	</section>
 	<main class="wrapper">
-		<section>
-			<h1 id="intro-title" class="animated">Links</h1>
-		</section>
 		<section>
 			<h2 class="animated">summary</h2>
 			<p>
@@ -16,31 +16,34 @@ const pageTitle = "Links";
 			</p>
 		</section>
 	</main>
-</Layout>
 
-<script>
-	import { inView, animate } from "motion";
+	<script>
+		import { inView, animate } from "motion";
 
-	function setupAnimations() {
-		inView("section", ({ target }) => {
-			if (target.querySelector(".animated")) {
-				animate(
-					// @ts-ignore
-					target.querySelector(".animated"),
-					{ opacity: 1, transform: "none" },
-					{ delay: 0.2, duration: 0.8, easing: [0.17, 0.55, 0.55, 1] },
-				);
-			}
+		function setupAnimations() {
+			inView("section", ({ target }) => {
+				if (target.querySelector(".animated")) {
+					animate(
+						// @ts-ignore
+						target.querySelector(".animated"),
+						{ opacity: 1, transform: "none" },
+						{
+							delay: 0.2,
+							duration: 0.8,
+							easing: [0.17, 0.55, 0.55, 1],
+						},
+					);
+				}
+			});
+		}
+
+		// hook animations up to View Transitions via after-swap lifecycle hook
+		document.addEventListener("astro:page-load", () => {
+			setupAnimations();
 		});
-	}
 
-	// hook animations up to View Transitions via after-swap lifecycle hook
-	document.addEventListener("astro:page-load", () => {
 		setupAnimations();
-	});
-
-	setupAnimations();
-</script>
+	</script>
 
 <style>
 	main {
