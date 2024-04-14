@@ -286,7 +286,11 @@ const { Content, headings } = await entry.render();
       transparent 60%
     );
     @media (max-width: 630px) {
-      mask-image: radial-gradient(ellipse 75% 1150% at 75% 0%,black 40%,transparent 116%);
+      mask-image: radial-gradient(
+        ellipse 75% 1150% at 75% 0%,
+        black 40%,
+        transparent 116%
+      );
     }
   }
 </style>
@@ -335,7 +339,7 @@ const { Content, headings } = await entry.render();
     const asideButton = document.getElementById("toggle-hide-aside");
     const sideButton = document.getElementById("toggle-hide-side");
 
-    function handleHideSideContent(event: { stopPropagation: () => void; }) {
+    function handleHideSideContent(event: { stopPropagation: () => void }) {
       event.stopPropagation();
       const articleContent = document.getElementById("main-wrapper");
       const articleSidebar = document.getElementById("article-aside");
