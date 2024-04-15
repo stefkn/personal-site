@@ -48,6 +48,10 @@ const pageTitle = "Links";
 	<style>
 		main {
 			margin-top: 9rem;
+			max-width: calc(100% - 1rem);
+		}
+		main.wrapper {
+			grid-template-columns: 1fr min(80ch, 100%) 1fr;
 		}
 		div.grid {
 			display: grid;
@@ -75,6 +79,10 @@ const pageTitle = "Links";
 					transform: scale(1.05);
 				}
 			}
+		}
+		#bg-content {
+			opacity: 0.5;
+			filter: hue-rotate(220deg) contrast(1.4) brightness(0.88) blur(64px);
 		}
 	</style>
 </Layout>
