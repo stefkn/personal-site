@@ -108,14 +108,24 @@ const pageTitle = "Blog posts";
 				z-index: 3;
 			}
 			.article-image {
+				-webkit-transition: all 1.2s ease;
+				-moz-transition: all 1.2s ease;
+				-ms-transition: all 1.2s ease;
+				-o-transition: all 1.2s ease;	
 				position: absolute;
 				max-width: 380px;
+				transform: scale(1);
+				translate: 0px 0px;
 				mask-image: radial-gradient(
 					ellipse 83% 51% at 85% 19%,
 					black 30%,
 					transparent 113%
 				);
 				z-index: 2;
+			}
+			.article-image:hover {
+				transform: scale(1.02);
+				translate: 10px 0px;
 			}
 		}
 	}
