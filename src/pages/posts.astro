@@ -24,6 +24,7 @@ const pageTitle = "Blog posts";
 								src={post.data.image}
 								alt={post.data.imageAlt}
 								class="post-index-card-image"
+								onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
 							/>
 						</a>
 					</div>
@@ -70,7 +71,13 @@ const pageTitle = "Blog posts";
 		margin-top: 9rem;
 	}
 	.post-index-card-image {
+		-webkit-transition: all 2s ease;
+		-moz-transition: all 2s ease;
+		-ms-transition: all 2s ease;
+		-o-transition: all 2s ease;
 		height: auto;
+		opacity: 0;
+		filter: grayscale(1);
 	}
 	.articles {
 		display: grid;
