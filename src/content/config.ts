@@ -15,7 +15,19 @@ const postsCollection = defineCollection({
     tags: z.array(z.string())
   })
 });
+const photographyCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    images: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+    })),
+  })
+});
 // Export a single `collections` object to register your collection(s)
 export const collections = {
-  posts: postsCollection,
+  posts: postsCollection, photographyCollection
 };
