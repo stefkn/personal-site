@@ -30,7 +30,6 @@ const pageTitle = "Life journals";
 					</div>
 					<div class="post-details">
 						<a href={`/life/${post.slug}/`}>{post.data.title}</a>
-						<p>{post.data.description}</p>
 						<p class="post-date">
 							{post.data.pubDate.toDateString()}
 						</p>
@@ -85,7 +84,7 @@ const pageTitle = "Life journals";
 		grid-auto-rows: auto;
 		justify-content: start;
 		justify-items: stretch;
-		gap: 4rem;
+		gap: 1rem;
 
 		.article-post {
 			overflow: hidden;
@@ -101,7 +100,7 @@ const pageTitle = "Life journals";
 				line-height: 1;
 			}
 			img {
-				border-radius: 12px;
+				border-radius: 4px;
 			}
 
 			.post-date {
@@ -123,11 +122,7 @@ const pageTitle = "Life journals";
 				max-width: 380px;
 				transform: scale(1);
 				translate: 0px 0px;
-				mask-image: radial-gradient(
-					ellipse 83% 51% at 85% 19%,
-					black 30%,
-					transparent 113%
-				);
+				mask-image: radial-gradient(ellipse 103% 71% at 85% 22%,black 40%,transparent 103%);
 				z-index: 2;
 			}
 			.article-image:hover {
