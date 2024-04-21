@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
@@ -31,19 +31,6 @@ const { Content, headings } = await entry.render();
   </div>
 
   <div id="article-content">
-    <button
-      id="toggle-hide-side"
-      aria-label="show/hide side metadata and table of contents"
-      class="hidden">hide</button
-    >
-    <aside id="article-aside" class="frontmatter">
-      <p>by {entry.data.author}</p>
-      <p class="date">{entry.data.pubDate.toDateString()}</p>
-      <p>{entry.data.description}</p>
-      <div class="tags">
-        {entry.data.tags.map((item) => <div class="tag">{item}</div>)}
-      </div>
-    </aside>
     <main id="main-wrapper" class="wrapper article">
       <Content />
     </main>
