@@ -238,16 +238,10 @@ import athensImage from "../assets/athens.jpeg";
 	function setupAnimations() {
 		inView("#bg-content", ({ target }) => {
 			animate(
-				// @ts-ignore
 				target,
 				{
 					backgroundSize: ["600px", "1800px"],
-					// rotate: ["60deg", "0deg", "60deg"],
 					backgroundPositionX: ["0px", "1000px"],
-					// width: ["66rem", "120rem"],
-					// skewX: ["330deg", "332deg"],
-					// skewY: ["330deg", "336deg"],
-					// scale: ["1.4", "1.8"],
 				},
 				{ duration: 10, repeat: Infinity, direction: "alternate" },
 			);
