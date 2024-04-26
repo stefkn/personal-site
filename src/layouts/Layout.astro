@@ -130,7 +130,7 @@ function formatCanonicalURL(url: string | URL) {
 			<a href="/">
 				<img id="site-icon" src="/favicon.png" />
 			</a>
-			<div class="nav-links">
+			<div id="top-nav-links" class="nav-links">
 				<a href="/life">life</a>
 				<a href="/work">work</a>
 				<a href="/posts">posts</a>
@@ -143,3 +143,23 @@ function formatCanonicalURL(url: string | URL) {
 		<Footer />
 	</body>
 </html>
+	
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const topNavLinks = document.getElementById("top-nav-links");
+		Array.from(topNavLinks!.children).forEach((link) => {
+			if ((link as HTMLAnchorElement).href === window.location.href) {
+				link.classList.add("active");
+			}
+		});
+	});
+</script>
+
+<style>
+	#top-nav-links {
+		a.active {
+			text-decoration: none;
+			filter: blur(2px);
+		}
+	}
+</style>
