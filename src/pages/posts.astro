@@ -18,6 +18,13 @@ const pageTitle = "Blog posts";
 		{
 			allPosts.map((post) => (
 				<div class="article-post">
+					<div class="post-details">
+						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+						<p>{post.data.description}</p>
+						<p class="post-date">
+							{post.data.pubDate.toDateString()}
+						</p>
+					</div>
 					<div class="article-image">
 						<a href={`/posts/${post.slug}/`}>
 							<Image
@@ -27,13 +34,6 @@ const pageTitle = "Blog posts";
 								onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
 							/>
 						</a>
-					</div>
-					<div class="post-details">
-						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
-						<p>{post.data.description}</p>
-						<p class="post-date">
-							{post.data.pubDate.toDateString()}
-						</p>
 					</div>
 				</div>
 			))
