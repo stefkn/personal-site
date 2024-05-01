@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
+const firstPost = allPosts[0];
 const pageTitle = "Blog posts";
 ---
 
@@ -16,7 +17,33 @@ const pageTitle = "Blog posts";
 	</section>
 	<main class="wrapper articles">
 		{
-			allPosts.map((post) => (
+			(
+				<div class="article-post hero-post">
+					<div class="post-details">
+						<a href={`/posts/${firstPost.slug}/`}>
+							{firstPost.data.title}
+						</a>
+						<p>{firstPost.data.description}</p>
+						<p class="post-date">
+							{firstPost.data.pubDate.toDateString()}
+						</p>
+					</div>
+					<div class="article-image">
+						<a href={`/posts/${firstPost.slug}/`}>
+							<Image
+								src={firstPost.data.image}
+								alt={firstPost.data.imageAlt}
+								class="post-index-card-image"
+								onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
+							/>
+						</a>
+					</div>
+				</div>
+			)
+		}
+
+		{
+			allPosts.slice(1).map((post) => (
 				<div class="article-post">
 					<div class="post-details">
 						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
