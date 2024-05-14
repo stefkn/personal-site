@@ -118,6 +118,15 @@ function formatCanonicalURL(url: string | URL) {
 			}
 		</script>
 
+		<style>
+			#top-nav-links {
+				a.active {
+					text-decoration: none;
+					filter: blur(2px);
+				}
+			}
+		</style>
+
 		<ViewTransitions />
 	</head>
 
@@ -139,25 +148,19 @@ function formatCanonicalURL(url: string | URL) {
 		<slot />
 
 		<Footer />
+
+		<script>
+			document.addEventListener("astro:page-load", () => {
+				const topNavLinks = document.getElementById("top-nav-links");
+				Array.from(topNavLinks!.children).forEach((link) => {
+					if (
+						(link as HTMLAnchorElement).href ===
+						window.location.href
+					) {
+						link.classList.add("active");
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
-	
-<script>
-	document.addEventListener("astro:page-load", () => {
-		const topNavLinks = document.getElementById("top-nav-links");
-		Array.from(topNavLinks!.children).forEach((link) => {
-			if ((link as HTMLAnchorElement).href === window.location.href) {
-				link.classList.add("active");
-			}
-		});
-	});
-</script>
-
-<style>
-	#top-nav-links {
-		a.active {
-			text-decoration: none;
-			filter: blur(2px);
-		}
-	}
-</style>
