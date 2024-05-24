@@ -15,7 +15,6 @@
         color: black;
     }
 
-    scroll-behavior: smooth;
 }
 
 .hidden {
@@ -27,26 +26,24 @@
     transform: translateX(-100px);
 }
 
-.index-intro-image, .work-intro-image {
+.index-intro-image,
+.work-intro-image {
     -webkit-transition: all 3s ease;
     -moz-transition: all 3s ease;
     -ms-transition: all 3s ease;
     -o-transition: all 3s ease;
     opacity: 0;
     filter: grayscale(1);
-    mask-image: radial-gradient(
-        ellipse 210% 160% at 53% 53%,
-        black 26%,
-        transparent 55%
-    );
+    mask-image: radial-gradient(ellipse 210% 160% at 53% 53%,
+            black 26%,
+            transparent 55%);
     border-radius: 12px;
 }
+
 .work-intro-image {
-    mask-image: radial-gradient(
-        ellipse 202% 110% at 73% 43%,
-        black 10%,
-        transparent 48%
-    );
+    mask-image: radial-gradient(ellipse 202% 110% at 73% 43%,
+            black 10%,
+            transparent 48%);
     width: 100%;
     height: auto;
     position: absolute;
