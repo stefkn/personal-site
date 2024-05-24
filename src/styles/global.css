@@ -350,6 +350,24 @@ u {
     text-underline-offset: 5px;
 }
 
+#article-content {
+    ul {
+        margin-top: 18px;
+        max-width: 590px;
+    }
+    
+    li {
+        margin-top: 12px;
+        font-family: 'Newsreader';
+    }
+}
+#article-aside {
+    li {
+        margin-top: 6px;
+        font-family: monospace;
+    }
+}
+
 pre.astro-code {
     border-radius: 12px;
     padding: 24px;
@@ -367,6 +385,15 @@ code {
         Bitstream Vera Sans Mono,
         Courier New,
         monospace;
+}
+
+blockquote {
+    font-style: italic;
+    border-left-width: 1px;
+    border-left-style: solid;
+    margin-top: 20px;
+    padding: 0px 0px 18px 40px;
+    max-width: 560px;
 }
 
 
