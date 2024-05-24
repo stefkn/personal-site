@@ -171,6 +171,22 @@ const pageTitle = "Blog posts";
 				translate: 0px -2px;
 			}
 		}
+
+		.hero-post {
+			grid-column: 1 / -1;
+
+			.post-details {
+				margin-top: 2rem;
+				max-width: 610px;
+
+				@media (max-width: 650px) {
+					margin-top: 6rem;
+					max-width: 410px;
+				}
+			}
+		}
+	}
+
 	}
 
 	html.dark > body > .title-bg {
