@@ -33,7 +33,6 @@
     -ms-transition: all 3s ease;
     -o-transition: all 3s ease;
     opacity: 0;
-    filter: grayscale(1);
     mask-image: radial-gradient(ellipse 210% 160% at 53% 53%,
             black 26%,
             transparent 55%);
@@ -154,6 +153,11 @@ main.wrapper>.full-bleed {
         margin: 0rem 0.33rem;
         color: black;
     }
+}
+
+.flex {
+    display: flex;
+    align-items: flex-end;
 }
 
 /* ================= DARK MODE ================= */
