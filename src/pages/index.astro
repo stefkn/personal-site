@@ -285,12 +285,26 @@ import athensImage from "../assets/athens.jpeg";
 			};
 		});
 
+		// fade in on page load
+		["pre", "#screentext", "#screentext2"].forEach((selector) => {
+			if (!selector || !document.querySelector(selector)) {
 				return;
 			}
 			animate(
-				target,
-				{ opacity: 1, filter: "grayscale(0)" },
-				{ delay: 0.2, duration: 2, easing: [0, 0.25, 0.85, 1] },
+				document.querySelector(selector)!,
+				{ opacity: 1 },
+				{ delay: 0.2, duration: 1.6, easing: [0.17, 0.55, 0.55, 1] },
+			);
+		});
+
+		["#intro-title", "#intro-subtitle"].forEach((selector) => {
+			if (!selector || !document.querySelector(selector)) {
+				return;
+			}
+			animate(
+				document.querySelector(selector)!,
+				{ opacity: 1, translateX: [-30, 10] },
+				{ delay: 0, duration: 1.9, easing: [0.17, 0.55, 0.55, 1] },
 			);
 		});
 
