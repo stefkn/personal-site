@@ -58,6 +58,7 @@
         }
 
         div.footer-content {
+            margin-top: 1em;
             position: relative;
             z-index: 2;
             letter-spacing: -0.2px;
@@ -112,7 +113,6 @@
         background-color: #00000000;
     }
     html.dark > body > footer > #footer-bg {
-        background: linear-gradient(#8a26ff, #0015ff, #13151a);
     }
     html.dark > body > footer > #footer-bg > svg > pattern > #pattern-circle {
         fill: #eec5ff;
@@ -123,7 +123,6 @@
     }
 
     #footer-bg {
-        background: linear-gradient(#d2acff, #c3c8ff, #fff9f5);
         width: 100%;
         height: 21rem;
         position: absolute;
@@ -131,16 +130,15 @@
         bottom: 0px;
         overflow: hidden;
 
-        mask-image: radial-gradient(
-            ellipse 90% 190% at 55% -50%,
-            black 0%,
-            transparent 81%
-        );
-
         svg {
             left: 30%;
             position: relative;
             top: 30%;
+            mask-image: radial-gradient(
+                ellipse 60% 170% at 55% -50%,
+                black 0%,
+                transparent 81%
+            );
         }
     }
 </style>
