@@ -1,8 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import helloWorldImage from "../assets/hello_world.jpeg";
-import athensImage from "../assets/athens.jpeg";
 ---
 
 <Layout title="Introduction">
@@ -44,18 +41,14 @@ import athensImage from "../assets/athens.jpeg";
                 *Bb.   `!!8|!^"'
                   *Bb.   ""
                     *Bb.
-</pre>
+		</pre>
 		<span id="screentext">hello world</span>
 		<span id="screentext2">-> PRESS 'G' <-</span>
 		<span id="flashing">_</span>
 		<span id="game"></span>
 	</div>
-	<div class="title-bg">
-		<div id="bg-content"></div>
-		<div id="bg-content-shape1"></div>
-	</div>
 	<main class="wrapper">
-		<section>
+		<section class="intro-titles">
 			<h1 id="intro-title">hello.</h1>
 			<h3 id="intro-subtitle">welcome to my website.</h3>
 		</section>
@@ -120,6 +113,11 @@ import athensImage from "../assets/athens.jpeg";
 </Layout>
 
 <style>
+	.intro-titles {
+		position: relative;
+		top: 50rem;
+		height: 50rem;
+	}
 	#intro-title {
 		margin-top: -80%;
 		font-family: Times New Roman;
@@ -153,7 +151,7 @@ import athensImage from "../assets/athens.jpeg";
 		position: fixed;
 		z-index: -1;
 		right: 14vw;
-		top: 3rem;
+		top: 15rem;
 		@media (max-width: 700px) {
 			top: 10rem;
 			right: 0px;
@@ -422,7 +420,8 @@ import athensImage from "../assets/athens.jpeg";
 			screenText2!.style.display = "none";
 			flashingBit!.style.display = "none";
 			gameElem!.style.display = "block";
-			grid = lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
+			grid =
+				lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
 			posArr = [];
 			position = 0;
 			foodPosition = 0;
