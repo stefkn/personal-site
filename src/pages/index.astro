@@ -236,17 +236,6 @@ import athensImage from "../assets/athens.jpeg";
 	import { inView, scroll, animate } from "motion";
 
 	function setupAnimations() {
-		inView("#bg-content", ({ target }) => {
-			animate(
-				target,
-				{
-					backgroundSize: ["600px", "1800px"],
-					backgroundPositionX: ["0px", "1000px"],
-				},
-				{ duration: 10, repeat: Infinity, direction: "alternate" },
-			);
-		});
-
 		inView("section", ({ target }) => {
 			if (target.querySelectorAll(".animated").length === 0) {
 				return;
@@ -258,8 +247,44 @@ import athensImage from "../assets/athens.jpeg";
 			);
 		});
 
-		inView(".index-intro-image", ({ target }) => {
-			if (!target) {
+		const backgroundElement = document.querySelector("#background");
+
+		inView("#nav-menu", ({ target }) => {
+
+			if (!backgroundElement) {
+				return;
+			}
+
+			animate(
+				backgroundElement,
+				{ filter: "blur(0px) brightness(1)" },
+				{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.85, 1] },
+			);
+
+			return (leaveInfo) => {
+				const isDarkMode =
+					document.documentElement.classList.contains("dark");
+
+				if (isDarkMode) {
+					animate(
+						backgroundElement,
+						{ filter: "blur(4.2px) brightness(0.38)" },
+						{
+							delay: 0,
+							duration: 0.8,
+							easing: [0.37, 0.55, 0.85, 1],
+						},
+					);
+					return;
+				}
+				animate(
+					backgroundElement,
+					{ filter: "blur(8.2px) brightness(5.8) contrast(0.2)" },
+					{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
+				);
+			};
+		});
+
 				return;
 			}
 			animate(
