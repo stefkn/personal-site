@@ -149,8 +149,7 @@ const pageTitle = "Blog posts";
 				-moz-transition: all 1.2s ease;
 				-ms-transition: all 1.2s ease;
 				-o-transition: all 1.2s ease;
-				/* position: absolute; */
-				/* max-width: 390px; */
+
 				margin: 0px auto;
 				transform: scale(1);
 				translate: 0px 0px;
@@ -161,6 +160,15 @@ const pageTitle = "Blog posts";
 					transparent 113%
 				);
 				z-index: 2;
+
+				&:hover {
+					transform: scale(1.005);
+					translate: 0px -2px;
+				}
+
+				@media (max-width: 650px) {
+					mask-image: radial-gradient(ellipse 63% 41% at 75% 9%,black 0%,transparent 123%);
+				}
 			}
 			.article-image:hover {
 				transform: scale(1.005);
@@ -175,7 +183,7 @@ const pageTitle = "Blog posts";
 				margin-top: 2rem;
 				max-width: 610px;
 
-				@media (max-width: 650px) {
+				@media (max-width: 850px) {
 					margin-top: 6rem;
 					max-width: 410px;
 				}
@@ -187,9 +195,19 @@ const pageTitle = "Blog posts";
 					black 60%,
 					transparent 105%
 				);
+
+				&:hover {
+					transform: scale(1.005);
+					translate: 0px -2px;
+				}
+
+				@media (max-width: 850px) {
+					mask-image: radial-gradient(ellipse 63% 41% at 75% 9%,black 0%,transparent 123%);
+				}
 			}
 			a {
-				font-size: 4.2rem;
+				font-size: 3.8rem;
+				font-weight: 600;
 
 				@media (max-width: 650px) {
 					font-size: 3.2rem;
