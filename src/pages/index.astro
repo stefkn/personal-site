@@ -308,6 +308,20 @@ import athensImage from "../assets/athens.jpeg";
 			);
 		});
 
+		if (!document.querySelector("#flashing")) {
+			return;
+		}
+		animate(
+			document.querySelector("#flashing")!,
+			{ opacity: [0, 1, 0] },
+			{
+				delay: 0,
+				duration: 1.6,
+				easing: [0.17, 0.95, 0.95, 1],
+				repeat: Infinity,
+			},
+		);
+
 	}
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
@@ -316,7 +330,6 @@ import athensImage from "../assets/athens.jpeg";
 			setupAnimations();
 		}
 	});
-
 	setupAnimations();
 </script>
 
