@@ -94,7 +94,7 @@ main {
 }
 
 main.wrapper.article {
-    max-width: calc(100% - 22rem);
+    max-width: calc(100% - 30rem);
 
     @media (max-width: 930px) {
         max-width: 100%;
@@ -107,8 +107,7 @@ main.wrapper.article.wider {
 
 main.wrapper {
     display: grid;
-    grid-template-columns:
-        1fr min(56ch, 100%) 1fr;
+    grid-template-columns: 1fr min(52ch, 100%) 1fr;
 }
 
 main.wrapper>* {
