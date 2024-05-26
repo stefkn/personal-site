@@ -131,18 +131,17 @@ function formatCanonicalURL(url: string | URL) {
 	</head>
 
 	<body>
-		<div class="theme-toggle-container">
-			<ThemeToggle class="theme-toggle-container" />
-		</div>
-
 		<div class="navmenu-container" id="nav-menu">
-			<a href="/">
-				<img id="site-icon" src="/favicon.png" />
-			</a>
-			<div id="top-nav-links" class="nav-links">
-				<a href="/work">work</a>
-				<a href="/posts">posts</a>
+			<div>
+				<a href="/">
+					<img id="site-icon" src="/favicon.png" />
+				</a>
+				<div id="top-nav-links" class="nav-links">
+					<a href="/work">work</a>
+					<a href="/posts">posts</a>
+				</div>
 			</div>
+			<ThemeToggle class="theme-toggle-container" />
 		</div>
 
 		<slot />
@@ -150,7 +149,7 @@ function formatCanonicalURL(url: string | URL) {
 		<Footer />
 
 		<script>
-			document.addEventListener("astro:page-load", () => {
+			function updateNavLinksState() {
 				const topNavLinks = document.getElementById("top-nav-links");
 				Array.from(topNavLinks!.children).forEach((link) => {
 					if (
@@ -160,6 +159,9 @@ function formatCanonicalURL(url: string | URL) {
 						link.classList.add("active");
 					}
 				});
+			}
+			document.addEventListener("astro:page-load", () => {
+				updateNavLinksState();
 			});
 		</script>
 	</body>
