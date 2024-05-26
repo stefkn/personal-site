@@ -122,17 +122,12 @@ main.wrapper>.full-bleed {
     height: auto;
 }
 
-.theme-toggle-container {
-    position: absolute;
-    right: 0rem;
-    top: 1.7rem;
-    z-index: 11;
-}
-
 .navmenu-container {
-    position: absolute;
-    left: 1rem;
-    top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    max-width: 750px;
+    margin: auto;
     z-index: 10;
 
     #site-icon {
