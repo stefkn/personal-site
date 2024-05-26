@@ -70,11 +70,10 @@ body::-webkit-scrollbar {
 }
 
 #page-title {
-    position: relative;
-    width: 4em;
-    left: 1.5rem;
-    top: 6rem;
-    margin: 5rem 0rem 0rem 0rem;
+    max-width: 750px;
+    margin: auto;
+    padding: 1.5rem;
+    margin-top: 2rem;
 }
 
 main {
