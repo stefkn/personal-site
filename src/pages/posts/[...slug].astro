@@ -296,10 +296,10 @@ const { Content, headings } = await entry.render();
 </style>
 
 <script>
-  import { scroll, animate } from "motion";
+  import { scroll, animate, inView } from "motion";
 
-  // hack to add the css-grid full-bleed style to images in the rendered markdown content
   document.addEventListener("astro:page-load", () => {
+    // hack to add the css-grid full-bleed style to images in the rendered markdown content
     var mainWrapper = document.querySelector("main.wrapper");
     if (mainWrapper) {
       var paragraphs = mainWrapper.querySelectorAll("p");
@@ -334,6 +334,32 @@ const { Content, headings } = await entry.render();
         },
         { duration: 190, repeat: Infinity, direction: "alternate" },
       );
+      const siteIcon = document.getElementById("site-icon");
+      inView("#nav-menu", ({ target }) => {
+        if (!siteIcon) return;
+
+        animate(
+          siteIcon,
+          { opacity: "1" },
+          { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.85, 1] },
+        );
+
+        return (leaveInfo) => {
+          animate(
+            siteIcon,
+            { opacity: "0" },
+            { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
+          );
+        };
+      });
+      const navMenu = document.getElementById("nav-menu");
+      if (navMenu && siteIcon && navMenu?.getBoundingClientRect().top < 0) {
+        animate(
+          siteIcon,
+          { opacity: "0" },
+          { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
+        );
+      }
     }
 
     const asideButton = document.getElementById("toggle-hide-aside");
