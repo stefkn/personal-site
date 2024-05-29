@@ -3,6 +3,7 @@ export type SiteConfig = {
     subtitle?: string;
     description: string;
     pageType: string;
+    image?: {src: string; alt: string};
     postsPerPage?: number;
     projectsPerPage?: number;
 };
