@@ -196,25 +196,27 @@ const { Content, headings } = await entry.render();
     margin-top: 10rem;
     margin-bottom: 8rem;
 
-    @media (max-width: 630px) {
-      margin-top: 4rem;
-      margin-bottom: 0rem;
-    }
-
     h1 {
       position: relative;
-      top: -22rem;
-      color: #001fcc;
-      mix-blend-mode: overlay;
+      top: -16rem;
+      color: #ffffff;
       font-size: clamp(3.6rem, 5vw, 8rem);
       text-shadow: none;
       margin: auto;
       font-family: system-ui, sans-serif;
       padding: 0rem 1rem;
     }
+
+    @media (max-width: 630px) {
+      margin-top: -3rem;
+      margin-bottom: 0rem;
+
+      h1 {
+        top: -6rem;
+      }
+    }
   }
   html.dark > body > div.title-container > h1 {
-    color: #ffffff;
     mix-blend-mode: screen;
     text-shadow:
       1px 1px 0 #000dff87,
