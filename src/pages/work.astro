@@ -6,22 +6,137 @@ const pageTitle = "Résumé/CV";
 ---
 
 <Layout title={pageTitle}>
-	<div class="background">
-		<div id="bg-content"></div>
-		<div id="bg-cv-content-shape1"></div>
-		<div id="bg-cv-content-shape2"></div>
-	</div>
 	<div>
 		<Image
 			src={stefanImage}
-			alt="A picture of me"
+			alt="A picture of Stefan Nowak"
 			class="full-bleed work-intro-image"
-			onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
+			onload="this.style.opacity=1; this.style.filter='saturate(1.05)'"
+			quality="mid"
 		/>
 	</div>
 	<section>
 		<h1 id="page-title" class="animated">work</h1>
+		<div class="cv-container">
+			<a
+				href="https://docs.google.com/presentation/d/1MhmKj8wS_Q18ItPdRWYEBbGBefBPNjM1YtI5HjcE8sc/edit?usp=sharing"
+			>
+				view my CV here
+			</a>
+		</div>
 	</section>
+	<main class="wrapper grid">
+		<section>
+			<h2 class="animated">tl;dr</h2>
+			<p>
+				I enjoy learning, building cool things and working with nice
+				people.
+			</p>
+
+			<h2>about me</h2>
+			<p>Hi! I'm Stefan, a software engineer in {" "} London, UK. 🇬🇧</p>
+			<p>
+				I enjoy building things that make people's lives easier, more
+				fun, or more interesting–to that end, I'm originally a backend
+				developer, but I've transitioned into a more jack-of-all trades
+				role as a full-stack engineer. I'm also interested in devops,
+				security, SRE and infrastructure.
+			</p>
+
+			<h2>timeline</h2>
+			<div class="timeline">
+				<div class="timeline-entry">
+					<h3>2019 - Present</h3>
+					<p>
+						<strong>Backend/Full-stack Software Engineer</strong> at{
+							" "
+						}
+						<a href="https://www.astro.build">tails.com</a>
+					</p>
+					<p>
+						Building the future of the web with a great team of
+						people.
+					</p>
+				</div>
+				<div class="timeline-entry">
+					<h3>2017 - 2018</h3>
+					<p>
+						<strong>Freelancer</strong> at{" "}
+						<a href="https://www.astro.build">Enki Labs. Inc.</a>
+					</p>
+					<p>
+						Building the future of the web with a great team of
+						people.
+					</p>
+				</div>
+				<div class="timeline-entry">
+					<h3>2015 - 2019</h3>
+					<p>
+						<strong>MSc.(i) Computer Science</strong> at{" "}
+						<a href="https://www.astro.build"
+							>King's College London, Department of Informatics
+							(Bush House, Holborn)</a
+						>
+					</p>
+					<p>
+						A four-year integrated master's degree in computer
+						science.
+					</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<h2 class="animated">skills</h2>
+			<h3>Frontend development</h3>
+			<p>HTML, CSS, JavaScript, React, Svelte, Angular, Vue.</p>
+			<h3>DevOps and Infrastructure</h3>
+			<p>Docker, Kubernetes, CI/CD, AWS, GCP, Azure, Vercel</p>
+			<h3>Backend development</h3>
+			<p>Python, Node.js, Express, MongoDB, PostgreSQL.</p>
+			<h3>Databases</h3>
+			<p>MySQL, MongoDB, PostgreSQL, Redis.</p>
+			<h3>Familiarity with computer science concepts</h3>
+			<p>
+				data structures and algorithms, complexity analysis,
+				cryptography, logic & formal systems, pattern recognition and ML
+				& deep learning, formal grammars, natural language processing,
+				automata, operating systems, distributed systems, multiagent
+				systems, networking and internet systems, domain modelling,
+				software architecture, computer architecture, design patterns,
+				game theory, history of computing.
+			</p>
+			<h3>"Soft" skills</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				nisi ut aliquip ex ea commodo consequat.
+			</p>
+		</section>
+		<section>
+			<h2 class="animated">portfolio</h2>
+			<h3>thing 1</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+				in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+				nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+				sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			<h3>thing 2</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+				in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+				nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+				sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</section>
+	</main>
 </Layout>
 
 <script>
