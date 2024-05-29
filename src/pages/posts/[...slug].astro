@@ -65,6 +65,11 @@ const { Content, headings } = await entry.render();
     -o-transition: all 2s ease;
   }
 
+  body > main.article > figure > figcaption > p {
+    margin-top: 0.5rem;
+    font-size: 0.4rem;
+  }
+
   #toggle-hide-aside,
   #toggle-hide-side {
     position: relative;
@@ -75,7 +80,7 @@ const { Content, headings } = await entry.render();
     width: 42px;
     padding: 0px;
     font-size: 14px;
-    margin: 5px 0.5rem 50px 8px;
+    margin: 0px 0px 10px 0px;
     z-index: 3;
     cursor: pointer;
 
@@ -90,6 +95,14 @@ const { Content, headings } = await entry.render();
     bottom: -1rem;
     z-index: 3;
     cursor: pointer;
+  }
+
+  html.dark > body > #article-content > aside::-webkit-scrollbar-track {
+    background-color: #13151a;
+  }
+
+  html.dark > body > #article-content > aside::-webkit-scrollbar-thumb {
+    background-color: #fff7f0;
   }
 
   #article-content {
@@ -107,6 +120,11 @@ const { Content, headings } = await entry.render();
       a {
         color: #3546ff;
       }
+      text-align: justify;
+    }
+
+    h2 {
+      margin-top: 2.8rem;
     }
 
     aside {
@@ -116,13 +134,20 @@ const { Content, headings } = await entry.render();
       max-height: calc(-148px + 100vh);
       overflow: auto;
       padding-bottom: 16px;
-      margin-left: auto;
+      margin-left: 0px;
       margin-top: 4px;
-      margin-right: 1rem;
       background: transparent;
+      margin-right: 4rem;
+      overflow: scroll;
+
+      @media (min-width: 1130px) {
+        margin-right: 7rem;
+      }
 
       p {
         font-family: ui-monospace, monospace;
+        text-align: left;
+        padding-right: 2cqb;
       }
       p.date {
         font-size: 12px;
