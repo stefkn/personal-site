@@ -50,7 +50,7 @@ closing hashes don't even need to match the number of hashes
 used to open the header. (The number of opening hashes
 determines the header level.)
 
-![A starry night sky.](../../assets/image_sample.jpg)
+![A starry night sky.](../../assets/Colorful.jpg)
 
 ### Blockquotes
 
