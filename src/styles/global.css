@@ -106,7 +106,7 @@ main.wrapper.article.wider {
 
 main.wrapper {
     display: grid;
-    grid-template-columns: 1fr min(52ch, 100%) 1fr;
+    grid-template-columns: 1fr min(56ch, 100%) 1fr;
 }
 
 main.wrapper>* {
