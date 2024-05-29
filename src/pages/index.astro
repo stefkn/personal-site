@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
 ---
 
 <Layout title="Introduction">
@@ -90,24 +93,32 @@ import Layout from "../layouts/Layout.astro";
 			</p>
 		</section>
 		<section>
-			<h3 class="animated"><u>how was this site made?</u></h3>
-			<p>
-				In erat elit, molestie in varius vel, consectetur id elit.
-				Nullam urna velit, molestie id massa sed, consectetur facilisis
-				dolor. Cras convallis ex a velit laoreet maximus. Etiam felis
-				diam, condimentum vitae urna eget, pulvinar elementum nulla.
-				Proin ut dictum mauris. Vivamus mattis eget ante vel blandit.
-				Nulla aliquet libero vehicula auctor condimentum. Quisque felis
-				arcu, placerat a porta et, interdum pharetra purus. Nam in
-				iaculis lorem. Aenean accumsan, odio ut efficitur iaculis, nibh
-				ex dictum velit, ut lacinia lorem metus bibendum augue. Aenean
-				leo quam, pellentesque vel efficitur nec, pharetra id neque.
-				Morbi mattis, nibh sit amet sodales imperdiet, erat sem laoreet
-				odio, ut pretium nulla enim ut mauris. Vivamus in fringilla
-				neque, et laoreet mauris. Donec sed auctor neque. Morbi vitae
-				viverra purus. Quisque mollis augue laoreet, fringilla nisi nec,
-				rutrum lacus.
-			</p>
+			<h3 class="animated"><u>Recent posts</u></h3>
+			<div class="recent-posts">
+			{
+				allPosts.slice(0, 3).map((post) => (
+					<div class="article-post">
+						<div class="post-details">
+							<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+							<p>{post.data.description}</p>
+							<p class="post-date">
+								{post.data.pubDate.toDateString()}
+							</p>
+						</div>
+						<div class="article-image">
+							<a href={`/posts/${post.slug}/`}>
+								<Image
+									src={post.data.image}
+									alt={post.data.imageAlt}
+									class="post-index-card-image"
+									onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
+								/>
+							</a>
+						</div>
+					</div>
+				))
+			}
+			</div>
 		</section>
 	</main>
 </Layout>
