@@ -115,8 +115,9 @@ import Layout from "../layouts/Layout.astro";
 <style>
 	.intro-titles {
 		position: relative;
-		top: 50rem;
-		height: 50rem;
+		top: 46rem;
+		height: 38rem;
+		pointer-events: none;
 	}
 	#intro-title {
 		margin-top: -80%;
@@ -127,6 +128,10 @@ import Layout from "../layouts/Layout.astro";
 		display: block;
 		transform: translateX(-60px);
 		opacity: 0;
+		background-color: #e1e5ff85;
+		backdrop-filter: blur(3px);
+		width: 12rem;
+		padding: 6px 0px;
 	}
 	#intro-subtitle {
 		font-family: Times New Roman;
@@ -137,15 +142,21 @@ import Layout from "../layouts/Layout.astro";
 		display: block;
 		transform: translateX(-60px);
 		opacity: 0;
+		background-color: #e1e5ff85;
+		backdrop-filter: blur(3px);
+		width: 23rem;
+		padding: 6px 0px;
 	}
 	html.dark > body > .title-bg > #bg-content {
 		filter: hue-rotate(236deg) contrast(3.5) brightness(0.6) blur(64px);
 	}
 	html.dark > body > main.wrapper > section > #intro-title {
 		color: #ffffff;
+		background-color: #0022ffb8;
 	}
 	html.dark > body > main.wrapper > section > #intro-subtitle {
 		color: #ffffff;
+		background-color: #0022ffb8;
 	}
 	.background {
 		position: fixed;
@@ -227,6 +238,9 @@ import Layout from "../layouts/Layout.astro";
 	}
 	.footnotes {
 		margin: 8rem 0px 2rem 0px;
+	}
+	section {
+		margin-bottom: 2rem;
 	}
 </style>
 
