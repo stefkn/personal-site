@@ -234,6 +234,8 @@ import Layout from "../layouts/Layout.astro";
 	import { inView, scroll, animate } from "motion";
 
 	function setupAnimations() {
+		const backgroundElement = document.querySelector("#background");
+
 		inView("section", ({ target }) => {
 			if (target.querySelectorAll(".animated").length === 0) {
 				return;
@@ -245,10 +247,7 @@ import Layout from "../layouts/Layout.astro";
 			);
 		});
 
-		const backgroundElement = document.querySelector("#background");
-
 		inView("#nav-menu", ({ target }) => {
-
 			if (!backgroundElement) {
 				return;
 			}
@@ -320,6 +319,14 @@ import Layout from "../layouts/Layout.astro";
 			},
 		);
 
+		const navMenu = document.getElementById("nav-menu");
+		if (navMenu && navMenu?.getBoundingClientRect().top < 0 && backgroundElement) {
+			animate(
+				backgroundElement,
+				{ filter: "blur(8.2px) brightness(5.8) contrast(0.2)" },
+				{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
+			);
+		}
 	}
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
