@@ -113,6 +113,47 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
+	.recent-posts {
+		margin-top: 3rem;
+	}
+	.article-post {
+		margin: 2rem 0px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		.post-index-card-image {
+			height: auto;
+			max-width: 10rem;
+			border-radius: 8px;
+
+			-webkit-transition: all 2s ease;
+			-moz-transition: all 2s ease;
+			-ms-transition: all 2s ease;
+			-o-transition: all 2s ease;
+
+			opacity: 0;
+			filter: grayscale(1);
+		}
+		.post-date {
+			font-size: 0.8rem;
+			color: #666;
+			margin-top: 0.2rem;
+		}
+		.post-details {
+			a {
+				font-size: 1.2rem;
+				font-weight: 600;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			p {
+				margin-top: 0.2rem;
+			}
+			padding-left: 2rem;
+		}
+	}
 	.intro-titles {
 		position: relative;
 		top: 46rem;
