@@ -67,37 +67,40 @@ const pageTitle = "Résumé/CV";
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-gap: 2rem;
 
-		@media (max-width: 850px) {
+		@media (max-width: 1150px) {
 			grid-template-columns: 1fr;
 		}
 		section {
 			grid-column: span 1;
 
+			h2 {
+				font-size: 2.2rem;
+				margin-top: 2rem;
+				margin-bottom: 1rem;
+				font-weight: 600;
+				color: #305dff;
+			}
+
 			h3 {
 				font-size: 1.3rem;
-				margin-top: 1.2rem;
+				margin-top: 2rem;
+				margin-bottom: 0.3rem;
+				font-weight: 300;
+				text-decoration: underline;
 			}
+
+			p {
+				font-family: Inter, sans-serif;
+				margin-top: 0.8rem;
+			}
+
+			border-left: 1px #dddddd;
+			border-left-style: solid;
+			padding-left: 40px;
+			padding-top: 20px;
 		}
 	}
-	.background {
-		opacity: 0.85;
-		position: absolute;
-		height: 200%;
-		width: 100%;
-		overflow: hidden;
-		left: 0px;
-		top: 0px;
-		pointer-events: none;
-
-		mask-image: radial-gradient(
-			ellipse 270% 110% at 55% 108%,
-			black 50%,
-			transparent 110%
-		);
-		z-index: -1;
-
-		@media (max-width: 850px) {
-			left: 0px;
-		}
+	html.dark > body > main.wrapper.grid > section {
+		border-color: #6c6c6c;
 	}
 </style>
