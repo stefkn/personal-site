@@ -226,7 +226,7 @@ const { Content, headings } = await entry.render();
     position: relative;
     display: block;
     mix-blend-mode: screen;
-    transform: skew(353deg, 4.5deg) scaleY(1.2);
+    transform: skew(353deg, 4.5deg) scaleY(2.2);
     background-image: radial-gradient(
         at 67% 151%,
         hsl(268.33deg 34% 9.4% / 32%) 0px,
@@ -250,7 +250,7 @@ const { Content, headings } = await entry.render();
         transparent 57%
       ),
       radial-gradient(at 66% 95%, hsla(271, 69%, 76%, 1) 19px, transparent 35%);
-    height: 25rem;
+    height: 18rem;
     border-radius: 21px;
     mask-image: radial-gradient(
       ellipse 100% 150% at 45% 110%,
@@ -261,6 +261,7 @@ const { Content, headings } = await entry.render();
     width: 140%;
     @media (max-width: 630px) {
       max-width: 120%;
+      height: 17rem;
     }
   }
   #hero-img {
@@ -270,7 +271,15 @@ const { Content, headings } = await entry.render();
     left: 0px;
     width: 100%;
     z-index: -1;
-    mask-image: linear-gradient(#000 -10%, transparent);
+    mask-image: radial-gradient(
+      ellipse 145% 42% at 50% 44%,
+      black -20%,
+      transparent 116%
+    );
+    filter: contrast(0.85);
+  }
+  html.dark > body > #article-content > #main-wrapper > p > a {
+    color: #818cff;
   }
   html.dark > body > div.article-hero-image > #hero-img {
     mask-image: linear-gradient(#000 0%, transparent 80%);
