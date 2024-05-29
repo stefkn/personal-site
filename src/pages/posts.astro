@@ -13,7 +13,7 @@ const pageTitle = "Blog posts";
 	</section>
 	<main class="wrapper articles">
 		{
-			(
+			firstPost && (
 				<div class="article-post hero-post">
 					<div class="post-details">
 						<a href={`/posts/${firstPost.slug}/`}>
@@ -39,7 +39,7 @@ const pageTitle = "Blog posts";
 		}
 
 		{
-			allPosts.slice(1).map((post) => (
+			allPosts && allPosts.slice(1).map((post) => (
 				<div class="article-post">
 					<div class="post-details">
 						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
