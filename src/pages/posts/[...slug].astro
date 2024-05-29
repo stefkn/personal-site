@@ -38,6 +38,12 @@ const { Content, headings } = await entry.render();
       class="hidden">hide</button
     >
     <aside id="article-aside" class="frontmatter">
+      <button
+        id="toggle-hide-aside"
+        aria-label="show/hide side metadata and table of contents"
+      >
+        hide
+      </button>
       <p>by {entry.data.author}</p>
       <p class="date">{entry.data.pubDate.toDateString()}</p>
       <p>{entry.data.description}</p>
@@ -45,10 +51,6 @@ const { Content, headings } = await entry.render();
         {entry.data.tags.map((item) => <div class="tag">{item}</div>)}
       </div>
       <TableOfContents headings={headings} />
-      <button
-        id="toggle-hide-aside"
-        aria-label="show/hide side metadata and table of contents">hide</button
-      >
     </aside>
     <main id="main-wrapper" class="wrapper article">
       <Content />
