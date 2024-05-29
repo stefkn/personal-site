@@ -72,18 +72,21 @@
         padding: 26px 50px;
         position: relative;
         margin-top: 6rem;
-        border-top: 1px solid #383838;
+        border-top: 1px solid #dddddd;
 
         @media (max-width: 630px) {
             padding: 0px 20px;
         }
 
         div.footer-content {
-            margin-top: 1em;
             position: relative;
             z-index: 2;
             letter-spacing: -0.2px;
             font-size: 18px;
+            
+            max-width: 700px;
+            margin: auto;
+            margin-top: 1em;
 
             p {
                 font-family: "Inter";
@@ -92,7 +95,7 @@
 
             a {
                 text-decoration: underline;
-                color: #ff1eff;
+                color: #5361ff;
             }
 
             h2#footer-title {
@@ -132,11 +135,12 @@
 
     html.dark > body > footer {
         background-color: #00000000;
+        border-color: #6c6c6c;
     }
     html.dark > body > footer > #footer-bg {
     }
     html.dark > body > footer > #footer-bg > svg > pattern > #pattern-circle {
-        fill: #eec5ff;
+        fill: #6c6c6c;
     }
 
     #pattern-circle {
