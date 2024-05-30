@@ -3,7 +3,7 @@ const { heading } = Astro.props;
 ---
 
 <li>
-  <a href={'#' + heading.slug}>
+  <a href={"#" + heading.slug}>
     {heading.text}
   </a>
   {
@@ -16,3 +16,23 @@ const { heading } = Astro.props;
     )
   }
 </li>
+
+<style>
+  ul, li {
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+    padding: 0;
+    gap: 0.3rem;
+  }
+  ul {
+    list-style: none;
+    list-style-type: none;
+    display: grid;
+    padding-left: 1.2rem;
+  }
+  li {
+    display: grid;
+    a {
+      font-weight: bold;
+    }
+  }
+</style>
