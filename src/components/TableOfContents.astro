@@ -45,9 +45,6 @@ function buildToc(headings: any) {
       font-weight: bold;
     }
     ul {
-      a:-webkit-any-link {
-        color: blue;
-      }
       list-style: none;
       margin: 0;
       padding: 0;
@@ -190,7 +187,9 @@ function buildToc(headings: any) {
         });
     }
 
-    drawPath();
-    addIntersectionObserver();
+    if (window!.visualViewport!.width > 930) {
+      drawPath();
+      addIntersectionObserver();
+    }
   });
 </script>
