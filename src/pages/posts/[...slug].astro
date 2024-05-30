@@ -367,16 +367,9 @@ const { Content, headings } = await entry.render();
       // @ts-ignore
       scroll(
         animate("#title-h1", {
-          transform: ["none", `translateY(60vh)`],
+          transform: ["none", `translateY(6em)`],
         }),
         { target: document.querySelector("#title-h1") },
-      );
-      // @ts-ignore
-      scroll(
-        animate(".title-container", {
-          transform: ["none", `translateY(20vh)`],
-        }),
-        { target: document.querySelector(".title-container") },
       );
       animate(
         "#title-bg",
