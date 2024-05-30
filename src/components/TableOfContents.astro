@@ -37,25 +37,10 @@ function buildToc(headings: any) {
 </nav>
 
 <style>
-  .toc {
+  nav.toc {
     font-family: monospace;
-    margin: 2rem 1rem 1rem 0rem;
-    font-size: 14px;
-    li > a {
-      font-weight: bold;
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 0.75rem;
-      padding-left: 0.75rem;
-    }
-    li {
-      gap: 0.75rem;
-      display: grid;
-    }
+    margin: 2rem 0rem 1rem -1rem;
+    font-size: 0.88rem;
   }
   .toc-progress {
     position: absolute;
@@ -125,7 +110,9 @@ function buildToc(headings: any) {
         if (!document.querySelector("path.toc-marker")) {
           return;
         }
-        const path = document.querySelector("path.toc-marker") as SVGPathElement;;
+        const path = document.querySelector(
+          "path.toc-marker",
+        ) as SVGPathElement;
         const pathLength = path!.getTotalLength();
         let activeLinks = document.querySelectorAll("a.active");
         let linkStart = pathLength;
@@ -163,14 +150,16 @@ function buildToc(headings: any) {
           const id = heading.getAttribute("id");
           const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
           if (!link) return;
-          const addRemove = interaction.intersectionRatio > 0 ? "add" : "remove";
-          const onlyOneActive = document.querySelectorAll("a.active").length === 1;
+          const addRemove =
+            interaction.intersectionRatio > 0 ? "add" : "remove";
+          const onlyOneActive =
+            document.querySelectorAll("a.active").length === 1;
 
           if (addRemove === "remove" && onlyOneActive) {
             document.querySelectorAll("a.active")[0].classList.remove("active");
-            return
+            return;
           }
-          
+
           link.classList[addRemove]("active");
           updatePath();
         });
