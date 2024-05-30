@@ -195,7 +195,7 @@ const allPosts = await getCollection("posts");
 		opacity: 0;
 		background-color: #e1e5ff85;
 		backdrop-filter: blur(3px);
-		width: 23rem;
+		width: 21rem;
 		padding: 6px 0px;
 	}
 	html.dark > body > .title-bg > #bg-content {
@@ -365,7 +365,7 @@ const allPosts = await getCollection("posts");
 			}
 			animate(
 				document.querySelector(selector)!,
-				{ opacity: 1 },
+				{ opacity: 1, translate: [-10, 10] },
 				{ delay: 0, duration: 1.9, easing: [0.17, 0.55, 0.55, 1] },
 			);
 		});
