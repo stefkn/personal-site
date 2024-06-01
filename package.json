@@ -12,7 +12,12 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "astro": "^4.2.4",
+    "astro-icon": "^1.1.0",
+    "lenis": "^1.1.0",
     "motion": "^10.17.0",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@iconify-json/skill-icons": "^1.1.8"
   }
 }
