@@ -1,0 +1,247 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("journals");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="article-hero-image">
+    <Image
+      src={entry.data.image}
+      onload="this.style.opacity=1"
+      alt={entry.data.imageAlt}
+      id="hero-img"
+    />
+  </div>
+
+  <h1 id="title-h1">{entry.data.title}</h1>
+
+  <div id="article-content">
+    <main id="main-wrapper" class="wrapper article">
+      <Content />
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .article-hero-image > img {
+    opacity: 0;
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    -o-transition: all 2s ease;
+  }
+
+  #toggle-hide-aside,
+  #toggle-hide-side {
+    position: relative;
+    background: #0016ff;
+    border: none;
+    color: white;
+    height: 42px;
+    width: 42px;
+    padding: 0px;
+    font-size: 14px;
+    margin: 5px 0.5rem 50px 8px;
+    z-index: 3;
+    cursor: pointer;
+
+    @media (max-width: 930px) {
+      display: none;
+    }
+  }
+
+  #toggle-hide-side {
+    position: fixed;
+    right: 0.8rem;
+    bottom: -1rem;
+    z-index: 3;
+    cursor: pointer;
+  }
+
+  #article-content {
+    display: flex;
+    flex-direction: row-reverse;
+    -webkit-box-pack: center;
+    justify-content: center;
+    align-items: flex-start;
+
+    @media (max-width: 930px) {
+      flex-direction: column;
+    }
+
+    p {
+      a {
+        color: #3546ff;
+      }
+    }
+
+    aside {
+      flex: 0 100000 16.625rem;
+      position: sticky;
+      top: 148px;
+      overflow: auto;
+      padding-bottom: 16px;
+      margin-left: auto;
+      margin-top: 4px;
+      margin-right: 1rem;
+      background: transparent;
+
+      p {
+        font-family: ui-monospace, monospace;
+      }
+      p.date {
+        font-size: 12px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1rem 0rem 0rem 0rem;
+      }
+
+      .tag {
+        font-family: ui-monospace, monospace;
+        margin: 0.4rem 0.4rem 0rem 0rem;
+        color: inherit;
+        text-decoration: inherit;
+        border-radius: 0.25rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+        background: #0d2589;
+        color: white;
+        line-height: 22px;
+      }
+
+      @media (max-width: 930px) {
+        width: 100%;
+        position: relative;
+        top: 0px;
+        overflow: visible;
+        margin: auto;
+        padding: 1rem;
+        max-width: calc(100% - 4rem);
+      }
+
+      @media (max-width: 630px) {
+        max-width: 100%;
+        margin-bottom: 4rem;
+      }
+    }
+  }
+
+  main {
+    border-radius: 5px;
+    padding-bottom: 12rem;
+    padding-top: 48px;
+    margin-top: 0em;
+
+    .frontmatter {
+      background-color: #00000063;
+      border-radius: 10px;
+      padding: 2rem 2rem 2rem 2rem;
+      margin: 2rem 0rem;
+      p {
+        font-family: monospace;
+        margin-top: 0rem;
+      }
+    }
+  }
+  main :global(img) {
+    height: auto !important;
+    width: 100%;
+    margin-top: 2.2rem;
+  }
+  html.dark > body > div.title-container > h1 {
+    color: #ffffff;
+    mix-blend-mode: screen;
+    text-shadow:
+      1px 1px 0 #000dff87,
+      -1px 1px 0 #000dff8a,
+      -1px -1px 0 #000dff78,
+      1px -1px 0 #000dff73;
+  }
+  #title-h1 {
+    position: relative;
+    font-size: clamp(3.6rem, 5vw, 8rem);
+    text-shadow: none;
+    margin: auto;
+    font-family: system-ui, sans-serif;
+    padding: 0rem 1rem;
+    margin: 16rem 1rem 16rem 11rem;
+    @media (max-width: 930px) {
+      margin: 8rem 0rem 12rem 0rem;
+    }
+  }
+  #hero-img {
+    height: auto !important;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
+    mask-image: linear-gradient(#000 -10%, transparent);
+  }
+  html.dark > body > div.article-hero-image > #hero-img {
+    mask-image: linear-gradient(#000 0%, transparent 80%);
+  }
+  html.dark > body > div.article-hero-image::before {
+    background: linear-gradient(180deg, black -60%, transparent);
+  }
+  html.dark > body > div.title-container > #title-bg {
+    filter: brightness(0.9) contrast(1.9);
+    mask-image: radial-gradient(
+      ellipse 160% 130% at 15% 110%,
+      black 30%,
+      transparent 60%
+    );
+    @media (max-width: 630px) {
+      mask-image: radial-gradient(
+        ellipse 75% 1150% at 75% 0%,
+        black 40%,
+        transparent 116%
+      );
+    }
+  }
+</style>
+
+<script>
+  import { scroll, animate } from "motion";
+
+  // hack to add the css-grid full-bleed style to images in the rendered markdown content
+  document.addEventListener("astro:page-load", () => {
+    var mainWrapper = document.querySelector("main.wrapper");
+    if (mainWrapper) {
+      var paragraphs = mainWrapper.querySelectorAll("p");
+      paragraphs.forEach(function (paragraph) {
+        if (paragraph.getElementsByTagName("img").length === 1) {
+          paragraph.style.width = "100%";
+          paragraph.style.gridColumn = "1 / 4";
+        }
+      });
+    }
+
+    if (document.querySelector("#title-h1")) {
+      // @ts-ignore
+      scroll(
+        animate("#title-h1", {
+          transform: ["none", `translateY(60vh)`],
+        }),
+        { target: document.querySelector("#title-h1") },
+      );
+    }
+  });
+</script>
