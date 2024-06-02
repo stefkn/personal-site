@@ -122,6 +122,24 @@ function formatCanonicalURL(url: string | URL) {
 			// SmoothScroll(document, 90, 18);
 		</script>
 
+		<script>
+			import Lenis from "lenis";
+			console.log(Lenis);
+
+			const lenis = new Lenis({
+				prevent: (test) => {return false;},
+			});
+
+			window.lenis = lenis;
+			
+			function raf(time: number) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+			}
+
+			requestAnimationFrame(raf);
+		</script>
+
 		<style>
 			#top-nav-links {
 				a.active {
