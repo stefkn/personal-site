@@ -124,7 +124,7 @@ function formatCanonicalURL(url: string | URL) {
 
 		<script>
 			import Lenis from "lenis";
-			console.log(Lenis);
+			declare const window: any;
 
 			const lenis = new Lenis({
 				prevent: (test) => {return false;},
