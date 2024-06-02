@@ -395,10 +395,8 @@ const allPosts = await getCollection("posts");
 	}
 
 	// hook animations up to View Transitions via after-swap lifecycle hook
-	document.addEventListener("astro:page-load", () => {
-		if (window.location.pathname === "/") {
-			setupAnimations();
-		}
+	document.addEventListener("astro:after-swap", () => {
+		setupAnimations();
 	});
 	setupAnimations();
 </script>
