@@ -365,31 +365,53 @@ const testing = [
 				}
 			</ul>
 			<h3>DevOps and Infrastructure</h3>
-			<p>Docker, Kubernetes, CI/CD, AWS, GCP, Azure, Vercel</p>
-			<h3>Backend development</h3>
-			<p>Python, Node.js, Express, MongoDB, PostgreSQL.</p>
+			<ul class="skills-icons">
+				{
+					devopsInfra.map((tech) => (
+						<li style="width: 6.5rem; list-style: none;">
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
 			<h3>Databases</h3>
-			<p>MySQL, MongoDB, PostgreSQL, Redis.</p>
-			<h3>Familiarity with computer science concepts</h3>
-			<p>
-				data structures and algorithms, complexity analysis,
-				cryptography, logic & formal systems, pattern recognition and ML
-				& deep learning, formal grammars, natural language processing,
-				automata, operating systems, distributed systems, multiagent
-				systems, networking and internet systems, domain modelling,
-				software architecture, computer architecture, design patterns,
-				game theory, history of computing.
-			</p>
-			<h3>"Soft" skills</h3>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris
-				nisi ut aliquip ex ea commodo consequat.
-			</p>
+			<ul class="skills-icons">
+				{
+					databases.map((tech) => (
+						<li style="width: 6.5rem; list-style: none;">
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
+			<h3>Testing and QA</h3>
+			<ul class="skills-icons">
+				{
+					testing.map((tech) => (
+						<li style="width: 6.5rem; list-style: none;">
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
 		</section>
 		<section>
-			<h2 class="animated">portfolio</h2>
+			<h2 class="animated">side projects</h2>
 			<h3>thing 1</h3>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -401,6 +423,16 @@ const testing = [
 				sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</p>
 			<h3>thing 2</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+				in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+				nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+				sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			<h3>thing 3</h3>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
