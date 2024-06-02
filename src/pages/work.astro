@@ -334,8 +334,36 @@ const testing = [
 		</section>
 		<section>
 			<h2 class="animated">skills</h2>
-			<h3>Frontend development</h3>
-			<p>HTML, CSS, JavaScript, React, Svelte, Angular, Vue.</p>
+			<h3>Programming languages</h3>
+			<ul class="skills-icons">
+				{
+					programmingLanguages.map((tech) => (
+						<li style="width: 6.5rem; list-style: none;">
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
+			<h3>Web Technologies</h3>
+			<ul class="skills-icons">
+				{
+					webTechnologies.map((tech) => (
+						<li style="width: 6.5rem; list-style: none;">
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
 			<h3>DevOps and Infrastructure</h3>
 			<p>Docker, Kubernetes, CI/CD, AWS, GCP, Azure, Vercel</p>
 			<h3>Backend development</h3>
