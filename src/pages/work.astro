@@ -88,6 +88,20 @@ const pageTitle = "Résumé/CV";
 							</p>
 						</div>
 					</div>
+					<div class="stack">
+						{
+							tailsStack.map((tech) => (
+								<li>
+									<Icon
+										name={tech.icon}
+										size={50}
+										style="margin-bottom: 0.25rem; margin: auto;"
+									/>{" "}
+									{tech.name}
+								</li>
+							))
+						}
+					</div>
 					<p>
 						<i>Individually-bespoke, tailored nutrition for dogs.</i
 						>
