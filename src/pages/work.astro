@@ -192,7 +192,7 @@ const pageTitle = "Résumé/CV";
 			<ul class="skills-icons">
 				{
 					programmingLanguages.map((tech) => (
-						<li style="width: 6.5rem; list-style: none;">
+						<li>
 							<Icon
 								name={tech.icon}
 								size={50}
@@ -207,7 +207,7 @@ const pageTitle = "Résumé/CV";
 			<ul class="skills-icons">
 				{
 					webTechnologies.map((tech) => (
-						<li style="width: 6.5rem; list-style: none;">
+						<li>
 							<Icon
 								name={tech.icon}
 								size={50}
@@ -222,7 +222,7 @@ const pageTitle = "Résumé/CV";
 			<ul class="skills-icons">
 				{
 					devopsInfra.map((tech) => (
-						<li style="width: 6.5rem; list-style: none;">
+						<li>
 							<Icon
 								name={tech.icon}
 								size={50}
@@ -237,7 +237,7 @@ const pageTitle = "Résumé/CV";
 			<ul class="skills-icons">
 				{
 					databases.map((tech) => (
-						<li style="width: 6.5rem; list-style: none;">
+						<li>
 							<Icon
 								name={tech.icon}
 								size={50}
@@ -252,7 +252,22 @@ const pageTitle = "Résumé/CV";
 			<ul class="skills-icons">
 				{
 					testing.map((tech) => (
-						<li style="width: 6.5rem; list-style: none;">
+						<li>
+							<Icon
+								name={tech.icon}
+								size={50}
+								style="margin-bottom: 0.25rem; margin: auto;"
+							/>{" "}
+							{tech.name}
+						</li>
+					))
+				}
+			</ul>
+			<h3>Other stuff</h3>
+			<ul class="skills-icons">
+				{
+					otherTechnologies.map((tech) => (
+						<li>
 							<Icon
 								name={tech.icon}
 								size={50}
