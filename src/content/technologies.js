@@ -98,6 +98,10 @@ export const webTechnologies = [
 		name: "Sass",
 		icon: "skill-icons:sass",
 	},
+	{
+		name: "JQuery",
+		icon: "skill-icons:jquery",
+	},
 ];
 
 export const devopsInfra = [
@@ -190,6 +194,10 @@ export const otherTechnologies = [
 		name: "Arduino",
 		icon: "skill-icons:arduino",
 	},
+    {
+		name: "ThreeJS",
+		icon: "skill-icons:threejs-dark",
+	},
 ]
 
 export const tailsStack = [
@@ -202,8 +210,8 @@ export const tailsStack = [
 		icon: "skill-icons:flask-dark",
     },
     {
-		name: "JavaScript",
-		icon: "skill-icons:javascript",
+		name: "VueJS",
+		icon: "skill-icons:vuejs-dark",
 	},
     {
 		name: "Go",
