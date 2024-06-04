@@ -122,11 +122,13 @@ function formatCanonicalURL(url: string | URL) {
 			declare const window: any;
 
 			const lenis = new Lenis({
-				prevent: (test) => {return false;},
+				prevent: (test) => {
+					return false;
+				},
 			});
 
 			window.lenis = lenis;
-			
+
 			function raf(time: number) {
 				lenis.raf(time);
 				requestAnimationFrame(raf);
@@ -143,6 +145,23 @@ function formatCanonicalURL(url: string | URL) {
 				}
 			}
 		</style>
+
+		<script>
+			function updateNavLinksState() {
+				const topNavLinks = document.getElementById("top-nav-links");
+				Array.from(topNavLinks!.children).forEach((link) => {
+					if (
+						(link as HTMLAnchorElement).href ===
+						window.location.href
+					) {
+						link.classList.add("active");
+					}
+				});
+			}
+			document.addEventListener("astro:after-swap", () => {
+				updateNavLinksState();
+			});
+		</script>
 
 		<ViewTransitions />
 	</head>
@@ -164,22 +183,5 @@ function formatCanonicalURL(url: string | URL) {
 		<slot />
 
 		<Footer />
-
-		<script>
-			function updateNavLinksState() {
-				const topNavLinks = document.getElementById("top-nav-links");
-				Array.from(topNavLinks!.children).forEach((link) => {
-					if (
-						(link as HTMLAnchorElement).href ===
-						window.location.href
-					) {
-						link.classList.add("active");
-					}
-				});
-			}
-			document.addEventListener("astro:page-load", () => {
-				updateNavLinksState();
-			});
-		</script>
 	</body>
 </html>
