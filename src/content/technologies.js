@@ -106,10 +106,6 @@ export const webTechnologies = [
 
 export const devopsInfra = [
 	{
-		name: "Kubernetes",
-		icon: "skill-icons:kubernetes",
-	},
-	{
 		name: "Terraform",
 		icon: "skill-icons:terraform-dark",
 	},
@@ -122,11 +118,15 @@ export const devopsInfra = [
 		icon: "skill-icons:bash-dark",
 	},
 	{
+		name: "Kubernetes",
+		icon: "skill-icons:kubernetes",
+	},
+	{
 		name: "Docker",
 		icon: "skill-icons:docker",
 	},
 	{
-		name: "GH Actions",
+		name: "GitHub Actions",
 		icon: "skill-icons:githubactions-dark",
 	},
 ];
@@ -216,5 +216,59 @@ export const tailsStack = [
     {
 		name: "Go",
 		icon: "skill-icons:golang",
+	},
+]
+
+export const enkiStack = [
+    {
+        name: "React",
+		icon: "skill-icons:react-dark",
+    },
+    {
+        name: "Node",
+		icon: "skill-icons:nodejs-dark",
+    },
+    {
+		name: "MongoDB",
+		icon: "skill-icons:mongodb",
+	},
+    {
+		name: "Python",
+		icon: "skill-icons:python-dark",
+	},
+]
+
+export const kclStack = [
+    {
+        name: "Java",
+		icon: "skill-icons:java-dark",
+    },
+    {
+        name: "Python",
+		icon: "skill-icons:python-dark",
+    },
+    {
+		name: "Haskell",
+		icon: "skill-icons:haskell-dark",
+	},
+    {
+		name: "C++",
+		icon: "skill-icons:cpp",
+	},
+	{
+        name: "TensorFlow",
+		icon: "skill-icons:tensorflow-dark",
+    },
+    {
+        name: "RabbitMQ",
+		icon: "skill-icons:rabbitmq-dark",
+    },
+	{
+		name: "Scala",
+		icon: "skill-icons:scala-dark",
+	},
+	{
+		name: "Ruby",
+		icon: "skill-icons:ruby",
 	},
 ]

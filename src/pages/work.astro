@@ -17,6 +17,8 @@ import {
 	testing,
 	otherTechnologies,
 	tailsStack,
+	enkiStack,
+	kclStack,
 } from "../content/technologies";
 
 const pageTitle = "Résumé/CV";
@@ -137,6 +139,20 @@ const pageTitle = "Résumé/CV";
 							</p>
 						</div>
 					</div>
+					<div class="stack">
+						{
+							enkiStack.map((tech) => (
+								<li>
+									<Icon
+										name={tech.icon}
+										size={50}
+										style="margin-bottom: 0.25rem; margin: auto;"
+									/>{" "}
+									{tech.name}
+								</li>
+							))
+						}
+					</div>
 					<p>
 						<i
 							>The AI-powered 1:1 skills coach for top performers.</i
@@ -169,6 +185,20 @@ const pageTitle = "Résumé/CV";
 								>
 							</p>
 						</div>
+					</div>
+					<div class="stack">
+						{
+							kclStack.map((tech) => (
+								<li>
+									<Icon
+										name={tech.icon}
+										size={50}
+										style="margin-bottom: 0.25rem; margin: auto;"
+									/>{" "}
+									{tech.name}
+								</li>
+							))
+						}
 					</div>
 					<p>
 						<i
@@ -530,7 +560,8 @@ const pageTitle = "Résumé/CV";
 					justify-content: flex-start;
 					margin-top: 1rem;
 					margin-left: -1rem;
-					font-size: 14px;
+					font-size: 11px;
+
 
 					li {
 						width: 5rem;
