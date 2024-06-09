@@ -132,7 +132,7 @@ const { Content, headings } = await entry.render();
     aside {
       flex: 0 100000 16.625rem;
       position: sticky;
-      top: 148px;
+      top: 2rem;
       overflow: auto;
       padding-bottom: 16px;
       margin-left: 0px;
@@ -267,10 +267,11 @@ const { Content, headings } = await entry.render();
       1px -1px 0 #000dff73;
   }
   #title-bg {
+    z-index: -2;
     pointer-events: none;
     position: relative;
     display: block;
-    mix-blend-mode: screen;
+    mix-blend-mode: hard-light;
     transform: skew(353deg, 4.5deg) scaleY(2.2);
     background-image: radial-gradient(
         at 67% 151%,
