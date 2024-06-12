@@ -283,8 +283,15 @@ pre.astro-code {
     padding: 1rem;
     border: 1px solid #3c3c3c;
     margin: 1rem 0rem;
-    font-size: 0.95rem;
     line-height: 1.25;
+
+    @media (max-width: 530px) {
+        line-height: 1.05;
+    }
+
+    code {
+        font-size: clamp(0.82rem, 2vw, 0.92rem);
+    }
 }
 
 code {
