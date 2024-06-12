@@ -144,7 +144,7 @@ main.wrapper>.full-bleed {
 
     a {
         margin: 0rem 0.33rem;
-        color: black;
+        color: rgb(36, 24, 255);
     }
 
     @media (max-width: 830px) {
@@ -238,7 +238,7 @@ h2 {
     font-family: "Inter";
     -webkit-font-smoothing: antialiased;
 
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 0rem;
 }
 
@@ -251,11 +251,12 @@ h3 {
     font-family: "Inter";
     -webkit-font-smoothing: antialiased;
 
-    margin-top: 1rem;
+    margin-top: 2.2rem;
     margin-bottom: 0rem;
 }
 
 p {
+    margin-top: 1.4rem;
     text-align: left;
     font-family: "Newsreader";
     -webkit-font-smoothing: antialiased;
@@ -385,7 +386,6 @@ h4,
 h5,
 h6 {
     overflow-wrap: break-word;
-    margin-top: 1.6rem;
 }
 
 /*
