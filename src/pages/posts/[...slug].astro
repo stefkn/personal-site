@@ -415,32 +415,6 @@ const { Content, headings } = await entry.render();
         },
         { duration: 290, repeat: Infinity, direction: "alternate" },
       );
-      const siteIcon = document.getElementById("site-icon");
-      inView("#nav-menu", ({ target }) => {
-        if (!siteIcon) return;
-
-        animate(
-          siteIcon,
-          { opacity: "1" },
-          { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.85, 1] },
-        );
-
-        return (leaveInfo) => {
-          animate(
-            siteIcon,
-            { opacity: "0" },
-            { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
-          );
-        };
-      });
-      const navMenu = document.getElementById("nav-menu");
-      if (navMenu && siteIcon && navMenu?.getBoundingClientRect().top < 0) {
-        animate(
-          siteIcon,
-          { opacity: "0" },
-          { delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
-        );
-      }
     }
 
     const asideButton = document.getElementById("toggle-hide-aside");
