@@ -12,7 +12,8 @@ const postsCollection = defineCollection({
       message: "Cover image must be at least 1080 pixels wide!",
     }),
     imageAlt: z.string(),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
+    featured: z.boolean()
   })
 });
 const journalsCollection = defineCollection({

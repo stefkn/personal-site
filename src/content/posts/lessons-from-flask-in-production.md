@@ -6,6 +6,7 @@ author: 'Stefan Nowak'
 image: '../../assets/post_images/gradient_bg.jpg'
 imageAlt: 'photo by Sean Sinclair on Unsplash'
 tags: ["web", "python", "flask"]
+featured: true
 ---
 
 
