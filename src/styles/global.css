@@ -279,13 +279,12 @@ u {
 }
 
 pre.astro-code {
-    border-radius: 12px;
-    padding: 24px;
-    backdrop-filter: blur(6px);
-    margin: 24px 0px;
-
-    font-size: 1.05rem;
-    line-height: 1.32;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #3c3c3c;
+    margin: 1rem 0rem;
+    font-size: 0.95rem;
+    line-height: 1.25;
 }
 
 code {
@@ -298,6 +297,7 @@ code {
         Bitstream Vera Sans Mono,
         Courier New,
         monospace;
+    font-size: 0.95rem;
 }
 
 blockquote {
