@@ -16,6 +16,9 @@ const pageTitle = "Blog posts";
 			firstPost && (
 				<div class="article-post hero-post">
 					<div class="post-details">
+						<div class="featured-post-label">
+							Featured post
+						</div>
 						<a href={`/posts/${firstPost.slug}/`}>
 							{firstPost.data.title}
 						</a>
@@ -91,7 +94,7 @@ const pageTitle = "Blog posts";
 
 <style>
 	main {
-		margin-top: 9rem;
+		margin-top: 3rem;
 	}
 	.post-index-card-image {
 		-webkit-transition: all 2s ease;
@@ -113,7 +116,7 @@ const pageTitle = "Blog posts";
 		.article-post {
 			overflow: hidden;
 			grid-column: auto;
-			padding: 26px 0px;
+			padding: 1rem 0rem 3rem 0rem;
 			border-bottom-style: solid;
 			border-top-style: solid;
 			border-color: #dddddd;
@@ -142,7 +145,7 @@ const pageTitle = "Blog posts";
 			.post-details {
 				position: relative;
 				margin-top: 10rem;
-				max-width: 410px;
+				max-width: 23rem;
 				z-index: 3;
 				position: absolute;
 			}
@@ -175,6 +178,18 @@ const pageTitle = "Blog posts";
 			.article-image:hover {
 				transform: scale(1.005);
 				translate: 0px -2px;
+			}
+			.featured-post-label {
+				background-color: #393fff;
+				width: 8rem;
+				text-align: center;
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.8rem;
+				margin: 0.5rem 0;
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #ffffff;
+				box-shadow: -3px 1px 12px 1px #0039ff6b;
 			}
 		}
 
