@@ -99,14 +99,6 @@ const { Content, headings } = await entry.render();
     cursor: pointer;
   }
 
-  html.dark > body > #article-content > aside::-webkit-scrollbar-track {
-    background-color: #13151a;
-  }
-
-  html.dark > body > #article-content > aside::-webkit-scrollbar-thumb {
-    background-color: #fff7f0;
-  }
-
   #article-content {
     display: flex;
     flex-direction: row-reverse;
@@ -139,7 +131,7 @@ const { Content, headings } = await entry.render();
       background: transparent;
       margin-right: 4rem;
       overflow: scroll;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid #13151a;
 
       @media (min-width: 1130px) {
         margin-right: 7rem;
@@ -192,18 +184,28 @@ const { Content, headings } = await entry.render();
       }
     }
 
-    aside::-webkit-scrollbar-track {
-      background-color: #f5f5f5;
-    }
-
-    aside::-webkit-scrollbar-thumb {
-      border-radius: 0px;
-      background-color: #13151a;
-    }
-
     aside::-webkit-scrollbar {
       width: 4px;
     }
+
+    aside::-webkit-scrollbar-track {
+      background-color: #fff9f5
+    }
+
+    aside::-webkit-scrollbar-thumb {
+      background-color: #fff9f5;
+    }
+  }
+  html.dark > body > #article-content > aside::-webkit-scrollbar-track {
+    background-color: #13151a;
+  }
+
+  html.dark > body > #article-content > aside::-webkit-scrollbar-thumb {
+    background-color: #13151a;
+  }
+
+  html.dark > body > #article-content > aside {
+    border-bottom: 1px solid #fff9f5;
   }
 
   main {
@@ -240,13 +242,17 @@ const { Content, headings } = await entry.render();
     h1 {
       position: relative;
       top: -16rem;
-      color: #000000;
+      color: #ffffff;
       font-size: clamp(3.6rem, 5vw, 8rem);
       text-shadow: none;
       margin: auto;
       font-family: system-ui, sans-serif;
       padding: 0rem 1rem;
-      mix-blend-mode: normal;
+      text-shadow: -1px 2px 20px #00024478;
+
+      @media (min-width: 900px) {
+        padding: 0rem 10rem;
+      }
     }
 
     @media (max-width: 630px) {
@@ -258,7 +264,6 @@ const { Content, headings } = await entry.render();
     }
   }
   html.dark > body > div.title-container > h1 {
-    color: #ffffff;
     mix-blend-mode: screen;
     text-shadow:
       1px 1px 0 #000dff87,
@@ -368,13 +373,15 @@ const { Content, headings } = await entry.render();
     }
 
     if (document.querySelector("#title-h1")) {
-      // @ts-ignore
-      scroll(
-        animate("#title-h1", {
-          transform: ["none", `translateY(6em)`],
-        }),
-        { target: document.querySelector("#title-h1") },
-      );
+      if (!window.matchMedia("(pointer: coarse)").matches) {
+        // @ts-ignore
+        scroll(
+          animate("#title-h1", {
+            transform: ["none", `translateY(6em)`],
+          }),
+          { target: document.querySelector("#title-h1") },
+        );
+      }
       animate(
         "#title-bg",
         {
