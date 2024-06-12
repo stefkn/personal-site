@@ -104,9 +104,11 @@ Flask doesn't enforce any rules about what you can and can't do in a view functi
 > **An HTTP method is safe if it doesn't alter the state of the server.** In other words, a method is safe if it leads to a read-only operation. Several common HTTP methods are safe: GET, HEAD, or OPTIONS. All safe methods are also idempotent, but not all idempotent methods are safe. For example, PUT and DELETE are both idempotent but unsafe.
 > [MDN Developer Docs](https://arc.net/l/quote/slfskdwp)
 
-So, if you somehow end up mutating state on a GET request, you're breaking the HTTP specification. This can lead to all sorts of problems, including security vulnerabilities and crazy unexpected behaviour. Like this:
+So, if you somehow end up mutating state on a GET request, such as by writing data to the DB, you're breaking GET's [idempotency](https://httpwg.org/specs/rfc9110.html#idempotent.methods). This can lead to all sorts of problems, including security vulnerabilities and crazy unexpected behaviour. Like this:
 
 ```python
+# DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental.
+
 @app.route('/signup/', methods=['GET'])
 def signup_start(customer_id=None):
     # do some stuff...
@@ -114,18 +116,12 @@ def signup_start(customer_id=None):
     if not customer_id:
         country = _get_current_country()
         customer_id = _create_new_customer(country) # please no :(
-        return redirect(
-            url_for(
-                'signup_customer', 
-                customer_id=customer_id
-            )
-        )
 
     if request.method == 'POST':
-        # do some more stuff...
+        # do some form handling
         return redirect(
             url_for(
-                'some_unrelated_view_function', 
+                'signup_step_1', 
                 customer_id=customer_id
             )
         )
@@ -155,10 +151,14 @@ Flask doesn't come with specific built-in support for observability, monitoring,
 On a large enough project, with many developers, logging can become a bit of an afterthought. Without a consistent logging strategy, you can end up with a situation like this:
 
 ```python
+# DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental.
+
 # function a
 logger.info(f'Customer {customer_id} updated their settings')
+
 # function b 
 logger.info(f'settings updated', customer_id=customer_id)
+
 # function c
 logger.info(
     event=SETTINGS_UPDATE, 
@@ -166,42 +166,52 @@ logger.info(
     old_data=old_customer_data,
     data=customer_data
 )
+
 # function d
 logger.info("new address added for " + str(customer_id))
+
 # ... and so on
 ```
 
 Enforcing a consistent logging strategy means using the same log levels, the same log format, and the same log destinations across your entire codebase. This makes it easier to read, search, and filter logs, which is especially important when you're trying to debug an issue in production.
 
-For monitoring, third party tools such as [Sentry](https://sentry.io/) can be used to monitor your application and alert you to any issues. This can be especially useful in a production environment, where you want to be able to quickly identify and fix any problems that arise. I've also had a lot of experience with [DataDog](https://www.datadoghq.com/), which is a powerful tool for monitoring and observability, but can be expensive and complex to learn to use. [Grafana](https://grafana.com/), [Prometheus](https://prometheus.io/), and other monitoring tools can also be used to monitor your application and alert you to any issues.
+For monitoring, third party tools such as [Sentry](https://sentry.io/) are excellent for dealing with runtime exceptions. I can also confidently recommend [DataDog](https://www.datadoghq.com/), which is a powerful tool for monitoring and observability, but can be expensive and has a massive feature-set that includes [Real-time User Monitoring](https://www.datadoghq.com/product/real-user-monitoring/) for frontend SPAs.
+
+If you're running a complex system of multiple apps and microservices, it may be a good idea to look into implementing [OpenTelemetry](https://opentelemetry.io/docs/what-is-opentelemetry/) across the stack, and using tools that integrate with it like [Jaeger](https://www.jaegertracing.io/) for distributed tracing and [Prometheus](https://prometheus.io/) for metrics.
 
 ### Slow calls in views
 
 Flask is single-threaded by default, which means that long-running function calls in your view functions can (and will) block other requests from being processed. This can lead to poor performance and a bad UX.
 
 ```python
+# DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental.
+
 @app.route('/some-endpoint/', methods=['GET'])
 def some_endpoint(customer_id):
     # do some stuff...
     stuff = get_stuff_from_db(customer_id)
-    result = ExternalAPIAdapter(stuff).get_result()
-    return jsonify(result)
+    result = ExternalAPIAdapter().get_thiings_for_stuff(stuff)
+    return prepare_response(result)
 ```
 
-In this example, we're going to block the current request while the external API call is being made. If there's no sensible timeout, this could block this request indefinitely, until uWSGI or Gunicorn decides to kill it. Not only could this lead to poor UX in production, it can cause serious issues in local dev environments where it can be hard to debug and also eat up process threads.
+In this example, we're going to block the current request while the external API call is being made. If there's no sensible timeout and a number of retries happen automatically, this could block this request indefinitely–until uWSGI or Gunicorn decides to finally kill it.
+
+Not only can this lead to poor UX in production, where a problematic external system can cause serious issues in your app; it can cause frustration in local dev environments where networking issues are more common and it can be tricky to debug while it eats up Flask process threads.
 
 ### ORM usage patterns
 
-Flask doesn't come with an ORM out of the box, so you have to choose one yourself. SQLAlchemy is a popular choice, but it can be tricky to use correctly and efficiently. There are extensive guides on how to optimise SQL queries, but it's easy to get wrong, especially when you're using an ORM that abstracts away the underlying SQL.
+Flask doesn't come with an ORM out of the box, so you have to choose one yourself. SQLAlchemy is a popular choice, but it can be tricky to use correctly and efficiently. There are extensive guides on how to optimise SQL queries, but it's easy to get wrong, especially when working with complicated ORM queries that abstract away the underlying SQL.
 
 One common pitfall is the N+1 query problem. This is where you end up making multiple successive queries to the database when you could have done it in one. For example:
 
 ```python
+# DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental.
+
 @app.route('/some-endpoint/', methods=['GET'])
 def some_endpoint(customer_id):
     customers = session.query(Customer).all().filter_by(
         Customer.active == True, 
-        Customer.country == 'US'
+        Customer.country == Countries.UNITED_STATES
     )
     orders = session.query(Order).any(
         Order.customer_id.in_([c.id for c in customers])
@@ -213,14 +223,14 @@ def some_endpoint(customer_id):
     )
 ```
 
-In this example, we're making two separate queries to the database: one to get the customers and another one to get their orders. This is inefficient and can lead to performance problems, especially if you're dealing with a large dataset. Instead, you could use a join to get all the data you need in one query:
+In this example, we're making two separate queries to the database: one to get the set of customers and another one to get their orders. This is inefficient and can lead to performance problems, especially when dealing with a large dataset and more complex queries. Instead, you can use a join to get all the data you need in one query:
 
 ```python
 @app.route('/some-endpoint/', methods=['GET'])
 def some_endpoint(customer_id):
     customers_orders = session.query(Customer).join(Customer.order).filter(
         Customer.active == True, 
-        Customer.country == 'US'
+        Customer.country == Countries.UNITED_STATES
     ).all()
     return render_template(
         'some_template.html', 
@@ -228,15 +238,19 @@ def some_endpoint(customer_id):
     )
 ```
 
-This is much more efficient, as it only makes one query to the database to get all the data you need. I would argue it's a bit easier to follow the logic as well, as you're not jumping between different queries to understand what's going on.
+This is more efficient, as it only makes one query to the database. I would argue it's a bit easier to follow the logic as well, as you're not jumping between different queries to understand what's going on, but `JOIN`s can be complicated, especially when chained together, so it's not universally better. Sometimes it might be a worthwhile tradeoff to use a less efficient query for the sake of readability and maintainability.
 
-Another common pitfall is the misuse of the `session` object, and the SQLAlchemy Unit of Work pattern. For example, you might be tempted to use the `session` object as a global variable, or to use it across multiple requests. This can lead to issues when some areas of code are expecting the session to be in a certain state, but it's been changed by another part of the code. If another part of code calls `session.commit()` or `session.rollback()`, it can lead to some real headaches/scratchers/bangers (delete as appropriate).
+Another common pitfall is the of the [`session` object](https://docs.sqlalchemy.org/en/20/orm/session_basics.html), and the SQLAlchemy Unit of Work pattern. The session object will track changes to ORM objects in the current thread and will commit them to the database when you call `session.commit()`. A problem can arise (speaking from experience) when some parts of the codebase are making temporary changes that are not intended to be persisted to the database, but then another part of the codebase calls `session.commit()` and those changes are persisted anyway.
+
+This can lead to some real head-(aches/scratchers/bangers) (please delete as appropriate).
 
 ### Jinja2 macro rabbit holes
 
-Jinja2 macros are a powerful feature of Flask, but they can be a bit of a double-edged sword. It's easy to get carried away with macros and end up with a tangled mess of code that's hard to maintain–especially if you're using them to generate complex HTML structures or handle complex logic. Imagine if each of the macros used below was a separate file about 200 lines long, and each one uses a few more macros–it's macros all the way down!
+Jinja2 macros are a powerful feature of Flask, but they can be a bit of a double-edged sword. It's easy to get carried away with macros and end up with a tangled mess of code that's hard to maintain–especially if you're using them to generate complex HTML structures or handle a lot of logic. Imagine if each of the macros used below was a separate file about 200 lines long, and each one uses a few more macros–it's macros all the way down!
 
 ```html
+<!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
+
 {% macro render_customer(customer) %}
     <div class="customer">
         {{ render_customer_details(customer, store) }}
@@ -273,31 +287,47 @@ Jinja2 macros are a powerful feature of Flask, but they can be a bit of a double
 {% endmacro %}
 ```
 
-Try to use macros carefully, avoid too much nesting and conditional logic, avoid making them too long and complex, name them sensibly, and keep them focused on one or two specific responsibilities.
+I can barely even read it! Try to use macros carefully, avoid too much nesting and conditional logic, avoid making them too long and complex, name them sensibly, and keep them focused on one or two specific responsibilities.
 
 ### Excessive logic in templates
 
 Jinja2 allows you to do a lot of logic in your templates, but just because you can doesn't mean you should. It's easy to end up with complex, hard-to-read templates that are full of business logic and data processing. This can make your code harder to maintain and debug, and can lead to performance problems if you're doing a lot of processing in your templates.
 
 ```html
+<!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
+
 {% if delivery.is_paid %}
     {% if delivery.price %}
         {% if payment_method %}
-            {% if payment_method.payment_provider == 'visa' %}
-                <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} received on {{ delivery.payment_date | date('medium') }} from Visa card.</p>
-            {% elif payment_method.payment_provider == 'mastercard' %}
-                <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} received on {{ delivery.payment_date | date('medium') }} from PayPal.</p>
-            {% elif payment_method.payment_provider == 'klarna' %}
-                <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} received on {{ delivery.payment_date | date('medium') }} from Klarna.</p>
-            {% elif payment_method.payment_provider == 'paypal' %}
-                <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} received on {{ delivery.payment_date | date('medium') }} from PayPal.</p>
-            {% elif payment_method.payment_provider == 'stripe' %}
-                {% if is_payment_completed %}
-                    <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} received on {{ delivery.payment_date | date('medium') }} from Stripe.</p>
+            {% if payment_method == 'visa' %}
+                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Visa card.</p>
+
+            {% elif payment_method == 'mastercard' %}
+                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from PayPal.</p>
+
+            {% elif payment_method == 'klarna' %}
+                {% set klarna_payment_status = KlarnaService().get_payment_status(delivery.payment_id) %}
+                {% set klarna_payment_instalment = KlarnaService().get_instalments(delivery.payment_id) %}
+
+                {% if klarna_payment_status == 'completed' %}
+                    <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Klarna.</p>
                 {% else %}
-                    <p>Payment of {{ delivery.total_price | money(currency=delivery.currency, locale=customer.locale) }} is pending from Stripe.</p>
+                    <p>Payment of {{ price | money(locale=locale) }} is on instalment {{ KlarnaService.get_max_instalments(customer) - klarna_payment_instalment }}</p>
+                {% endif %}
+
+            {% elif payment_method == 'paypal' %}
+                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from PayPal.</p>
+
+            {% elif payment_method == 'stripe' %}
+                {% if is_payment_completed %}
+                    <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Stripe.</p>
+
+                {% else %}
+                    <p>Payment of {{ price | money(locale=locale) }} is pending from Stripe.</p>
+
                 {% endif %}
             {% endif %}
+
         {% else %}
             <p>Payment received.</p>
         {% endif %}
@@ -310,27 +340,30 @@ Jinja2 allows you to do a lot of logic in your templates, but just because you c
     ...
 ```
 
-This is a bit of a contrived example, but you get the idea–it would make more sense to create a function that encapsulates this logic, and handles the slight differences between payment provider systems, and call that function in the view or the template.
+This is a bit of a contrived example, but you get the idea–_there's so much view logic happening in the template,_ and this isn't rare! It would make more sense to create a function that encapsulates this logic, and handles the slight differences between payment provider systems, and call that function in the view or the template.
 
 ### Storing large data structures in templates (!?!)
 
 I wish I could say I've never seen this, but I have. I'm not sure I need to explain why this is terrible.
 
 ```html
+<!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
+
 {% macro pick_up_points(order, is_future_shipment, is_current) %}
     {% set pick_up_points = [
         ('Pickup Point 1', '123 Fake Street, London, UK', '9am-5pm', False, 11),
         ('Pickup Point 2', '123 Fake Street, London, UK', '9am-5pm', True, 12),
     ... for 96 more rows %}
+
     {% for point in pick_up_points %}
     ...
 ```
 
-_Please no, please stop, it hurts my eyes and my soul._ If you need to store data like this, use a JSON file, a database, or a config file. Anything but in a template.
+_Please no, please stop, it hurts my soul._ If you need to store data like this, use a JSON file, a database, or a config file. Anything but in a template. _Anything!_
 
 ### i18n headaches
 
-Flask has built-in support for internationalisation (i18n) and localisation (l10n) using the `gettext` module and `jinja2.ext.i18n` and there are also great libraries like [flask-babel](https://python-babel.github.io/flask-babel/), but there are some things to be aware of. If your deployment pipeline depends on a translations compile-upload-download-build-deploy process, you might end up with broken or missing translations on prod, or just a blocked deployment pipeline. This can be especially painful if you're working with a large team, or if you're working with a lot of translations.
+Flask has built-in support for internationalisation (i18n) and localisation (l10n) using the [`gettext` module](https://www.gnu.org/software/gettext/) and [`jinja2.ext.i18n`](https://tedboy.github.io/jinja2/ext2.html) and there are also great libraries like [flask-babel](https://python-babel.github.io/flask-babel/), but there are some things to be aware of. If your deployment pipeline depends on a translations `compile -> upload -> download -> build -> deploy` process, you might end up with broken or missing translations on prod, or just a blocked deployment pipeline. This can be especially painful if you're working with a large team, or if you're working with a lot of translations.
 
 It's also easy to forget to mark strings for translation, or to miss a translation when you're adding new strings to your code. You can set up linting rules to catch things like this in CI or even in pre-commit hooks. One handy thing to know is how to tell Jinja to strip whitespace from strings:
 
@@ -340,7 +373,7 @@ It's also easy to forget to mark strings for translation, or to miss a translati
 {%- endtrans -%}
 ```
 
-This is because with some translation systems, whitespace that is often snuck in by local IDEs and linters can cause all kind of trouble.
+This is because with some translation systems, whitespace that is often snuck in by local IDEs and linters can cause all kind of trouble. Other weird unicode characters can also cause issues, so it's a good idea to use a linter to catch these issues before they make it to prod.
 
 ### Non-standardised approach to error handling
 
@@ -357,7 +390,17 @@ For example, you could use a custom error handler to catch all exceptions and re
 ```python
 @app.errorhandler(Exception)
 def handle_exception(e):
-    return jsonify({'error': str(e)}), 500
+    sentry_exception_id = sentry.capture_exception()
+    error_context = {
+        'error': str(e),
+        'sentry_id': sentry_exception_id
+    }
+    structlog.get_logger().error(
+        error_context
+    )
+    return jsonify({
+        error_context
+    }), 500
 ```
 
 ----
