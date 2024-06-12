@@ -137,32 +137,6 @@ function formatCanonicalURL(url: string | URL) {
 			requestAnimationFrame(raf);
 		</script>
 
-		<style>
-			#top-nav-links {
-				a.active {
-					text-decoration: none;
-					filter: blur(2px);
-				}
-			}
-		</style>
-
-		<script>
-			function updateNavLinksState() {
-				const topNavLinks = document.getElementById("top-nav-links");
-				Array.from(topNavLinks!.children).forEach((link) => {
-					if (
-						(link as HTMLAnchorElement).href ===
-						window.location.href
-					) {
-						link.classList.add("active");
-					}
-				});
-			}
-			document.addEventListener("astro:after-swap", () => {
-				updateNavLinksState();
-			});
-		</script>
-
 		<ViewTransitions />
 	</head>
 
