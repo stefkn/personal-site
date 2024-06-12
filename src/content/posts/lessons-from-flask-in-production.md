@@ -3,7 +3,7 @@ title: 'Lessons from Flask in production'
 pubDate: 2024-02-01
 description: 'Thoughts from working on a monolithic Flask webapp for about five years.'
 author: 'Stefan Nowak'
-image: '../../assets/gradient_bg.jpg'
+image: '../../assets/post_images/gradient_bg.jpg'
 imageAlt: 'photo by Sean Sinclair on Unsplash'
 tags: ["web", "python", "flask"]
 ---
