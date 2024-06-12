@@ -9,13 +9,13 @@ tags: ["web", "python", "flask"]
 ---
 
 
-## May I flask you a question?
+## Introduction
 
 Anyone slightly interested in web development and software has probably heard of Django, one of the most popular web frameworks in the world. However, you may _not_ have heard of [Flask](https://flask.palletsprojects.com/en/3.0.x/), which is a more lightweight web framework for Python. It's roughly analagous to Django, but is smaller and leaves a lot more up to the end user – it self-identifies as a "microframework" which allows the user to integrate their own tools and libraries to best suit their use case. This means you need to choose your own ORM, templating language, authentication, etc., from the wider Flask ecosystem – which can be either a blessing or a curse.
 
-I think Flask is a great framework, especially if you're looking for something lightweight and flexible, with a gentle learning curve. However, when using Flask in a production environment, I think there are a few things to be aware of along with the common Python pitfalls.
+I think Flask is a great framework, especially if you're looking for something lightweight and flexible, with a gentle learning curve. However, when using Flask in a production environment, I think there are a few things to be aware of, along with the [common Python footguns.](https://docs.python-guide.org/writing/gotchas/)
 
-In this post, I'll share some of the lessons I've personally learned from working on a large, monolithic Flask webapp in production for about five years.
+In this post I'll try to give some practical examples of issues I've seen working in large Flask codebases, and some tips on how to avoid them.
 
 ## Common pitfalls
 
@@ -71,7 +71,7 @@ def account_settings(customer_id):
     return render_template('account_settings.html', context)
 ```
 
-What is going on here!? This view function is doing way too much. It's querying the database multiple times, processing data, handling form submissions, updating the customer's settings, sending notifications, logging, and rendering a template. It's hard to read, hard to test, hard to monitor and hard to maintain. Could this be more like:
+What is going on here!? This view function is doing way too much. It's querying the database multiple times, processing data, handling form submissions, updating the customer's settings, sending notifications, logging, and rendering a template. It's hard to read, reason about, test, monitor and maintain. Could this be more like:
 
 ```python
 @login_required
@@ -344,7 +344,7 @@ This is a bit of a contrived example, but you get the idea–_there's so much vi
 
 ### Storing large data structures in templates (!?!)
 
-I wish I could say I've never seen this, but I have. I'm not sure I need to explain why this is terrible.
+I wish I could say I've never seen this, but I have.
 
 ```html
 <!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
@@ -375,7 +375,7 @@ It's also easy to forget to mark strings for translation, or to miss a translati
 
 This is because with some translation systems, whitespace that is often snuck in by local IDEs and linters can cause all kind of trouble. Other weird unicode characters can also cause issues, so it's a good idea to use a linter to catch these issues before they make it to prod.
 
-### Non-standardised approach to error handling
+### Non-standardised error handling
 
 Flask doesn't enforce any rules about how you should handle errors in your code. This means it's easy to end up with inconsistent error handling across your app, which can make it hard to debug and maintain. For instance, you might have slightly differing interpretations of what a 404 error means, or what a 500 error means, or what a 403 error means.
 
@@ -402,6 +402,12 @@ def handle_exception(e):
         error_context
     }), 500
 ```
+
+### Batteries not included
+
+Because Flask is a microframework, you get to choose all of the batteries you want to include. In some ways this is great; you can specify exactly what you need and don't need, compared to a more full-stack framework like Django where you get a lot of stuff built-in by default, that you might not actually need.
+
+One drawback of this, however, is that you now need to make sure you're updating all of your dependencies, especially if you're using mission-critical packages like [flask-login](https://flask-login.readthedocs.io/en/latest/) or [flask-wtf](https://flask-wtf.readthedocs.io/en/latest/). Rather than just making sure to update the framework version, you need to keep an eye on all of the packages you're using, and make sure they're all up-to-date and secure, or you might end up finding that you're running a package inproduction that has't been updated since 2012. Yikes! This isn't specifically a Flask problem, but it's something to be aware of when using a microframework.
 
 ----
 
