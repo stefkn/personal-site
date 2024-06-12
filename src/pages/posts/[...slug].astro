@@ -33,11 +33,18 @@ const { Content, headings } = await entry.render();
 
   <div id="article-content">
     <button
+      id="toggle-hide-side-mobile"
+      aria-label="show/hide side metadata and table of contents"
+    >
+      show table of contents
+    </button>
+    <button
       id="toggle-hide-side"
       aria-label="show/hide side metadata and table of contents"
-      class="hidden">hide</button
     >
-    <aside id="article-aside" class="frontmatter">
+      show ToC
+    </button>
+    <aside id="article-aside" class="frontmatter hidden">
       <button
         id="toggle-hide-aside"
         aria-label="show/hide side metadata and table of contents"
@@ -94,9 +101,28 @@ const { Content, headings } = await entry.render();
   #toggle-hide-side {
     position: fixed;
     right: 0.8rem;
-    bottom: -1rem;
+    bottom: 1rem;
     z-index: 3;
     cursor: pointer;
+  }
+
+  #toggle-hide-side-mobile {
+    position: relative;
+    background: #0016ff;
+    border: none;
+    color: white;
+    height: 42px;
+    width: 12rem;
+    border-radius: 0.5rem;
+    padding: 0px;
+    font-size: 14px;
+    margin: 1rem 1rem 1rem 1rem;
+    z-index: 3;
+    cursor: pointer;
+
+    @media (min-width: 930px) {
+      display: none;
+    }
   }
 
   #article-content {
@@ -419,6 +445,7 @@ const { Content, headings } = await entry.render();
 
     const asideButton = document.getElementById("toggle-hide-aside");
     const sideButton = document.getElementById("toggle-hide-side");
+    const mobileButton = document.getElementById("toggle-hide-side-mobile");
 
     function handleHideSideContent(event: { stopPropagation: () => void }) {
       event.stopPropagation();
@@ -433,16 +460,19 @@ const { Content, headings } = await entry.render();
         sideButton!.classList.add("hidden");
         asideButton!.innerHTML = "hide";
         sideButton!.innerHTML = "hide";
+        mobileButton!.innerHTML = "hide table of contents";
       } else {
         articleSidebar!.classList.add("hidden");
         articleContent!.classList.add("wider");
         sideButton!.classList.remove("hidden");
-        asideButton!.innerHTML = "show";
-        sideButton!.innerHTML = "show";
+        asideButton!.innerHTML = "show ToC";
+        sideButton!.innerHTML = "show ToC";
+        mobileButton!.innerHTML = "show table of contents";
       }
     }
 
     asideButton?.addEventListener("click", handleHideSideContent);
     sideButton?.addEventListener("click", handleHideSideContent);
+    mobileButton?.addEventListener("click", handleHideSideContent);
   });
 </script>
