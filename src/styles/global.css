@@ -127,24 +127,28 @@ main.wrapper>.full-bleed {
     max-width: 750px;
     margin: auto;
     z-index: 10;
+}
 
-    #site-icon {
-        height: 2.6rem;
-        margin: 0rem 0rem 0rem 0.49rem;
-        position: fixed;
-        z-index: 4;
-    }
+#site-icon {
+    height: 2.6rem;
+    margin: 1rem 0rem 0rem 1rem;
+    position: fixed;
+    z-index: 4;
 }
 
 .nav-links {
     position: relative;
-    left: 4rem;
+    left: 1rem;
     top: -0.2rem;
     font-size: 2rem;
 
     a {
         margin: 0rem 0.33rem;
         color: black;
+    }
+
+    @media (max-width: 830px) {
+        left: 4rem;
     }
 }
 
