@@ -409,6 +409,11 @@ Because Flask is a microframework, you get to choose all of the batteries you wa
 
 One drawback of this, however, is that you now need to make sure you're updating all of your dependencies, especially if you're using mission-critical packages like [flask-login](https://flask-login.readthedocs.io/en/latest/) or [flask-wtf](https://flask-wtf.readthedocs.io/en/latest/). Rather than just making sure to update the framework version, you need to keep an eye on all of the packages you're using, and make sure they're all up-to-date and secure, or you might end up finding that you're running a package inproduction that has't been updated since 2012. Yikes! This isn't specifically a Flask problem, but it's something to be aware of when using a microframework.
 
-----
+<div style="margin-top: 4rem;"></div>
 
+---
+---
+
+<div style="margin-top: 2rem;">
 Photo by <a href="https://unsplash.com/@seanwsinclair?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Sean Sinclair</a> on <a href="https://unsplash.com/photos/a-blurry-image-of-a-rainbow-colored-background-C_NJKfnTR5A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+</div>
