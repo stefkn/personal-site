@@ -166,48 +166,39 @@ const allPosts = await getCollection("posts");
 	}
 	.intro-titles {
 		position: relative;
-		top: 46rem;
-		height: 38rem;
-		pointer-events: none;
-	}
-	#intro-title {
-		margin-top: -80%;
-		font-family: Times New Roman;
-		letter-spacing: -4px;
-		font-size: clamp(4.6rem,5vw,5.8rem);
-		color: #001fcc;
-		display: block;
-		transform: translateX(-60px);
-		opacity: 0;
-		background-color: #e1e5ff85;
-		backdrop-filter: blur(3px);
-		width: 12rem;
-		padding: 6px 0px;
-	}
-	#intro-subtitle {
-		font-family: Times New Roman;
-		letter-spacing: -1.66px;
-		font-weight: 100;
-		font-size: 2.3rem;
-		color: #001fcc;
-		display: block;
-		transform: translateX(-60px);
-		opacity: 0;
-		background-color: #e1e5ff85;
-		backdrop-filter: blur(3px);
-		width: 21rem;
-		padding: 6px 0px;
-	}
-	html.dark > body > .title-bg > #bg-content {
-		filter: hue-rotate(236deg) contrast(3.5) brightness(0.6) blur(64px);
-	}
-	html.dark > body > main.wrapper > section > #intro-title {
-		color: #ffffff;
-		background-color: #0022ffb8;
-	}
-	html.dark > body > main.wrapper > section > #intro-subtitle {
-		color: #ffffff;
-		background-color: #0022ffb8;
+	.index-title-card {
+		display: flex;
+		flex-direction: column;
+		padding: 2rem 0rem;
+		margin-top: 14rem;
+		@media (max-width: 700px) {
+			margin-top: 2rem;
+		}
+		h1 {
+			font-size: 2.5rem;
+			font-weight: 900;
+		}
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 600;
+			color: #6199ff;
+		}
+		h3 {
+			font-size: 1rem;
+			font-weight: 400;
+			color: #818181;
+		}
+		h4 {
+			font-weight: 500;
+		}
+		em {
+			margin: 0px 0.12rem 0px 0px;
+			color: #a0a0a0;
+		}
+		* {
+			margin-top: 1.2rem;
+			line-break: strict;
+		}
 	}
 	.background {
 		position: fixed;
