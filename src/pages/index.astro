@@ -51,18 +51,36 @@ const allPosts = await getCollection("posts");
 		<span id="game"></span>
 	</div>
 	<main class="wrapper">
-		<section class="intro-titles">
-			<h1 id="intro-title">hello.</h1>
-			<h3 id="intro-subtitle">welcome to my website.</h3>
-		</section>
+		<div class="index-title-card">
+			<div class="shaped">
+				<div class="shape"></div>
+				<h2>steken.dev</h2>
+				<h1>this is stefan's personal website</h1>
+				<h3>
+					<em>ste</em>fan <em>ken</em>ichiro nowak, specifically
+				</h3>
+				<h4>
+					stefan is a software engineer with over a half-decade of
+					experience working with london-ey tech-y companies big and
+					small. <i
+						>so far, he has yet to bring down production for any
+						more than a few hours at any one time.</i
+					>
+					stefan lives with his partner, harriet, and their son, cassius,
+					in south-west london, uk 🇬🇧 
+				</h4>
+			</div>
+		</div>
+	</main>
+	<main class="wrapper">
 		<section>
 			<h3 class="animated"><u>introduction</u></h3>
 			<p>
 				<b>Hey there!</b>
 			</p>
 			<p>
-				I'm Stefan–father of a small, brand-new human; pretty
-				alright software engineer; barely-functional caffiene addict;
+				I'm Stefan–father of a small, brand-new human; pretty alright
+				software engineer; barely-functional caffiene addict;
 				overly-enthusiastic tech nerd;
 				<a href="https://www.youtube.com/watch?v=Mt8uLveDY24"
 					>midnight gourmand</a
@@ -75,48 +93,53 @@ const allPosts = await getCollection("posts");
 			<p>
 				This is a little website built using the <a
 					href="https://astro.build/">Astro</a
-				> framework as a public home for my thoughts and projects. 
+				> framework as a public home for my thoughts and projects.
 			</p>
 		</section>
 		<section>
-			<h3 class="animated"><u>
-				What you'll find here
-			</u></h3>
+			<h3 class="animated"><u> what you'll find here </u></h3>
 			<p>
-				This site is still a work in progress as I learn to work with Astro. 
+				⚠️ This site is still a work in progress as I learn to work with
+				Astro.
 			</p>
 			<p>
-				You can expect to find a mix of blog posts, project write-ups, and other random musings.
-				If you're looking to hire a software engineer, you can check out the <a href="/work">work</a> page for more information about me, and to see if I might be a good fit for your team.
-				For now, you can read all my rambling over on the <a href="/posts">posts</a> page, or see some of my recent posts below.
+				You can expect to find a mix of blog posts, project write-ups,
+				and other random musings. If you're looking to hire a software
+				engineer, you can check out the <a href="/work">work</a> page for
+				more information about me, and to see if I might be a good fit for
+				your team. For now, you can read all my rambling over on the <a
+					href="/posts">posts</a
+				> page, or see some of my recent posts below.
 			</p>
 		</section>
 		<section>
-			<h3 class="animated"><u>Recent posts</u></h3>
+			<h3 class="animated"><u>recent posts</u></h3>
 			<div class="recent-posts">
-			{
-				allPosts.slice(0, 3).map((post) => (
-					<div class="article-post">
-						<div class="post-details">
-							<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
-							<p>{post.data.description}</p>
-							<p class="post-date">
-								{post.data.pubDate.toDateString()}
-							</p>
+				{
+					allPosts.slice(0, 3).map((post) => (
+						<div class="article-post">
+							<div class="post-details">
+								<a href={`/posts/${post.slug}/`}>
+									{post.data.title}
+								</a>
+								<p>{post.data.description}</p>
+								<p class="post-date">
+									{post.data.pubDate.toDateString()}
+								</p>
+							</div>
+							<div class="article-image">
+								<a href={`/posts/${post.slug}/`}>
+									<Image
+										src={post.data.image}
+										alt={post.data.imageAlt}
+										class="post-index-card-image"
+										onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
+									/>
+								</a>
+							</div>
 						</div>
-						<div class="article-image">
-							<a href={`/posts/${post.slug}/`}>
-								<Image
-									src={post.data.image}
-									alt={post.data.imageAlt}
-									class="post-index-card-image"
-									onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
-								/>
-							</a>
-						</div>
-					</div>
-				))
-			}
+					))
+				}
 			</div>
 		</section>
 	</main>
