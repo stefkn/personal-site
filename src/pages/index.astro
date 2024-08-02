@@ -164,8 +164,19 @@ const allPosts = await getCollection("posts");
 			padding-left: 2rem;
 		}
 	}
-	.intro-titles {
+	.shape {
+		width: 24rem;
+		float: inline-end;
+		height: 22rem;
 		position: relative;
+		clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 0% 0%);
+		shape-outside: polygon(100% 0%, 100% 100%, 100% 100%, -20% 0%);
+
+		@media (max-width: 700px) {
+			clip-path: polygon(40% 0%, 40% 0%, 100% 100%, 100% 0%);
+			shape-outside: polygon(40% 0%, 40% 0%, 100% 100%, 100% 0%);
+		}
+	}
 	.index-title-card {
 		display: flex;
 		flex-direction: column;
@@ -382,7 +393,11 @@ const allPosts = await getCollection("posts");
 		);
 
 		const navMenu = document.getElementById("nav-menu");
-		if (navMenu && navMenu?.getBoundingClientRect().top < 0 && backgroundElement) {
+		if (
+			navMenu &&
+			navMenu?.getBoundingClientRect().top < 0 &&
+			backgroundElement
+		) {
 			animate(
 				backgroundElement,
 				{ filter: "blur(8.2px) brightness(5.8) contrast(0.2)" },
