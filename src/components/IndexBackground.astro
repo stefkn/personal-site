@@ -1,0 +1,272 @@
+<div id="background" class="background">
+    <pre>
+                                                         .,,uod8B8bou,,.
+                                             ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.
+                                        ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||
+                                        !...:!TVBBBRPFT||||||||||!!^^""'   ||||
+                                        !.......:!?|||||!!^^""'            ||||
+                                        !.........||||                     ||||
+                                        !.........||||                     ||||
+                                        !.........||||                     ||||
+                                        !.........||||                     ||||
+                                        !.........||||                     ||||
+                                        !.........||||                     ||||
+                               ┌───┐_____`........||||                    ,||||
+                            ┌─ │__.│..uoo.;.......||||              __.-!!|||||
+                            ┌─.┘...,uodWBBBBb.....||||       _.-|||||||||||!:'
+                         .,uoo~~ !YBBBBBBBBBBBBBBb..!|||:|||!!|||||||!iof68BBBBBb....
+                     ..,uoo~~~   !..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.
+                ..,uoo~~~~~      !....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.
+           ..,uoo~~~~~           !......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^"`;:::       `.
+       ..,uoo~~~~"               !........YBBBBBBBBBBRPFT?!::::::::::^'' ..::::::;         iBBbo.
+  ..,uoo~~~~"                    ...........YPFT?!::::::::::::::::::::::::;iof68bo.        WBBBBbo.
+.,u~~~~~~             ,###,      `..........:::::::::::::::::::::::;iof688888888888b.      `YBBBP^'
+~~~               ,#BBBBBB8b.      `........::::::::::::::::;iof688888888888888888888b.      `
+               "BBBBB"BBBB"""#       `......:::::::::;iof688888888888888888888888888888b.
+          #BBBBB B:BBB::BB BB"8b.      `....:::;iof688888888888888888888888888888888899fT!
+       ##"B:"B:BBB:::::-BBBBB B"8b.      `..::!8888888888888888888888888888888899fT|!^"'
+        `!!8BB:::::`B:BBBBB:BBBBBB8b.      `' !!988888888888888888888888899fT|!^"'
+         `!!8BBBB:BBBBB:::::BBB:BBB"8b.        `!!8888888888888888899fT|!^"'
+           `!!8   ::::::::BBBBBB  BBB"8b.        `!988888888899fT|!^"'
+             `!!8BB ,BB:BBB:`b BB:BBBB"B8b.        `!9899fT|!^"'
+               `!!8 BBBBB::B:::::BBBBBB  B8b.        `!^"'
+            _    `!!8B ::::::B BB:B  B"fT|!^"
+            *Bb.   `!!8 BBBBBBBBB"fT|!^"'
+              *Bb.   `!!8 ::BBfT|!^"'
+                *Bb.   `!!8|!^"'
+                  *Bb.   ""
+                    *Bb.
+    </pre>
+    <span id="screentext">hello world</span>
+    <span id="screentext2">-> PRESS 'G' <-</span>
+    <span id="flashing">_</span>
+    <span id="game"></span>
+</div>
+
+<style>
+    .background {
+        position: fixed;
+        z-index: -1;
+        right: 6vw;
+        top: 22rem;
+        -webkit-transform: scale(1.1);
+        @media screen and (max-width: 700px) {
+            top: 10rem;
+            right: 0px;
+        }
+        @media screen and (min-width: 1200px) {
+            right: 25vw;
+            -webkit-transform: scale(2);
+            top: 28rem;
+        }
+        pre {
+            font-family: monospace;
+            font-size: 0.5rem;
+            font-weight: 900;
+            margin-left: 22px;
+            line-height: 10.2px;
+        }
+        #screentext {
+            font-family: monospace;
+            font-size: 0.5rem;
+            font-weight: 900;
+            position: absolute;
+            top: 56px;
+            left: 289px;
+            transform: skew(0deg, -15deg);
+        }
+        #screentext2 {
+            font-family: monospace;
+            font-size: 0.4rem;
+            font-weight: 900;
+            position: absolute;
+            top: 113px;
+            left: 290px;
+            transform: skew(0deg, -15deg);
+        }
+        #flashing {
+            font-family: monospace;
+            font-size: 0.5rem;
+            font-weight: 900;
+            position: absolute;
+            top: 47px;
+            left: 344px;
+            transform: skew(0deg, -15deg);
+        }
+        #game {
+            font-family: monospace;
+            font-size: 0.5rem;
+            font-weight: 900;
+            position: absolute;
+            top: 52px;
+            left: 289px;
+            transform: skew(0deg, -15deg);
+            width: 90px;
+            line-height: 1;
+            letter-spacing: 0.01px;
+        }
+    }
+    blockquote {
+        padding-left: 1em;
+        border-width: 2px;
+        border-left-style: solid;
+    }
+    .animated {
+        display: block;
+        transform: translateX(-60px);
+    }
+</style>
+
+<script>
+    const gameElem = document.getElementById("game");
+    const screenText = document.getElementById("screentext");
+    const screenText2 = document.getElementById("screentext2");
+    const flashingBit = document.getElementById("flashing");
+    const snake = "0";
+    const food = ".";
+    const lineText = "██████████████████ ";
+
+    let gameStarted = false;
+    let grid = lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
+    let position = 0;
+    let posArr: Array<number> = [];
+    let foodPosition = -1;
+    let snakeLen = 12;
+    let snakeSpeed = 600;
+    let playerMoveInterval = null;
+    let currentDirectionKey = "";
+
+    function setCharAt(str: string, index: number, chr: string) {
+        if (index > str.length - 1) return str;
+        grid = str.substring(0, index) + chr + str.substring(index + 1);
+        return grid;
+    }
+
+    function updateSnakePosition(pos: number) {
+        posArr.push(position);
+        position = position + pos;
+
+        if (!(foodPosition === position)) {
+            posArr.push(position);
+        }
+        grid = lineText.repeat(9);
+    }
+
+    function getNewFoodPos() {
+        let newFoodPos = Math.floor(Math.random() * 17 * 9);
+        const currSnake = posArr.reverse().slice(0, snakeLen + 1);
+        while ((newFoodPos + 1) % 19 === 0 || currSnake.includes(newFoodPos)) {
+            newFoodPos = Math.floor(Math.random() * 17 * 9);
+        }
+        return newFoodPos;
+    }
+
+    function handleDirectionKey(key: string) {
+        currentDirectionKey = key;
+
+        if (key == "w") {
+            if (0 <= position && position <= 17) {
+                updateSnakePosition(152);
+                return;
+            }
+            updateSnakePosition(-19);
+        }
+        if (key == "s") {
+            if (position >= 152) {
+                updateSnakePosition(-152);
+                return;
+            }
+            updateSnakePosition(19);
+        }
+        if (key == "a") {
+            if (position % 19 === 0) {
+                updateSnakePosition(17);
+                return;
+            }
+            updateSnakePosition(-1);
+        }
+        if (key == "d") {
+            if ((position + 2) % 19 === 0) {
+                updateSnakePosition(-17);
+                return;
+            }
+            updateSnakePosition(1);
+        }
+    }
+
+    function keyDownHandler(e: KeyboardEvent, user = true) {
+        if (e.key !== "g" && !gameStarted) {
+            return;
+        }
+
+        if (!gameStarted) {
+            gameStarted = true;
+            foodPosition = getNewFoodPos();
+            screenText!.style.display = "none";
+            screenText2!.style.display = "none";
+            flashingBit!.style.display = "none";
+            gameElem!.style.display = "block";
+            grid =
+                lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
+            posArr = [];
+            position = 0;
+            foodPosition = 0;
+            snakeLen = 12;
+            snakeSpeed = 600;
+        }
+
+        if (currentDirectionKey === e.key && user) {
+            return;
+        }
+
+        if (playerMoveInterval!) {
+            clearInterval(playerMoveInterval);
+        }
+
+        playerMoveInterval = setInterval(
+            keyDownHandler,
+            snakeSpeed,
+            new KeyboardEvent("keydown", { key: e.key }),
+            false,
+        );
+
+        handleDirectionKey(e.key);
+
+        const currSnake = posArr.reverse().slice(0, snakeLen + 1);
+
+        currSnake.forEach((pos) => {
+            gameElem!.innerHTML = setCharAt(grid, pos, snake);
+        });
+        gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
+
+        if (foodPosition === position) {
+            posArr.push(position);
+            gameElem!.innerHTML = setCharAt(grid, foodPosition, snake);
+            snakeLen++;
+            snakeSpeed = snakeSpeed / 1.1;
+            foodPosition = getNewFoodPos();
+            gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
+        }
+
+        if (
+            gameStarted &&
+            position !== 0 &&
+            currSnake.slice(1).includes(position)
+        ) {
+            gameElem!.style.display = "none";
+            screenText!.innerHTML = "YOU LOSE :(";
+            screenText!.style.display = "block";
+            screenText2!.style.display = "block";
+            flashingBit!.style.display = "block";
+            gameStarted = false;
+        }
+    }
+
+    document.addEventListener("astro:page-load", () => {
+        if (window.location.pathname === "/") {
+            window.addEventListener("keydown", (e) => keyDownHandler(e));
+        }
+    });
+
+    window.addEventListener("keydown", (e) => keyDownHandler(e));
+</script>
