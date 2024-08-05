@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+const allPosts = await getCollection("posts");
+---
+
+<div>
+    <h3><u>recent posts</u></h3>
+    <div class="recent-posts">
+        {
+            allPosts.slice(0, 3).map((post) => (
+                <div class="article-post">
+                    <div class="post-details">
+                        <a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+                        <p>{post.data.description}</p>
+                        <p class="post-date">
+                            {post.data.pubDate.toDateString()}
+                        </p>
+                    </div>
+                    <div class="article-image">
+                        <a href={`/posts/${post.slug}/`}>
+                            <Image
+                                src={post.data.image}
+                                alt={post.data.imageAlt}
+                                class="post-index-card-image"
+                                onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
+                            />
+                        </a>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .recent-posts {
+        margin-top: 3rem;
+    }
+    .article-post {
+        margin: 2rem 0px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    img.post-index-card-image {
+        height: auto;
+        max-width: 10rem;
+        max-height: 10rem;
+        border-radius: 8px;
+
+        -webkit-transition: all 2s ease;
+        -moz-transition: all 2s ease;
+        -ms-transition: all 2s ease;
+        -o-transition: all 2s ease;
+
+        opacity: 0;
+        filter: grayscale(1);
+    }
+    .post-date {
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: 0.2rem;
+    }
+    .post-details {
+        padding-left: 2rem;
+        a {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        p {
+            margin-top: 0.2rem;
+        }
+    }
+</style>
