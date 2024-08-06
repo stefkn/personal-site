@@ -80,7 +80,7 @@ const pageTitle = "Résumé/CV";
 							width="100"
 							height="100"
 						/>
-						<div class="details">
+						<div class="timeline-details">
 							<h3>2019 - today</h3>
 							<strong
 								>Backend / Full-stack Software Engineer</strong
@@ -129,7 +129,7 @@ const pageTitle = "Résumé/CV";
 							width="100"
 							height="100"
 						/>
-						<div class="details">
+						<div class="timeline-details">
 							<h3>2017 - 2018</h3>
 							<strong>Freelance Contractor</strong>
 							<p>
@@ -175,7 +175,7 @@ const pageTitle = "Résumé/CV";
 							width="100"
 							height="100"
 						/>
-						<div class="details">
+						<div class="timeline-details">
 							<h3>2015 - 2019</h3>
 							<strong>MSc.(i) (Hons.) Computer Science</strong>
 							<p>
@@ -221,14 +221,15 @@ const pageTitle = "Résumé/CV";
 			<p>
 				I'm a big believer that it doesn't really matter what specific
 				technologies you "know" – what's more important is an enthusiasm
-				for learning new things, a good understanding of the fundamentals
-				of CS, and the ability to keep trying until you "get it". Being kind 
-				and empathetic, and not being afraid to ask for help, are also key.
+				for learning new things, a good understanding of the
+				fundamentals of CS, and the ability to keep trying until you
+				"get it". Being kind and empathetic, and not being afraid to ask
+				for help, are also key.
 			</p>
 			<p>
 				That said, here are some of the technologies I've worked with
-				over the years, in no particular order. I'm always looking to learn
-				more, so if you have any suggestions, please let me know!
+				over the years, in no particular order. I'm always looking to
+				learn more, so if you have any suggestions, please let me know!
 			</p>
 			<h3>Programming languages</h3>
 			<ul class="skills-icons">
@@ -414,203 +415,183 @@ const pageTitle = "Résumé/CV";
 		margin: auto;
 		padding: 1.5rem;
 		margin-top: 2.2rem;
-		a {
-			-webkit-transition: all 1s ease;
-			-moz-transition: all 1s ease;
-			-ms-transition: all 1s ease;
-			-o-transition: all 1s ease;
+	}
+	.cv-container > a {
+		-webkit-transition: all 1s ease;
+		-moz-transition: all 1s ease;
+		-ms-transition: all 1s ease;
+		-o-transition: all 1s ease;
 
-			background-color: #0037ff;
-			color: white;
-			padding: 0.8rem 1.8rem;
-			border-radius: 12px;
-			font-size: 1.44rem;
-			text-decoration: none;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			margin: 0rem 1rem 0rem -3rem;
-			box-shadow: 0 10px 22px 5px #00000073;
-			z-index: 2;
+		background-color: #0037ff;
+		color: white;
+		padding: 0.8rem 1.8rem;
+		border-radius: 12px;
+		font-size: 1.44rem;
+		text-decoration: none;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		margin: 0rem 1rem 0rem -3rem;
+		box-shadow: 0 10px 22px 5px #00000073;
+		z-index: 2;
 
-			background-image: linear-gradient(
-				to bottom right,
-				#466eff,
-				rgb(48, 20, 151)
-			);
-		}
-		a:hover {
-			filter: brightness(1.3);
-		}
-		.cv-image {
-			max-width: 120px;
-			height: auto;
-			box-shadow: 0 10px 22px 5px #00000073;
-			border-radius: 4px;
-			transform: rotate(-2.2deg);
-		}
+		background-image: linear-gradient(
+			to bottom right,
+			#466eff,
+			rgb(48, 20, 151)
+		);
+	}
+	.cv-container > a:hover {
+		filter: brightness(1.3);
+	}
+	.cv-image {
+		max-width: 120px;
+		height: auto;
+		box-shadow: 0 10px 22px 5px #00000073;
+		border-radius: 4px;
+		transform: rotate(-2.2deg);
 	}
 	main.wrapper {
-		margin-top: 24rem;
-
-		@media (min-width: 1950px) {
+		margin-top: 16rem;
+	}
+	@media (min-width: 1950px) {
+		main.wrapper {
 			margin-top: 42rem;
 		}
-
-		@media (max-width: 1050px) {
+	}
+	@media (max-width: 1050px) {
+		main.wrapper {
 			margin-top: 6rem;
 		}
-
-		@media (max-width: 850px) {
+	}
+	@media (max-width: 850px) {
+		main.wrapper {
 			margin-top: 2rem;
 		}
+	}
+	.kcl-logo {
+		margin: 2rem 1rem 0.2rem 0rem;
+		box-shadow: 0 10px 22px 5px #00000073;
+		border: 1px solid #ffffff;
+		background: #e22219;
+		border-radius: 6px;
+	}
+	.enki-logo {
+		margin: 2rem 1rem 0.2rem 0rem;
+		box-shadow: 0 10px 22px 5px #00000073;
+		border: 1px solid #1fffa9;
+		border-radius: 6px;
+	}
+	.tails-logo {
+		margin: 2rem 1rem 0.2rem 0rem;
+		box-shadow: 0 10px 22px 5px #00000073;
+		border: 1px solid #5de3fb;
+		border-radius: 6px;
+	}
+	.kcl-logo,
+	.enki-logo,
+	.tails-logo {
+		margin-bottom: 1rem;
+	}
+	.skills-icons {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 0.6rem;
+		row-gap: 1.6rem;
+		justify-content: space-evenly;
+		font-weight: 500;
+		text-align: center;
+		padding-inline-start: 0px;
+		justify-content: flex-start;
+		margin-top: 2rem;
+		margin-left: -1rem;
+		font-size: 1rem;
+	}
+	.skills-icons > li {
+		width: 5.2rem;
+		list-style: none;
 	}
 	main.wrapper.grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-gap: 2rem;
-
-		@media (max-width: 1150px) {
+	}
+	@media (max-width: 1400px) {
+		main.wrapper.grid {
 			grid-template-columns: 1fr;
 		}
-		section {
-			grid-column: span 1;
-
-			h2 {
-				font-size: 2.2rem;
-				margin-top: 2rem;
-				margin-bottom: 1rem;
-				font-weight: 600;
-				color: #305dff;
-			}
-
-			h3 {
-				font-size: 1.3rem;
-				margin-top: 2rem;
-				margin-bottom: 0.3rem;
-				font-weight: 300;
-				text-decoration: underline;
-			}
-
-			p {
-				font-family: Inter, sans-serif;
-				margin-top: 0.8rem;
-			}
-
-			border-left: 1px #dddddd;
-			border-left-style: solid;
-			padding-left: 40px;
-			padding-top: 20px;
-
-			.kcl-logo {
-				margin: 2rem 1rem 0.2rem 0rem;
-				box-shadow: 0 10px 22px 5px #00000073;
-				border: 1px solid #ffffff;
-				background: #e22219;
-				border-radius: 6px;
-			}
-
-			.enki-logo {
-				margin: 2rem 1rem 0.2rem 0rem;
-				box-shadow: 0 10px 22px 5px #00000073;
-				border: 1px solid #1fffa9;
-				border-radius: 6px;
-			}
-
-			.tails-logo {
-				margin: 2rem 1rem 0.2rem 0rem;
-				box-shadow: 0 10px 22px 5px #00000073;
-				border: 1px solid #5de3fb;
-				border-radius: 6px;
-			}
-
-			.kcl-logo,
-			.enki-logo,
-			.tails-logo {
-				margin-bottom: 1rem;
-			}
-
-			.skills-icons {
-				display: flex;
-				flex-wrap: wrap;
-				column-gap: 0.6rem;
-				row-gap: 1.6rem;
-				justify-content: space-evenly;
-				font-weight: 500;
-				text-align: center;
-				padding-inline-start: 0px;
-				justify-content: flex-start;
-				margin-top: 2rem;
-				margin-left: -1rem;
-				font-size: 1rem;
-
-				li {
-					width: 5.2rem; 
-					list-style: none;
-				}
-			}
-		}
-
-		.timeline {
-			.timeline-entry {
-				margin-top: 1.4rem;
-
-				h3 {
-					font-size: 0.96rem;
-					margin-top: 0;
-					margin-bottom: 0rem;
-					font-weight: 600;
-					color: #ffffff;
-					text-decoration: none;
-				}
-
-				.details {
-					margin-top: 1rem;
-
-					p > a {
-						font-size: 1.2rem;
-						font-weight: 800;
-					}
-
-					strong {
-						font-size: 1.42rem;
-						font-weight: 600;
-					}
-				}
-
-				.flex {
-					align-items: center;
-				}
-
-				i {
-					font-weight: 600;
-					color: #afc0ff;
-				}
-
-				.stack {
-					display: flex;
-					flex-wrap: wrap;
-					column-gap: 0.4rem;
-					row-gap: 0.8rem;
-					justify-content: space-evenly;
-					font-weight: 500;
-					text-align: center;
-					padding-inline-start: 0px;
-					justify-content: flex-start;
-					margin-top: 1rem;
-					margin-left: -1rem;
-					font-size: 11px;
-
-
-					li {
-						width: 5rem;
-						list-style: none;
-					}
-
-					svg {
-						height: 40px;
-					}
-				}
-			}
-		}
+	}
+	section {
+		grid-column: span 1;
+		border-left: 1px #dddddd;
+		border-left-style: solid;
+		padding-left: 40px;
+		padding-top: 20px;
+	}
+	h2 {
+		font-size: 2.2rem;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+		font-weight: 600;
+		color: #305dff;
+	}
+	h3 {
+		font-size: 1.3rem;
+		margin-top: 2rem;
+		margin-bottom: 0.3rem;
+		font-weight: 300;
+		text-decoration: underline;
+	}
+	p {
+		margin-top: 0.8rem;
+	}
+	p > a {
+		font-size: 1.2rem;
+		font-weight: 800;
+	}
+	strong {
+		font-size: 1.42rem;
+		font-weight: 600;
+		line-height: 0px;
+	}
+	.timeline-details {
+		margin-top: 1rem;
+	}
+	.timeline-entry {
+		margin-top: 1.4rem;
+	}
+	.timeline-details > h3 {
+		font-size: 0.96rem;
+		margin-top: 0;
+		margin-bottom: 0rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.flex {
+		align-items: center;
+	}
+	.timeline-details > i {
+		font-weight: 600;
+		color: #5e81ff;
+	}
+	.stack {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 0.4rem;
+		row-gap: 0.8rem;
+		justify-content: space-evenly;
+		font-weight: 500;
+		text-align: center;
+		padding-inline-start: 0px;
+		justify-content: flex-start;
+		margin-top: 1rem;
+		margin-left: -1rem;
+		font-size: 11px;
+	}
+	.stack > li {
+		width: 5rem;
+		list-style: none;
+	}
+	.stack > svg {
+		height: 40px;
 	}
 	html.dark > body > main.wrapper.grid > section {
 		border-color: #6c6c6c;
