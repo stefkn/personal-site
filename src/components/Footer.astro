@@ -1,6 +1,6 @@
 <footer class="footer">
     <div id="footer-bg">
-        <svg width="100%" height="100%">
+        <svg class="dots" width="100%" height="100%">
             <pattern
                 id="pattern-circles"
                 x="0"
@@ -53,11 +53,13 @@
                 >
             </a>
         </div>
-        <p>built with <a href="https://astro.build/">Astro 4.2.4</a>.</p>
-        <p>
+        <p class="footer-text">
+            built with <a href="https://astro.build/">Astro 4.2.4</a>.
+        </p>
+        <p class="footer-text">
             source on <a href="https://github.com/stefkn/astro-blog">GitHub</a>.
         </p>
-        <p class="quote">
+        <p class="footer-quote">
             “Once men turned their thinking over to machines in the hope that
             this would set them free. But that only permitted other men with
             machines to enslave them.”
@@ -66,6 +68,20 @@
 </footer>
 
 <style>
+    footer:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border-radius: 1rem;
+        z-index: -1;
+    }
     footer {
         width: 100%;
         min-height: 24rem;
@@ -77,65 +93,55 @@
         @media (max-width: 630px) {
             padding: 0px 20px;
         }
+    }
 
-        div.footer-content {
-            position: relative;
-            z-index: 2;
-            letter-spacing: -0.2px;
-            font-size: 18px;
-            
-            max-width: 700px;
-            margin: auto;
-            margin-top: 1em;
+    #site-icon {
+        height: 4rem;
+        filter: drop-shadow(7px 6px 21px #0019ff9e);
+        position: absolute;
+        top: -5rem;
+    }
 
-            p {
-                font-family: "Inter";
-                margin-top: 0.6rem;
-            }
+    #site-icon:hover {
+        transform: translateY(-6px);
+        transition-property: transform;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+    }
 
-            a {
-                text-decoration: underline;
-                color: #5361ff;
-            }
+    .footer-content {
+        position: relative;
+        z-index: 2;
 
-            h2#footer-title {
-                letter-spacing: -2.2px;
-                font-size: clamp(3.6rem, 5vw, 3.8rem);
-            }
-
-            #home-link {
-                display: block;
-                width: 4rem;
-
-                #site-icon {
-                    position: absolute;
-                    top: -5rem;
-                }
-            }
-
-            .quote {
-                font-size: 14px;
-                max-width: 14rem;
-                font-family: Times New Roman;
-                font-style: italic;
-                text-align: right;
-                position: absolute;
-                right: 0px;
-                opacity: 0.5;
-            }
-        }
-
-        #site-icon {
-            height: 4rem;
-            filter: drop-shadow(7px 6px 21px #0019ff9e);
-        }
-
-        #site-icon:hover {
-            transform: translateY(-6px);
-            transition-property: transform;
-            transition-duration: 0.1s;
-            transition-timing-function: ease-in-out;
-        }
+        max-width: 700px;
+        margin: auto;
+        margin-top: 1em;
+    }
+    h2#footer-title {
+        letter-spacing: -2.2px;
+        font-size: clamp(3.6rem, 5vw, 3.8rem);
+    }
+    #home-link {
+        display: block;
+        width: 4rem;
+    }
+    .footer-text {
+        letter-spacing: -0.2px;
+        font-size: 18px;
+        margin-top: 0.6rem;
+    }
+    a.footer-text {
+        text-decoration: underline;
+        color: #5361ff;
+    }
+    .footer-quote {
+        font-size: 14px;
+        max-width: 14rem;
+        font-style: italic;
+        text-align: right;
+        position: absolute;
+        right: 0px;
+        opacity: 0.5;
     }
 
     html.dark > body > footer {
@@ -159,16 +165,16 @@
         left: 0px;
         bottom: 0px;
         overflow: hidden;
-
-        svg {
-            left: 30%;
-            position: relative;
-            top: 30%;
-            mask-image: radial-gradient(
-                ellipse 60% 170% at 55% -50%,
-                black 0%,
-                transparent 81%
-            );
-        }
+        z-index: -1;
+    }
+    svg.dots {
+        left: 30%;
+        position: relative;
+        top: 30%;
+        mask-image: radial-gradient(
+            ellipse 60% 170% at 55% -50%,
+            black 0%,
+            transparent 81%
+        );
     }
 </style>
