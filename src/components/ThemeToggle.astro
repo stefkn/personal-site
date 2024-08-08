@@ -3,26 +3,74 @@
 ---
 
 <button id="theme-toggle" aria-label="Toggle light/dark mode">
-	<svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun hidden"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line fill="white" x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-	<svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+	<svg
+		id="sun-icon"
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="white"
+		stroke="white"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="feather feather-sun hidden"
+		><circle cx="12" cy="12" r="5"></circle><line
+			x1="12"
+			y1="1"
+			x2="12"
+			y2="3"></line><line fill="white" x1="12" y1="21" x2="12" y2="23"
+		></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
+			x1="18.36"
+			y1="18.36"
+			x2="19.78"
+			y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line
+			x1="21"
+			y1="12"
+			x2="23"
+			y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"
+		></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg
+	>
+	<svg
+		id="moon-icon"
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="black"
+		stroke="black"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="feather feather-moon hidden"
+		><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg
+	>
 </button>
 
 <style>
 	#theme-toggle {
 		display: flex;
-		border: none;
-	    background: none;
+		border: 1px solid #000000;
 		justify-content: center;
 		align-items: center;
-		height: 2rem;
-		margin: 0px 1.5rem 0px 0px;
-		padding: 1.2rem 0rem 1rem 0rem;
+		height: 2.2rem;
+		width: 2.2rem;
+		z-index: 2;
+		margin: 0px 0rem 0px 0px;
+		padding: 1.5rem 1.5rem 1.5rem 1.5rem ;
 		cursor: pointer;
-
-		svg {
-			width: 1.3rem;
-			height: 1.3rem;
-		}
+		border-radius: 6px;
+		background: #ffffff;
+	}
+	#theme-toggle.dark {
+		background: #0400ff;
+		border: 1px solid #ffffff;
+	}
+	svg {
+		position: absolute;
+		width: 1.3rem;
+		height: 1.3rem;
+		z-index: 3;
 	}
 </style>
 
