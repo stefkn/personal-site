@@ -43,10 +43,12 @@
 
 		if (theme === "light") {
 			document.documentElement.classList.remove("dark");
-			document.getElementById('moon-icon')?.classList.remove("hidden");
+			document.getElementById("moon-icon")?.classList.remove("hidden");
+			document.getElementById("theme-toggle")?.classList.remove("dark");
 		} else {
 			document.documentElement.classList.add("dark");
-			document.getElementById('sun-icon')?.classList.remove("hidden");
+			document.getElementById("sun-icon")?.classList.remove("hidden");
+			document.getElementById("theme-toggle")?.classList.add("dark");
 		}
 
 		window.localStorage.setItem("theme", theme);
@@ -59,11 +61,15 @@
 			localStorage.setItem("theme", isDark ? "dark" : "light");
 
 			if (isDark) {
-				document.getElementById('moon-icon')?.classList.add("hidden");
-				document.getElementById('sun-icon')?.classList.remove("hidden");
+				document.getElementById("moon-icon")?.classList.add("hidden");
+				document.getElementById("sun-icon")?.classList.remove("hidden");
+				document.getElementById("theme-toggle")?.classList.add("dark");
 			} else {
-				document.getElementById('moon-icon')?.classList.remove("hidden");
-				document.getElementById('sun-icon')?.classList.add("hidden");
+				document
+					.getElementById("moon-icon")
+					?.classList.remove("hidden");
+				document.getElementById("sun-icon")?.classList.add("hidden");
+				document.getElementById("theme-toggle")?.classList.remove("dark");
 			}
 		};
 
