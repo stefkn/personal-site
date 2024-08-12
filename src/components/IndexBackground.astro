@@ -1,5 +1,6 @@
 <div id="background" class="background">
-    <pre>
+    <pre
+        class="background-ascii">
                                                          .,,uod8B8bou,,.
                                              ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.
                                         ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||
@@ -37,83 +38,75 @@
                   *Bb.   ""
                     *Bb.
     </pre>
-    <span id="screentext">hello world</span>
-    <span id="screentext2">-> PRESS 'G' <-</span>
-    <span id="flashing">_</span>
-    <span id="game"></span>
+    <div class="screen-content">
+        <p id="screentext" class="on-screen-text">hello world</p>
+        <p id="screentext2" class="on-screen-text"> press 'g' to play</p>
+        <span id="game"></span>
+    </div>
 </div>
 
 <style>
+    .on-screen-text {
+        height: 6rem;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 600;
+        font-size: 0.4rem;
+        position: absolute;
+        transform: skew(0deg, -15deg);
+        -webkit-transform: skew(0deg, -15deg);
+    }
+    .screen-content {
+        position: relative;
+        display: block;
+        top: -20rem;
+        left: 20rem;
+        width: 100%;
+        height: 100%;
+    }
+    pre.background-ascii {
+        -webkit-transform: scale(1.5);
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 600;
+        font-size: 0.5rem;
+        margin-left: 22px;
+        line-height: 10.2px;
+        font-variant-ligatures: none;
+        font-style: normal;
+        font-stretch: normal;
+    }
+    #game {
+        font-family: monospace;
+        font-size: 0.5rem;
+        font-weight: 900;
+        position: absolute;
+        transform: skew(0deg, -15deg);
+        -webkit-transform: skew(0deg, -15deg);
+        width: 90px;
+        line-height: 1;
+        letter-spacing: 0.01px;
+    }
     .background {
         position: fixed;
         z-index: -1;
         right: 6vw;
-        top: 22rem;
-        -webkit-transform: scale(1.1);
-        @media screen and (max-width: 700px) {
-            top: 10rem;
+        top: 8rem;
+    }
+    @media screen and (max-width: 700px) {
+        .background {
+            top: 12rem;
             right: 0px;
         }
-        @media screen and (min-width: 1200px) {
+    }
+    @media screen and (min-width: 1200px) {
+        .background {
+            top: 26rem;
             right: 25vw;
-            -webkit-transform: scale(2);
-            top: 28rem;
-        }
-        pre {
-            font-family: monospace;
-            font-size: 0.5rem;
-            font-weight: 900;
-            margin-left: 22px;
-            line-height: 10.2px;
-        }
-        #screentext {
-            font-family: monospace;
-            font-size: 0.5rem;
-            font-weight: 900;
-            position: absolute;
-            top: 56px;
-            left: 289px;
-            transform: skew(0deg, -15deg);
-        }
-        #screentext2 {
-            font-family: monospace;
-            font-size: 0.4rem;
-            font-weight: 900;
-            position: absolute;
-            top: 113px;
-            left: 290px;
-            transform: skew(0deg, -15deg);
-        }
-        #flashing {
-            font-family: monospace;
-            font-size: 0.5rem;
-            font-weight: 900;
-            position: absolute;
-            top: 47px;
-            left: 344px;
-            transform: skew(0deg, -15deg);
-        }
-        #game {
-            font-family: monospace;
-            font-size: 0.5rem;
-            font-weight: 900;
-            position: absolute;
-            top: 52px;
-            left: 289px;
-            transform: skew(0deg, -15deg);
-            width: 90px;
-            line-height: 1;
-            letter-spacing: 0.01px;
         }
     }
     blockquote {
         padding-left: 1em;
         border-width: 2px;
         border-left-style: solid;
-    }
-    .animated {
-        display: block;
-        transform: translateX(-60px);
     }
 </style>
 
