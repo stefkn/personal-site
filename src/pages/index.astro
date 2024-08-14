@@ -1,604 +1,166 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-const allPosts = await getCollection("posts");
+import IndexBackground from "../components/IndexBackground.astro";
+import RecentPosts from "../components/RecentPosts.astro";
 ---
 
 <Layout title="Introduction">
-	<div id="background" class="background">
-		<pre>
-                                                         .,,uod8B8bou,,.
-                                             ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.
-                                        ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||
-                                        !...:!TVBBBRPFT||||||||||!!^^""'   ||||
-                                        !.......:!?|||||!!^^""'            ||||
-                                        !.........||||                     ||||
-                                        !.........||||                     ||||
-                                        !.........||||                     ||||
-                                        !.........||||                     ||||
-                                        !.........||||                     ||||
-                                        !.........||||                     ||||
-                               ┌───┐_____`........||||                    ,||||
-                            ┌─ │__.│..uoo.;.......||||              __.-!!|||||
-                            ┌─.┘...,uodWBBBBb.....||||       _.-|||||||||||!:'
-                         .,uoo~~ !YBBBBBBBBBBBBBBb..!|||:|||!!|||||||!iof68BBBBBb....
-                     ..,uoo~~~   !..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.
-                ..,uoo~~~~~      !....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.
-           ..,uoo~~~~~           !......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^"`;:::       `.
-       ..,uoo~~~~"               !........YBBBBBBBBBBRPFT?!::::::::::^'' ..::::::;         iBBbo.
-  ..,uoo~~~~"                    ...........YPFT?!::::::::::::::::::::::::;iof68bo.        WBBBBbo.
-.,u~~~~~~             ,###,      `..........:::::::::::::::::::::::;iof688888888888b.      `YBBBP^'
-~~~               ,#BBBBBB8b.      `........::::::::::::::::;iof688888888888888888888b.      `
-               "BBBBB"BBBB"""#       `......:::::::::;iof688888888888888888888888888888b.
-          #BBBBB B:BBB::BB BB"8b.      `....:::;iof688888888888888888888888888888888899fT!
-       ##"B:"B:BBB:::::-BBBBB B"8b.      `..::!8888888888888888888888888888888899fT|!^"'
-        `!!8BB:::::`B:BBBBB:BBBBBB8b.      `' !!988888888888888888888888899fT|!^"'
-         `!!8BBBB:BBBBB:::::BBB:BBB"8b.        `!!8888888888888888899fT|!^"'
-           `!!8   ::::::::BBBBBB  BBB"8b.        `!988888888899fT|!^"'
-             `!!8BB ,BB:BBB:`b BB:BBBB"B8b.        `!9899fT|!^"'
-               `!!8 BBBBB::B:::::BBBBBB  B8b.        `!^"'
-            _    `!!8B ::::::B BB:B  B"fT|!^"
-            *Bb.   `!!8 BBBBBBBBB"fT|!^"'
-              *Bb.   `!!8 ::BBfT|!^"'
-                *Bb.   `!!8|!^"'
-                  *Bb.   ""
-                    *Bb.
-		</pre>
-		<span id="screentext">hello world</span>
-		<span id="screentext2">-> PRESS 'G' <-</span>
-		<span id="flashing">_</span>
-		<span id="game"></span>
+	<div class="big-text-container">
+		<h1 id="big-text" class="index-header ibm-plex-sans-regular">
+			steken
+		</h1>
+		<h1 id="big-text-2" class="index-header ibm-plex-sans-regular">
+			.dev
+		</h1>
 	</div>
-	<main class="wrapper">
-		<div class="index-title-card">
-			<div class="shaped">
-				<div class="shape"></div>
+	<div id="background" class="background">
+		<IndexBackground />
+		<div class="index-card">
+			<div class="index-card-contents">
 				<h2>steken.dev</h2>
 				<h1>this is stefan's personal website</h1>
 				<h3>
-					<em>ste</em>fan <em>ken</em>ichiro nowak, specifically
+					<em>ste</em>fan <em>ken</em>ichiro nowak, specifically – hopefully that's the Stefan you were looking for. 
 				</h3>
 				<h4>
 					stefan is a software engineer with over a half-decade of
 					experience working with london-ey tech-y companies big and
-					small. <i
-						>so far, he has yet to bring down production for any
+					small. <br /> <i style="opacity: 0.3; font-size: 1.2rem;">
+						so far, he has yet to bring down production for any
 						more than a few hours at any one time.</i
 					>
+					<br />
 					stefan lives with his partner, harriet, and their son, cassius,
-					in south-west london, uk 🇬🇧 
+					in south-west london, uk 🇬🇧
 				</h4>
+
+				<h3><u>introduction</u></h3>
+				<p>
+					<b>Hey there!</b>
+				</p>
+				<p>
+					I'm Stefan–father of a small, brand-new human; pretty
+					alright software engineer; barely-functional caffiene
+					addict; overly-enthusiastic tech nerd;
+					<a href="https://www.youtube.com/watch?v=Mt8uLveDY24"
+						>midnight gourmand</a
+					>;
+					<a
+						href="https://trakt.tv/users/commonalpaca/ratings/all/all/rating/asc"
+						>armchair film critic</a
+					> and much more.
+				</p>
+				<p>
+					This is a little website built using the <a
+						href="https://astro.build/">Astro</a
+					> framework as a public home for my thoughts and projects.
+				</p>
+
+				<h3><u> what you'll find here </u></h3>
+				<p>
+					⚠️ <i>This site is a continuous work in progress as I learn to work
+					with Astro. Expect things to break all the time!</i>
+				</p>
+				<p>
+					Expect to find a mix of blog posts, project
+					write-ups, and other random musings. If you're looking to
+					hire a software engineer, you can check out the <a
+						href="/work">work</a
+					> page for more information about me, and to see if I might be
+					a good fit for your team. For now, you can read all my rambling
+					over on the <a href="/posts">posts</a> page, or see some of my
+					recent posts below.
+				</p>
+				<RecentPosts />
 			</div>
 		</div>
-	</main>
-	<main class="wrapper">
-		<section>
-			<h3 class="animated"><u>introduction</u></h3>
-			<p>
-				<b>Hey there!</b>
-			</p>
-			<p>
-				I'm Stefan–father of a small, brand-new human; pretty alright
-				software engineer; barely-functional caffiene addict;
-				overly-enthusiastic tech nerd;
-				<a href="https://www.youtube.com/watch?v=Mt8uLveDY24"
-					>midnight gourmand</a
-				>;
-				<a
-					href="https://trakt.tv/users/commonalpaca/ratings/all/all/rating/asc"
-					>armchair film critic</a
-				> and much more.
-			</p>
-			<p>
-				This is a little website built using the <a
-					href="https://astro.build/">Astro</a
-				> framework as a public home for my thoughts and projects.
-			</p>
-		</section>
-		<section>
-			<h3 class="animated"><u> what you'll find here </u></h3>
-			<p>
-				⚠️ This site is still a work in progress as I learn to work with
-				Astro.
-			</p>
-			<p>
-				You can expect to find a mix of blog posts, project write-ups,
-				and other random musings. If you're looking to hire a software
-				engineer, you can check out the <a href="/work">work</a> page for
-				more information about me, and to see if I might be a good fit for
-				your team. For now, you can read all my rambling over on the <a
-					href="/posts">posts</a
-				> page, or see some of my recent posts below.
-			</p>
-		</section>
-		<section>
-			<h3 class="animated"><u>recent posts</u></h3>
-			<div class="recent-posts">
-				{
-					allPosts.slice(0, 3).map((post) => (
-						<div class="article-post">
-							<div class="post-details">
-								<a href={`/posts/${post.slug}/`}>
-									{post.data.title}
-								</a>
-								<p>{post.data.description}</p>
-								<p class="post-date">
-									{post.data.pubDate.toDateString()}
-								</p>
-							</div>
-							<div class="article-image">
-								<a href={`/posts/${post.slug}/`}>
-									<Image
-										src={post.data.image}
-										alt={post.data.imageAlt}
-										class="post-index-card-image"
-										onload="this.style.opacity=1; this.style.filter='grayscale(0)'"
-									/>
-								</a>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</section>
-	</main>
+	</div>
 </Layout>
 
 <style>
-	.recent-posts {
-		margin-top: 3rem;
+	.index-header {
+		text-align: center;
+		margin-top: 2rem;
+		position: absolute;
+		display: block;
+		text-align: left;
+		margin: 0rem 0rem 0rem -4rem;
+		font-size: 32rem;
+		position: fixed;
 	}
-	.article-post {
-		margin: 2rem 0px;
-		display: flex;
-		flex-direction: row-reverse;
-		justify-content: flex-end;
-		.post-index-card-image {
-			height: auto;
-			max-width: 10rem;
-			border-radius: 8px;
-
-			-webkit-transition: all 2s ease;
-			-moz-transition: all 2s ease;
-			-ms-transition: all 2s ease;
-			-o-transition: all 2s ease;
-
-			opacity: 0;
-			filter: grayscale(1);
-		}
-		.post-date {
-			font-size: 0.8rem;
-			color: #666;
-			margin-top: 0.2rem;
-		}
-		.post-details {
-			a {
-				font-size: 1.2rem;
-				font-weight: 600;
-				text-decoration: none;
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-			p {
-				margin-top: 0.2rem;
-			}
-			padding-left: 2rem;
-		}
-	}
-	.shaped {
-		clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 39% 0%);
-		-webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 39% 0%);
-		backdrop-filter: blur(4.2px);
-		border-radius: 12px;
-
-		@media (max-width: 700px) {
-			clip-path: polygon(0% 0%, 0% 100%, 170% 180%, 59% 0%);
-			-webkit-clip-path: polygon(0% 0%, 0% 100%, 170% 180%, 59% 0%);
-		}
-	}
-	.shape {
-		width: 24rem;
-		float: inline-end;
-		height: 22rem;
-		position: relative;
-		clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 0% 0%);
-		-webkit-clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 0% 0%);
-		shape-outside: polygon(100% 0%, 100% 100%, 100% 100%, -20% 0%);
-
-		@media (max-width: 700px) {
-			clip-path: polygon(40% 0%, 40% 0%, 100% 100%, 100% 0%);
-			-webkit-clip-path: polygon(40% 0%, 40% 0%, 100% 100%, 100% 0%);
-			shape-outside: polygon(40% 0%, 40% 0%, 100% 100%, 100% 0%);
-		}
-	}
-	.index-title-card {
+	.index-card {
 		display: flex;
 		flex-direction: column;
-		padding: 2rem 0rem;
-		margin-top: 14rem;
-		@media (max-width: 700px) {
-			margin-top: 2rem;
-		}
-		h1 {
-			font-size: 2.5rem;
-			font-weight: 900;
-			margin-top: 4.2rem;
-		}
-		h2 {
-			font-size: 1.5rem;
-			font-weight: 600;
-			color: #6199ff;
-			position: absolute;
-		}
-		h3 {
-			font-size: 1rem;
-			font-weight: 400;
-			color: #818181;
-		}
-		h4 {
-			font-weight: 500;
-			font-size: 1.1rem;
-			i {
-				color: #808080bb;
-			}
-		}
-		em {
-			margin: 0px 0.12rem 0px 0px;
-			color: #a0a0a0;
-		}
-		* {
-			margin-top: 1.2rem;
-			line-break: strict;
-		}
+		max-width: 1140px;
+		margin: auto;
+		border-radius: 1rem;
+		z-index: 1;
 	}
-	.background {
-		position: fixed;
-		z-index: -1;
-		right: 14vw;
-		top: 15rem;
-		@media (max-width: 700px) {
-			top: 10rem;
-			right: 0px;
-		}
-		@media (min-width: 1200px) {
-			right: 25vw;
-			scale: 1.42;
-			top: 12rem;
-		}
-		pre {
-			font-family: monospace;
-			font-size: 0.5rem;
-			font-weight: 900;
-			margin-left: 22px;
-			line-height: 10.2px;
-			opacity: 0;
-		}
-		#screentext {
-			font-family: monospace;
-			font-size: 0.5rem;
-			font-weight: 900;
-			position: absolute;
-			top: 56px;
-			left: 289px;
-			transform: skew(0deg, -15deg);
-			opacity: 0;
-		}
-		#screentext2 {
-			font-family: monospace;
-			font-size: 0.4rem;
-			font-weight: 900;
-			position: absolute;
-			top: 113px;
-			left: 290px;
-			transform: skew(0deg, -15deg);
-			opacity: 0;
-		}
-		#flashing {
-			font-family: monospace;
-			font-size: 0.5rem;
-			font-weight: 900;
-			position: absolute;
-			top: 47px;
-			left: 344px;
-			transform: skew(0deg, -15deg);
-		}
-		#game {
-			font-family: monospace;
-			font-size: 0.5rem;
-			font-weight: 900;
-			position: absolute;
-			top: 52px;
-			left: 289px;
-			transform: skew(0deg, -15deg);
-			width: 90px;
-			line-height: 1;
-			letter-spacing: 0.01px;
-		}
-	}
-	blockquote {
-		padding-left: 1em;
-		border-width: 2px;
-		border-left-style: solid;
-	}
-	.animated {
-		display: block;
-		transform: translateX(-60px);
-		opacity: 0;
-	}
-	.sub-main-titles {
+	.index-card-contents {
+		border-radius: 1rem;
 		position: relative;
-		bottom: 6rem;
+		background: #e8e8e89c;
+		margin: -10rem 38rem 0rem 0rem;
+		padding: 12rem 2rem 2rem 2rem;
+		box-shadow: 0 0 50px -16px #7474748d;
+		z-index: 2;
 	}
-	.footnotes {
-		margin: 8rem 0px 2rem 0px;
+	@media screen and (max-width: 1200px) {
+		.index-card-contents {
+			margin: 6rem 20rem 0rem 10rem;
+			padding: 2rem;
+		}
 	}
-	section {
-		margin-bottom: 2rem;
+	@media screen and (max-width: 900px) {
+		.index-card-contents {
+			margin: 22rem 0rem 0rem 0rem;
+			padding: 2rem;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		.index-card-contents {
+			margin: 33rem 0rem 0rem 0rem;
+			padding: 2rem;
+		}
+	}
+	html.dark > body > div > div > div.index-card-contents {
+		background: #16161640;
+		box-shadow: 0 0 50px -16px #000000c2;
+	}
+	.index-card-contents:before {
+		content: "";
+		pointer-events: none;
+		position: absolute;
+		display: block;
+		height: 100%;
+		width: 100%;
+		top: 0px;
+		left: 0px;
+		backdrop-filter: blur(32px);
+		-webkit-backdrop-filter: blur(32px);
+		border-radius: 1rem;
+		z-index: -1;
+	}
+	.big-text-container {
+		position: absolute;
+		top: -6rem;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		display: block;
+		z-index: -1;
+		color: #0800ff;
+	}
+	#big-text {
+		letter-spacing: 8px;
+		font-weight: 500;
+		color: #3448ff;
+	}
+	#big-text-2 {
+		letter-spacing: 64px;
+		margin: 11rem 0rem 0rem 2rem;
+		font-weight: 400;
+		font-size: 38rem;
+		font-style: italic;
 	}
 </style>
-
-<script>
-	import { inView, scroll, animate } from "motion";
-
-	function setupAnimations() {
-		const backgroundElement = document.querySelector("#background");
-
-		inView("section", ({ target }) => {
-			if (target.querySelectorAll(".animated").length === 0) {
-				return;
-			}
-			animate(
-				target.querySelectorAll(".animated"),
-				{ opacity: 1, transform: "none" },
-				{ delay: 0.2, duration: 0.8, easing: [0.17, 0.55, 0.55, 1] },
-			);
-		});
-
-		inView("#nav-menu", ({ target }) => {
-			if (!backgroundElement) {
-				return;
-			}
-
-			animate(
-				backgroundElement,
-				{ filter: "blur(0px) brightness(1)" },
-				{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.85, 1] },
-			);
-
-			return (leaveInfo) => {
-				const isDarkMode =
-					document.documentElement.classList.contains("dark");
-
-				if (isDarkMode) {
-					animate(
-						backgroundElement,
-						{ filter: "blur(4.2px) brightness(0.38)" },
-						{
-							delay: 0,
-							duration: 0.8,
-							easing: [0.37, 0.55, 0.85, 1],
-						},
-					);
-					return;
-				}
-				animate(
-					backgroundElement,
-					{ filter: "blur(8.2px) brightness(5.8) contrast(0.2)" },
-					{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
-				);
-			};
-		});
-
-		// fade in on page load
-		["pre", "#screentext", "#screentext2"].forEach((selector) => {
-			if (!selector || !document.querySelector(selector)) {
-				return;
-			}
-			animate(
-				document.querySelector(selector)!,
-				{ opacity: 1 },
-				{ delay: 0.2, duration: 1.6, easing: [0.17, 0.55, 0.55, 1] },
-			);
-		});
-
-		["#intro-title", "#intro-subtitle"].forEach((selector) => {
-			if (!selector || !document.querySelector(selector)) {
-				return;
-			}
-			animate(
-				document.querySelector(selector)!,
-				{ opacity: 1, translate: [-10, 10] },
-				{ delay: 0, duration: 1.9, easing: [0.17, 0.55, 0.55, 1] },
-			);
-		});
-
-		if (!document.querySelector("#flashing")) {
-			return;
-		}
-		animate(
-			document.querySelector("#flashing")!,
-			{ opacity: [0, 1, 0] },
-			{
-				delay: 0,
-				duration: 1.6,
-				easing: [0.17, 0.95, 0.95, 1],
-				repeat: Infinity,
-			},
-		);
-
-		const navMenu = document.getElementById("nav-menu");
-		if (
-			navMenu &&
-			navMenu?.getBoundingClientRect().top < 0 &&
-			backgroundElement
-		) {
-			animate(
-				backgroundElement,
-				{ filter: "blur(8.2px) brightness(5.8) contrast(0.2)" },
-				{ delay: 0, duration: 0.8, easing: [0.37, 0.55, 0.95, 1] },
-			);
-		}
-	}
-
-	// hook animations up to View Transitions via after-swap lifecycle hook
-	document.addEventListener("astro:after-swap", () => {
-		setupAnimations();
-	});
-	setupAnimations();
-</script>
-
-<script>
-	const gameElem = document.getElementById("game");
-	const screenText = document.getElementById("screentext");
-	const screenText2 = document.getElementById("screentext2");
-	const flashingBit = document.getElementById("flashing");
-	const snake = "0";
-	const food = ".";
-	const lineText = "██████████████████ ";
-
-	let gameStarted = false;
-	let grid = lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
-	let position = 0;
-	let posArr: Array<number> = [];
-	let foodPosition = -1;
-	let snakeLen = 12;
-	let snakeSpeed = 600;
-	let playerMoveInterval = null;
-	let currentDirectionKey = "";
-
-	function setCharAt(str: string, index: number, chr: string) {
-		if (index > str.length - 1) return str;
-		grid = str.substring(0, index) + chr + str.substring(index + 1);
-		return grid;
-	}
-
-	function updateSnakePosition(pos: number) {
-		posArr.push(position);
-		position = position + pos;
-
-		if (!(foodPosition === position)) {
-			posArr.push(position);
-		}
-		grid = lineText.repeat(9);
-	}
-
-	function getNewFoodPos() {
-		let newFoodPos = Math.floor(Math.random() * 17 * 9);
-		const currSnake = posArr.reverse().slice(0, snakeLen + 1);
-		while ((newFoodPos + 1) % 19 === 0 || currSnake.includes(newFoodPos)) {
-			newFoodPos = Math.floor(Math.random() * 17 * 9);
-		}
-		return newFoodPos;
-	}
-
-	function handleDirectionKey(key: string) {
-		currentDirectionKey = key;
-
-		if (key == "w") {
-			if (0 <= position && position <= 17) {
-				updateSnakePosition(152);
-				return;
-			}
-			updateSnakePosition(-19);
-		}
-		if (key == "s") {
-			if (position >= 152) {
-				updateSnakePosition(-152);
-				return;
-			}
-			updateSnakePosition(19);
-		}
-		if (key == "a") {
-			if (position % 19 === 0) {
-				updateSnakePosition(17);
-				return;
-			}
-			updateSnakePosition(-1);
-		}
-		if (key == "d") {
-			if ((position + 2) % 19 === 0) {
-				updateSnakePosition(-17);
-				return;
-			}
-			updateSnakePosition(1);
-		}
-	}
-
-	function keyDownHandler(e: KeyboardEvent, user = true) {
-		if (e.key !== "g" && !gameStarted) {
-			return;
-		}
-
-		if (!gameStarted) {
-			gameStarted = true;
-			foodPosition = getNewFoodPos();
-			screenText!.style.display = "none";
-			screenText2!.style.display = "none";
-			flashingBit!.style.display = "none";
-			gameElem!.style.display = "block";
-			grid =
-				lineText.repeat(4) + "█USE█WASD█TO█MOVE█ " + lineText.repeat(4);
-			posArr = [];
-			position = 0;
-			foodPosition = 0;
-			snakeLen = 12;
-			snakeSpeed = 600;
-		}
-
-		if (currentDirectionKey === e.key && user) {
-			return;
-		}
-
-		if (playerMoveInterval!) {
-			clearInterval(playerMoveInterval);
-		}
-
-		playerMoveInterval = setInterval(
-			keyDownHandler,
-			snakeSpeed,
-			new KeyboardEvent("keydown", { key: e.key }),
-			false,
-		);
-
-		handleDirectionKey(e.key);
-
-		const currSnake = posArr.reverse().slice(0, snakeLen + 1);
-
-		currSnake.forEach((pos) => {
-			gameElem!.innerHTML = setCharAt(grid, pos, snake);
-		});
-		gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
-
-		if (foodPosition === position) {
-			posArr.push(position);
-			gameElem!.innerHTML = setCharAt(grid, foodPosition, snake);
-			snakeLen++;
-			snakeSpeed = snakeSpeed / 1.1;
-			foodPosition = getNewFoodPos();
-			gameElem!.innerHTML = setCharAt(grid, foodPosition, food);
-		}
-
-		if (
-			gameStarted &&
-			position !== 0 &&
-			currSnake.slice(1).includes(position)
-		) {
-			gameElem!.style.display = "none";
-			screenText!.innerHTML = "YOU LOSE :(";
-			screenText!.style.display = "block";
-			screenText2!.style.display = "block";
-			flashingBit!.style.display = "block";
-			gameStarted = false;
-		}
-	}
-
-	document.addEventListener("astro:page-load", () => {
-		if (window.location.pathname === "/") {
-			window.addEventListener("keydown", (e) => keyDownHandler(e));
-		}
-	});
-
-	window.addEventListener("keydown", (e) => keyDownHandler(e));
-</script>
