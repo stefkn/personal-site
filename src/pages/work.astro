@@ -36,6 +36,16 @@ const pageTitle = "Résumé/CV";
 	</div>
 	<section>
 		<h1 id="page-title" class="animated">work</h1>
+		<div class="work-intro">
+			<div>
+				<h2>hello!</h2>
+				<p>
+					Welcome to my CV page! Here you'll find a brief overview of
+					my work history, education and skills. If you'd like to know
+					more, please feel free to contact me. 
+				</p>
+			</div>
+		</div>
 		<div class="cv-container">
 			<Image
 				src={cvImage}
@@ -408,6 +418,20 @@ const pageTitle = "Résumé/CV";
 </script>
 
 <style>
+	.work-intro {
+		display: grid;
+    	grid-template-columns: 1fr min(56ch, 100%) 1fr;
+		max-width: calc(100% - 30rem);
+		margin: auto;
+	}
+    @media (max-width: 930px) {
+		.work-intro {
+			max-width: 100%;
+		}
+    }
+	.work-intro > * {
+		grid-column: 2;
+	}
 	.cv-container {
 		display: flex;
 		align-items: center;
@@ -521,8 +545,6 @@ const pageTitle = "Résumé/CV";
 	}
 	section {
 		grid-column: span 1;
-		border-left: 1px #dddddd;
-		border-left-style: solid;
 		padding-left: 40px;
 		padding-top: 20px;
 	}

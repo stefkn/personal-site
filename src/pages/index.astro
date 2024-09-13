@@ -6,12 +6,8 @@ import RecentPosts from "../components/RecentPosts.astro";
 
 <Layout title="Introduction">
 	<div class="big-text-container">
-		<h1 id="big-text" class="index-header ibm-plex-sans-regular">
-			steken
-		</h1>
-		<h1 id="big-text-2" class="index-header ibm-plex-sans-regular">
-			.dev
-		</h1>
+		<h1 id="big-text" class="index-header ibm-plex-sans-regular">steken</h1>
+		<h1 id="big-text-2" class="index-header ibm-plex-sans-regular">.dev</h1>
 	</div>
 	<div id="background" class="background">
 		<IndexBackground />
@@ -20,14 +16,16 @@ import RecentPosts from "../components/RecentPosts.astro";
 				<h2>steken.dev</h2>
 				<h1>this is stefan's personal website</h1>
 				<h3>
-					<em>ste</em>fan <em>ken</em>ichiro nowak, specifically – hopefully that's the Stefan you were looking for. 
+					<em>ste</em>fan <em>ken</em>ichiro nowak, specifically –
+					hopefully that's the Stefan you were looking for.
 				</h3>
 				<h4>
 					stefan is a software engineer with over a half-decade of
 					experience working with london-ey tech-y companies big and
-					small. <br /> <i style="opacity: 0.3; font-size: 1.2rem;">
-						so far, he has yet to bring down production for any
-						more than a few hours at any one time.</i
+					small. <br />
+					<i style="opacity: 0.3; font-size: 1.2rem;">
+						so far, he has yet to bring down production for any more
+						than a few hours at any one time.</i
 					>
 					<br />
 					stefan lives with his partner, harriet, and their son, cassius,
@@ -58,18 +56,19 @@ import RecentPosts from "../components/RecentPosts.astro";
 
 				<h3><u> what you'll find here </u></h3>
 				<p>
-					⚠️ <i>This site is a continuous work in progress as I learn to work
-					with Astro. Expect things to break all the time!</i>
+					⚠️ <i
+						>This site is a continuous work in progress as I learn
+						to work with Astro. Expect things to break all the time!</i
+					>
 				</p>
 				<p>
-					Expect to find a mix of blog posts, project
-					write-ups, and other random musings. If you're looking to
-					hire a software engineer, you can check out the <a
-						href="/work">work</a
-					> page for more information about me, and to see if I might be
-					a good fit for your team. For now, you can read all my rambling
-					over on the <a href="/posts">posts</a> page, or see some of my
-					recent posts below.
+					Expect to find a mix of blog posts, project write-ups, and
+					other random musings. If you're looking to hire a software
+					engineer, you can check out the <a href="/work">work</a> page
+					for more information about me, and to see if I might be a good
+					fit for your team. For now, you can read all my rambling over
+					on the <a href="/posts">posts</a> page, or see some of my recent
+					posts below.
 				</p>
 				<RecentPosts />
 			</div>
@@ -143,24 +142,87 @@ import RecentPosts from "../components/RecentPosts.astro";
 	}
 	.big-text-container {
 		position: absolute;
-		top: -6rem;
+		top: -14rem;
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
 		display: block;
 		z-index: -1;
-		color: #0800ff;
+		color: #2036ff;
 	}
 	#big-text {
-		letter-spacing: 8px;
+		letter-spacing: -44px;
 		font-weight: 500;
-		color: #3448ff;
+		color: #2036ff;
+		text-shadow: 49px 270px 0px #2036ff;
 	}
 	#big-text-2 {
-		letter-spacing: 64px;
-		margin: 11rem 0rem 0rem 2rem;
-		font-weight: 400;
+		letter-spacing: 24px;
+		margin: 6rem 0rem 0rem -1rem;
 		font-size: 38rem;
-		font-style: italic;
+		text-shadow: 29px 170px 0px #2036ff;
 	}
 </style>
+
+<script>
+	import { inView, animate, scroll } from "motion";
+
+
+
+	function setupAnimations() {
+
+		const target = document.getElementById("#big-text");
+
+		target && inView(target, ({}) => {
+
+			if (target && window.lenis) {
+				// animate(
+				// 	// @ts-ignore
+				// 	target,
+				// 	{ opacity: 1, transform: "translate(86px, 16px) skew(6deg, 10deg)" },
+				// 	{
+				// 		delay: 0.2,
+				// 		duration: 0.8,
+				// 		easing: [0.17, 0.55, 0.55, 1],
+				// 	},
+				// );
+				// scroll(({ y }) => { 
+				// 	animate(
+				// 		// @ts-ignore
+				// 		target,
+				// 		{ opacity: 1, transform: `translate(${y.current*2}px, ${y.current/2}px) skew(6deg, 10deg)` },
+				// 		{
+				// 			delay: 0,
+				// 			duration: 0.1,
+				// 		},
+				// 	);
+				// });
+				window.lenis.on('scroll', (e) => {
+					console.log(e);
+					console.log(window.visualViewport?.pageTop);
+					const scrollAmount = window.visualViewport?.pageTop;
+					target.style.transform = `translate(${scrollAmount*2}px, ${scrollAmount/2}px) skew(6deg, 10deg)`;
+					// animate(
+					// 	// @ts-ignore
+					// 	target,
+					// 	{ opacity: 1, transform: `translate(${scrollAmount*2}px, ${scrollAmount/2}px) skew(6deg, 10deg)` },
+					// 	{
+					// 		delay: 0,
+					// 		duration: 0.01,
+					// 	},
+					// );
+				});
+			}
+		});
+
+
+	
+	}
+
+	// hook animations up to View Transitions via after-swap lifecycle hook
+	document.addEventListener("astro:page-load", () => {
+		setupAnimations();
+	});
+
+	setupAnimations();
+</script>
