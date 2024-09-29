@@ -382,8 +382,6 @@ const { Content, headings } = await entry.render();
 </style>
 
 <script>
-  import { scroll, animate, inView } from "motion";
-
   document.addEventListener("astro:page-load", () => {
     // hack to add the css-grid full-bleed style to images in the rendered markdown content
     var mainWrapper = document.querySelector("main.wrapper");
@@ -395,25 +393,6 @@ const { Content, headings } = await entry.render();
           paragraph.style.gridColumn = "1 / 4";
         }
       });
-    }
-
-    if (document.querySelector("#title-h1")) {
-      if (!window.matchMedia("(pointer: coarse)").matches) {
-        // @ts-ignore
-        scroll(
-          animate("#title-h1", {
-            transform: ["none", `translateY(6em)`],
-          }),
-          { target: document.querySelector("#title-h1") },
-        );
-      }
-      animate(
-        "#title-bg",
-        {
-          backgroundPositionX: ["0px", "16000px"],
-        },
-        { duration: 290, repeat: Infinity, direction: "alternate" },
-      );
     }
 
     const asideButton = document.getElementById("toggle-hide-aside");
