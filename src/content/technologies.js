@@ -200,6 +200,25 @@ export const otherTechnologies = [
 	},
 ]
 
+export const krakenStack = [
+    {
+        name: "Python",
+		icon: "skill-icons:python-dark",
+    },
+    {
+        name: "Django",
+		icon: "skill-icons:django",
+    },
+    {
+		name: "htmx",
+		icon: "skill-icons:htmx-dark",
+	},
+    {
+		name: "Postgres",
+		icon: "skill-icons:postgresql-dark",
+	},
+]
+
 export const tailsStack = [
     {
         name: "Python",
