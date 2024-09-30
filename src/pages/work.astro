@@ -7,6 +7,7 @@ import stefanImage from "../assets/stefan.jpg";
 import cvImage from "../assets/cv.png";
 import enkiLogo from "../assets/enki_logo.jpg";
 import tailsLogo from "../assets/tails_logo.png";
+import krakenLogo from "../assets/krakentech_logo.png";
 import kclLogo from "../assets/kcl_logo.svg";
 
 import {
@@ -16,6 +17,7 @@ import {
 	databases,
 	testing,
 	otherTechnologies,
+	krakenStack,
 	tailsStack,
 	enkiStack,
 	kclStack,
@@ -74,6 +76,48 @@ const pageTitle = "Résumé/CV";
 				<div class="timeline-entry">
 					<div class="flex">
 						<Image
+							src={krakenLogo}
+							alt="kraken.tech logo"
+							class="kraken-logo"
+							width="100"
+							height="100"
+							quality="high"
+						/>
+						<div class="timeline-details">
+							<h3>2024 - today</h3>
+							<strong>Software Engineer</strong>
+							<p>
+								<a href="https://kraken.tech"
+									>Kraken Technologies</a
+								>
+							</p>
+						</div>
+					</div>
+					<div class="stack">
+						{
+							krakenStack.map((tech) => (
+								<li>
+									<Icon
+										name={tech.icon}
+										size={50}
+										style="margin-bottom: 0.25rem; margin: auto;"
+									/>{" "}
+									{tech.name}
+								</li>
+							))
+						}
+					</div>
+					<p>
+						<i>The advanced operating system for utilities.</i>
+						<a href="https://www.youtube.com/watch?v=TQiOHhHOkTU"
+							>I'm new here.</a
+						> I've joined Kraken to help build the next generation of 
+						software powering the world's utilities.
+					</p>
+				</div>
+				<div class="timeline-entry">
+					<div class="flex">
+						<Image
 							src={tailsLogo}
 							alt="Tails.com logo"
 							class="tails-logo"
@@ -81,7 +125,7 @@ const pageTitle = "Résumé/CV";
 							height="100"
 						/>
 						<div class="timeline-details">
-							<h3>2019 - today</h3>
+							<h3>2019 - 2024</h3>
 							<strong
 								>Backend / Full-stack Software Engineer</strong
 							>
@@ -486,9 +530,17 @@ const pageTitle = "Résumé/CV";
 		border: 1px solid #5de3fb;
 		border-radius: 6px;
 	}
+	.kraken-logo {
+		margin: 2rem 1rem 0.2rem 0rem;
+		box-shadow: 0 10px 22px 5px #00000073;
+		background: #22005a;
+		border: 1px solid #ff00d9;
+		border-radius: 6px;
+	}
 	.kcl-logo,
 	.enki-logo,
-	.tails-logo {
+	.tails-logo,
+	.kraken-logo {
 		margin-bottom: 1rem;
 	}
 	.skills-icons {
