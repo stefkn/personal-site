@@ -45,6 +45,7 @@ const pageTitle = "Résumé/CV";
 				class="cv-image"
 				onload="this.style.opacity=1; this.style.filter='saturate(1.05)'"
 				quality="low"
+				onclick=`window.location="https://docs.google.com/presentation/d/1MhmKj8wS_Q18ItPdRWYEBbGBefBPNjM1YtI5HjcE8sc/edit?usp=sharing"`
 			/>
 			<a
 				href="https://docs.google.com/presentation/d/1MhmKj8wS_Q18ItPdRWYEBbGBefBPNjM1YtI5HjcE8sc/edit?usp=sharing"
@@ -495,6 +496,11 @@ const pageTitle = "Résumé/CV";
 		box-shadow: 0 10px 22px 5px #00000073;
 		border-radius: 4px;
 		transform: rotate(-2.2deg);
+		transition: cubic-bezier(0.23, 1, 0.320, 1) 1.2s;
+		cursor: pointer;
+	}
+	.cv-image:hover {
+		transform: rotate(-5.6deg);
 	}
 	main.wrapper {
 		margin-top: 16rem;
