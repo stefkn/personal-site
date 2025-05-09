@@ -9,13 +9,13 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'steken.dev',
+    title: 'stefkn.com',
     subtitle: 'software, hardware, wetware',
     description: 'stefan nowak, software engineer based in London, UK',
     pageType: 'website',
     image: {
         src: '/favicon.png',
-        alt: 'steken.dev logo'
+        alt: 'stefkn.com logo'
     },
 };
 
