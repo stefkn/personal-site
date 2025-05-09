@@ -1,4 +1,4 @@
-# steken.dev personal site
+# personal site
 
 Astro-powered personal website. 
 
