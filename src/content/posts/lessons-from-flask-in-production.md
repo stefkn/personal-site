@@ -41,8 +41,8 @@ def account_settings(customer_id):
     if request.method == 'POST':
         is_valid, valid_address = AddressValidationService().validate_address(
             request.form['address']
-        ) 
-        if is_valid: 
+        )
+        if is_valid:
             crm_service = CRMService()
             customer.address = valid_address
             crm_service.update_customer_address(
@@ -56,7 +56,7 @@ def account_settings(customer_id):
 
         customer.save()
         logger.info(
-            f'Customer {customer_id} updated their settings', 
+            f'Customer {customer_id} updated their settings',
             extra={'customer_id': customer_id}
         )
         CustomerNotifyService().notify_customer(
@@ -65,8 +65,8 @@ def account_settings(customer_id):
         flash('Settings saved!')
 
     context = {
-        'customer': customer, 
-        'is_latest_order_shipped': is_latest_order_shipped, 
+        'customer': customer,
+        'is_latest_order_shipped': is_latest_order_shipped,
         'is_currently_subscribed': is_currently_subscribed
     }
     return render_template('account_settings.html', context)
@@ -87,8 +87,8 @@ def account_settings(customer_id):
         flash(flash_message)
 
     context = {
-        'customer': customer, 
-        'is_latest_order_shipped': customer.is_latest_order_shipped, 
+        'customer': customer,
+        'is_latest_order_shipped': customer.is_latest_order_shipped,
         'is_currently_subscribed': customer.is_currently_subscribed
     }
     return render_template('account_settings.html', context)
@@ -122,7 +122,7 @@ def signup_start(customer_id=None):
         # do some form handling
         return redirect(
             url_for(
-                'signup_step_1', 
+                'signup_step_1',
                 customer_id=customer_id
             )
         )
@@ -157,13 +157,13 @@ On a large enough project, with many developers, logging can become a bit of an 
 # function a
 logger.info(f'Customer {customer_id} updated their settings')
 
-# function b 
+# function b
 logger.info(f'settings updated', customer_id=customer_id)
 
 # function c
 logger.info(
-    event=SETTINGS_UPDATE, 
-    customer_id=customer_id, 
+    event=SETTINGS_UPDATE,
+    customer_id=customer_id,
     old_data=old_customer_data,
     data=customer_data
 )
@@ -211,15 +211,15 @@ One common pitfall is the N+1 query problem. This is where you end up making mul
 @app.route('/some-endpoint/', methods=['GET'])
 def some_endpoint(customer_id):
     customers = session.query(Customer).all().filter_by(
-        Customer.active == True, 
+        Customer.active == True,
         Customer.country == Countries.UNITED_STATES
     )
     orders = session.query(Order).any(
         Order.customer_id.in_([c.id for c in customers])
     ).all()
     return render_template(
-        'some_template.html', 
-        customers=customers, 
+        'some_template.html',
+        customers=customers,
         orders=orders
     )
 ```
@@ -230,11 +230,11 @@ In this example, we're making two separate queries to the database: one to get t
 @app.route('/some-endpoint/', methods=['GET'])
 def some_endpoint(customer_id):
     customers_orders = session.query(Customer).join(Customer.order).filter(
-        Customer.active == True, 
+        Customer.active == True,
         Customer.country == Countries.UNITED_STATES
     ).all()
     return render_template(
-        'some_template.html', 
+        'some_template.html',
         customers_orders=customers_orders,
     )
 ```
@@ -253,38 +253,62 @@ Jinja2 macros are a powerful feature of Flask, but they can be a bit of a double
 <!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
 
 {% macro render_customer(customer) %}
-    <div class="customer">
-        {{ render_customer_details(customer, store) }}
+<div class="customer">
+  {{ render_customer_details(customer, store) }}
+  {% if current_user.is_order_admin %}
+    {{ render_customer_orders_detail(customer, orders) }}
+  {% endif %}
+  {% if customer.orders %}
+    <ul>
+      {% for order in customer.orders %}
         {% if current_user.is_order_admin %}
-            {{ render_customer_orders_detail(customer, orders) }}
-        {% endif %}
-        {% if customer.orders %}
-            <ul>
-                {% for order in customer.orders %}
-                    {% if current_user.is_order_admin %}
-                        {% if order.country in ['GB', 'FR'] %}
-                            {% if order.destination == PICKUP_POINT %}
-                                {{ render_eu_order_details_pickup_point(order, courier, pickup_locations) }}
-                            {% else %}
-                                {{ render_non_eu_order_details_and_courier(order, courier) }}
-                            {% endif %}
-                        {% else %}
-                            {{ render_non_eu_order_details_and_courier(order, courier) }}
-                        {% endif %}
-                        {% if order.status in [ORDER_CANCEL, ORDER_HOLD] %}
-                            {{ render_order_stalled_details(order, order.status, courier) }}
-                        {% else %}
-                            {{ render_order_normal_status(order) }}
-                        {% endif %}
-                    {% else %}
-                        {{ render_generic_order_details(order), customer }}
-                    {% endif %}
-                {% endfor %}
-            </ul>
+          {% if order.country in ['GB', 'FR'] %}
+            {% if order.destination == PICKUP_POINT %}
+              {{
+                render_eu_order_details_pickup_point(
+                  order, courier, pickup_locations
+                )
+              }}
+            {% else %}
+              {{
+                render_non_eu_order_details_and_courier(
+                  order, courier
+                )
+              }}
+            {% endif %}
+          {% else %}
+            {{
+              render_non_eu_order_details_and_courier(
+                order, courier
+              )
+            }}
+          {% endif %}
+          {% if order.status in [ORDER_CANCEL, ORDER_HOLD] %}
+            {{
+              render_order_stalled_details(
+                order, order.status, courier
+              )
+            }}
+          {% else %}
+            {{
+              render_order_normal_status(
+                order
+              )
+            }}
+          {% endif %}
         {% else %}
-            <p>No orders yet</p>
+          {{
+            render_generic_order_details(
+              order, customer
+            )
+          }}
         {% endif %}
-    </div>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No orders yet</p>
+  {% endif %}
+</div>
 {% endmacro %}
 ```
 
@@ -297,48 +321,35 @@ Jinja2 allows you to do a lot of logic in your templates, but just because you c
 ```html
 <!-- DISCLAIMER: All code appearing in this example are fictitious. Any resemblance to real production code, living or dead, is purely coincidental. -->
 
-{% if delivery.is_paid %}
-    {% if delivery.price %}
-        {% if payment_method %}
-            {% if payment_method == 'visa' %}
-                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Visa card.</p>
+{% set currencies = ['USD', 'EUR', 'BTC'] %}
+{% set rates = {'USD': 1, 'EUR': 0.9, 'BTC': 0.00002} %}
+{% set user_name = user.name|replace(' ', '_')|upper if user else 'GUEST' %}
+{% set balance = user.balance if user else 0 %}
+{% set preferred = user.preferred_currency if user else 'USD' %}
+{% set converted = (balance * rates[preferred])|round(4) %}
+{% set initials = user.name.split(' ')[0][0] ~ user.name.split(' ')[-1][0] if user else 'GU' %}
 
-            {% elif payment_method == 'mastercard' %}
-                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from PayPal.</p>
+{% macro fmt_amt(amt, cur) -%}
+  {{ (amt ~ '')[:6] }} {{ cur }}
+{%- endmacro %}
 
-            {% elif payment_method == 'klarna' %}
-                {% set klarna_payment_status = KlarnaService().get_payment_status(delivery.payment_id) %}
-                {% set klarna_payment_instalment = KlarnaService().get_instalments(delivery.payment_id) %}
-
-                {% if klarna_payment_status == 'completed' %}
-                    <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Klarna.</p>
-                {% else %}
-                    <p>Payment of {{ price | money(locale=locale) }} is on instalment {{ KlarnaService.get_max_instalments(customer) - klarna_payment_instalment }}</p>
-                {% endif %}
-
-            {% elif payment_method == 'paypal' %}
-                <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from PayPal.</p>
-
-            {% elif payment_method == 'stripe' %}
-                {% if is_payment_completed %}
-                    <p>Payment of {{ price | money(locale=locale) }} received on {{ payment_date | date('medium') }} from Stripe.</p>
-
-                {% else %}
-                    <p>Payment of {{ price | money(locale=locale) }} is pending from Stripe.</p>
-
-                {% endif %}
-            {% endif %}
-
-        {% else %}
-            <p>Payment received.</p>
-        {% endif %}
-    {% endif %}
-{% elif delivery.has_message %}
-    ...
-{% elif delivery.is_delayed %}
-    ...
-{% elif delivery.is_failed %}
-    ...
+<h3>Hello, {{ user_name }} ({{ initials }})!</h3>
+<p>
+  Balance in {{ preferred }}: {{ fmt_amt(converted, preferred) }}
+  <br>
+  {% for c in currencies %}
+    {{ c }}: {{ fmt_amt(balance * rates[c], c) }}{% if not loop.last %} | {% endif %}
+  {% endfor %}
+</p>
+<p>
+  {% set reversed = user_name[::-1] %}
+  Your name backwards: {{ reversed }}
+</p>
+{% if balance|string|length > 3 %}
+  <p>Big spender detected!</p>
+{% endif %}
+{% set emoji = '💸' if balance > 1000 else '🪙' %}
+<p>Account emoji: {{ emoji }}</p>
 ```
 
 This is a bit of a contrived example, but you get the idea–_there's so much view logic happening in the template,_ and this isn't rare! It would make more sense to create a function that encapsulates this logic, and handles the slight differences between payment provider systems, and call that function in the view or the template.
@@ -360,7 +371,7 @@ I wish I could say I've never seen this, but I have.
     ...
 ```
 
-_Please no, please stop, it hurts my soul._ If you need to store data like this, use a JSON file, a database, or a config file. Anything but in a template. _Anything!_
+_Please no, stop, it hurts!_ If you need to store data like this, use a JSON file, a database, or a config file. Anything but in a template. _Anything!_ I'd take a `.txt` file over this.
 
 ### i18n headaches
 
